@@ -52,10 +52,14 @@
     .eyebrow:before{content:"";width:28px;height:1px;background:#dfba82;display:block}
     .hero h2,.section-title h2,.summary-card h3,.package-card h3{font-family:Georgia,"Noto Serif TC",serif;letter-spacing:-.03em}
     .hero h2{font-size:clamp(40px,6.8vw,80px);line-height:1.02;margin:16px 0 20px}
-    .hero-lead{max-width:560px;font-size:17px;color:#efe5d8;margin:0}
-    .hero-bullets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin:28px 0 0;padding:0;list-style:none;max-width:520px}
-    .hero-bullets li{display:flex;gap:10px;color:#fff5e8;font-size:14px}
-    .hero-bullets li::before{content:"✦";color:#dfba82;flex:0 0 auto}
+        .hero-lead{max-width:590px;font-size:16px;line-height:1.75;color:#efe5d8;margin:0}
+    .hero-lead strong{font-size:17px;color:#fff7ec;font-weight:900}
+    .hero-lead span{color:#d9cbbb}
+    .hero-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px 16px;margin:26px 0 0;max-width:570px}
+    .hero-feature{position:relative;min-height:82px;padding:14px 15px 13px 20px;border:1px solid rgba(229,190,137,.18);border-radius:14px;background:rgba(255,255,255,.035)}
+    .hero-feature:before{content:"✦";position:absolute;left:9px;top:17px;color:#dfba82;font-size:9px}
+    .hero-feature-label{display:block;padding-left:8px;color:#efc98e;font-size:13px;font-weight:900;letter-spacing:.04em;line-height:1.35}
+    .hero-feature p{margin:6px 0 0;padding-left:8px;color:#fff6ea;font-size:13px;line-height:1.5}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
     .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;font-weight:900;transition:.18s}
     .btn.primary{background:#fff;color:var(--ink)}
@@ -195,7 +199,7 @@
     .navlinks{color:#4b3a31}
     .navcta{background:#71241a;color:#fff8ef;box-shadow:0 8px 18px rgba(113,36,26,.18)}
     .hero-shell{background:radial-gradient(circle at 18% 14%,rgba(213,151,78,.20),transparent 36%),linear-gradient(135deg,#24130f 0%,#4c1d16 58%,#29150f 100%)}
-    .hero-lead,.hero-bullets li{color:#fff4e8}
+    .hero-lead,.hero-feature p{color:#fff4e8}
     .hero .eyebrow{color:#e2b66f}
     .hero .eyebrow:before{background:#e2b66f}
     .section-title .eyebrow,.faq-wrap>.eyebrow{color:#7b281e}
@@ -311,7 +315,10 @@
       .hero-copy{padding:34px 22px 10px}
       .hero h2{font-size:40px}
       .hero-lead{font-size:15px}
-      .hero-bullets{grid-template-columns:1fr}
+      .hero-features{grid-template-columns:1fr;gap:10px;max-width:none;margin-top:20px}
+      .hero-feature{min-height:auto;padding:13px 14px 12px 20px}
+      .hero-feature-label{font-size:12px}
+      .hero-feature p{font-size:12px}
       .hero-art{padding:8px 14px 22px}
       .hero-panel{padding:18px;border-radius:24px}
       .plate{inset:74px 38px 42px 38px}
@@ -570,13 +577,26 @@
               <div class="sale-ribbon">2026 秋季限定 · 套餐6隻起｜自由配搭4隻起</div>
               <div class="eyebrow">DAMDAMBIRDNEST · AUTUMN SELECTION</div>
               <h2>一到秋天，<br>就係食蟹最好時候。</h2>
-              <p class="hero-lead">精選 4 兩以上大閘蟹，蟹公主打 5–5.5 兩、蟹乸主打 4.5–5 兩。由二人晚餐到家庭聚會，一次過揀好份量、配搭同配送地區。</p>
-              <ul class="hero-bullets">
-                <li><b>套餐優惠：</b>6 / 8 / 10 隻，基本配送區包送</li>
-                <li><b>自由配搭：</b>4 隻起，蟹公蟹乸數量自己決定</li>
-                <li>每單贈送食蟹工具 1 份；第 2 份起每份 +$18</li>
-                <li>其他地區按固定分區補配送差額</li>
-              </ul>
+              <p class="hero-lead"><strong>精選 4 兩以上大閘蟹</strong><br>蟹公主打 5–5.5 兩｜蟹乸主打 4.5–5 兩<br><span>由二人晚餐到家庭聚會，一次過揀好份量，配送清晰易明。</span></p>
+
+              <div class="hero-features" aria-label="訂購重點">
+                <div class="hero-feature">
+                  <span class="hero-feature-label">套餐優惠</span>
+                  <p>6 / 8 / 10 隻，基本配送區包送</p>
+                </div>
+                <div class="hero-feature">
+                  <span class="hero-feature-label">自由配搭</span>
+                  <p>4 隻起，公乸數量自由配</p>
+                </div>
+                <div class="hero-feature">
+                  <span class="hero-feature-label">食蟹工具</span>
+                  <p>每單送 1 份，第 2 份起 +$18</p>
+                </div>
+                <div class="hero-feature">
+                  <span class="hero-feature-label">配送說明</span>
+                  <p>其他地區按固定分區補運費</p>
+                </div>
+              </div>
               <div class="hero-actions">
                 <a class="btn primary" href="#buy-mode">立即揀購買方式</a>
                 <a class="btn secondary" href="#buy-mode">套餐／自由配搭</a>
