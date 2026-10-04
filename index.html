@@ -2216,19 +2216,21 @@
               <label for="receiverPhone">電話 <span>*</span></label>
               <input id="receiverPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="例如：9123 4567">
             </div>
-            <div class="receiver-field receiver-field-wide">
-              <label for="receiverAddress">中文地址 <span>*</span></label>
-              <textarea id="receiverAddress" rows="2" autocomplete="street-address" placeholder="請輸入完整中文收貨地址，包括屋苑／大廈、座數、樓層及室號"></textarea>
-              <div class="address-zone-result pending" id="addressZoneResult" aria-live="polite"></div>
-            </div>
             <div class="receiver-field receiver-field-wide receiver-zone-field">
               <label for="receiverZone">配送分區 <span>*</span></label>
-              <select id="receiverZone" class="select">
+              <select id="receiverZone" class="select" required>
+                <option value="" data-zone-name="未選擇" selected disabled>請先選擇配送分區</option>
                 <option value="0" data-zone-name="基本配送區">基本配送區｜荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門｜+$0</option>
                 <option value="30" data-zone-name="較遠地區">較遠地區｜大埔、元朗、天水圍、將軍澳｜+$30</option>
                 <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區、粉嶺、上水、東涌、西貢市中心｜+$70</option>
                 <option value="special" data-zone-name="特殊地址">特殊地址｜深入村屋、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置｜費用待確認</option>
               </select>
+              <small class="receiver-hint">請先揀配送分區，再填寫完整中文地址；如果地址有清楚地區名稱，系統亦會協助核對。</small>
+            </div>
+            <div class="receiver-field receiver-field-wide">
+              <label for="receiverAddress">中文地址 <span>*</span></label>
+              <textarea id="receiverAddress" rows="2" autocomplete="street-address" placeholder="請輸入完整中文收貨地址，包括屋苑／大廈、座數、樓層及室號"></textarea>
+              <div class="address-zone-result pending" id="addressZoneResult" aria-live="polite"></div>
             </div>
             <div class="receiver-field">
               <label for="receiveDate">收貨日期 <span>*</span></label>
@@ -2728,6 +2730,7 @@
     let purchaseMode = 'package';
     let lastAddressDetection = null;
     let applyingAddressZone = false;
+    let manualZoneSelected = false;
 
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
@@ -2835,12 +2838,17 @@
 
     zoneSelect.addEventListener('change', e => {
       const opt = e.target.selectedOptions[0];
+      if(!opt || !opt.value) return;
       state.zoneFee = opt.value === 'special' ? 'special' : Number(opt.value);
       state.zoneName = opt.dataset.zoneName;
-      if(!applyingAddressZone) setManualZoneResult(e.target);
+      if(!applyingAddressZone){
+        manualZoneSelected = true;
+        setManualZoneResult(e.target);
+      }
       render();
       renderSingle();
       renderAddressZoneResult();
+      updateFinalPreview();
     });
 
     function receiverData(){
@@ -2861,7 +2869,7 @@
     function receiverReady(){
       const r = receiverData();
       const validPhone = /^\d{8}$/.test(r.phone.replace(/[\s-]/g,''));
-      const baseReady = Boolean(r.name && validPhone && r.address && r.date && r.slot && r.arrangement);
+      const baseReady = Boolean(r.name && validPhone && zoneSelect.value && r.address && r.date && r.slot && r.arrangement);
       if(purchaseMode === 'single') return baseReady && singleData().count >= 4;
       return baseReady;
     }
@@ -2876,6 +2884,7 @@
         receiverPhone.focus();
         return false;
       }
+      if(!zoneSelect.value) missing.push('配送分區');
       if(!r.address) missing.push('中文地址');
       if(!r.date) missing.push('收貨日期');
       if(!r.arrangement) missing.push('收貨安排');
@@ -3003,6 +3012,9 @@
       applyingAddressZone = true;
       if(zoneSelect && [...zoneSelect.options].some(o=>o.value===String(value))){
         zoneSelect.value = String(value);
+        const opt = zoneSelect.selectedOptions[0];
+        state.zoneFee = opt.value === 'special' ? 'special' : Number(opt.value);
+        state.zoneName = opt.dataset.zoneName;
         zoneSelect.dispatchEvent(new Event('change',{bubbles:true}));
       }
       applyingAddressZone = false;
@@ -3047,6 +3059,12 @@
     }
 
     function applyAddressDetection(){
+      if(manualZoneSelected){
+        setManualZoneResult(zoneSelect);
+        updateFinalPreview();
+        return;
+      }
+
       const detected = detectDeliveryZone(receiverAddress.value);
       lastAddressDetection = detected;
 
@@ -3061,8 +3079,9 @@
     }
 
     function setManualZoneResult(select){
-      if(!select || !receiverAddress.value.trim()) return;
+      if(!select) return;
       const opt = select.selectedOptions[0];
+      if(!opt || !opt.value) return;
       lastAddressDetection = {
         status:'manual',
         value:opt.value,
@@ -3099,10 +3118,11 @@
       const crabSubtotal = items.reduce((s,i)=>s+i.qty*i.price,0);
 
       const opt = singleZone.selectedOptions[0];
-      const special = opt.value === 'special';
-      const zoneExtra = special ? 0 : Number(opt.value);
+      const zoneChosen = Boolean(opt && opt.value);
+      const special = zoneChosen && opt.value === 'special';
+      const zoneExtra = !zoneChosen || special ? 0 : Number(opt.value);
       const baseShipping = count >= 6 ? 0 : 80;
-      const shipping = special ? null : baseShipping + zoneExtra;
+      const shipping = !zoneChosen || special ? null : baseShipping + zoneExtra;
 
       const toolQty = clampExtraTool();
       const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
@@ -3114,7 +3134,7 @@
 
       return {
         items,male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,
-        toolQty,toolCost,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value,
+        toolQty,toolCost,total,zoneName:zoneChosen ? opt.dataset.zoneName : '未選擇配送分區',slot:slotSelect.value,
         standardMale,standardFemale,nonStandardCount
       };
     }
