@@ -1880,6 +1880,55 @@
       filter:grayscale(.18);
       box-shadow:none!important;
     }
+  
+    /* 收貨資料錯誤提示：紅框 + 欄位下方文字 */
+    .receiver-field.field-invalid > label{
+      color:#a61f18!important;
+    }
+    .receiver-field.field-invalid input,
+    .receiver-field.field-invalid textarea,
+    .receiver-field.field-invalid select{
+      border:2px solid #c6281f!important;
+      background:#fff7f6!important;
+      box-shadow:0 0 0 3px rgba(198,40,31,.10)!important;
+      outline:none!important;
+    }
+    .receiver-field.field-invalid input:focus,
+    .receiver-field.field-invalid textarea:focus,
+    .receiver-field.field-invalid select:focus{
+      border-color:#b51f18!important;
+      box-shadow:0 0 0 3px rgba(198,40,31,.14)!important;
+      outline:none!important;
+    }
+    .field-error-message{
+      display:block;
+      margin-top:1px;
+      color:#b51f18;
+      font-size:11px;
+      line-height:1.4;
+      font-weight:800;
+    }
+    .receiver-arrangement.field-invalid{
+      border:2px solid #c6281f!important;
+      background:#fff2f0!important;
+      box-shadow:0 0 0 3px rgba(198,40,31,.08);
+    }
+    .receiver-arrangement.field-invalid .receiver-arrangement-copy strong{
+      color:#a61f18!important;
+    }
+    .arrangement-error-message{
+      width:100%;
+      margin-top:8px;
+      color:#b51f18;
+      font-size:11px;
+      line-height:1.4;
+      font-weight:800;
+    }
+    .receiver-choice.field-invalid-choice{
+      border-color:#c6281f!important;
+      background:#fff7f6!important;
+    }
+
   </style>
 </head>
 <body>
@@ -2288,11 +2337,11 @@
             </div>
 
             <div class="final-submit">
-              <button type="button" class="final-wa primary-wa" id="finalWa1" disabled aria-disabled="true">
+              <button type="button" class="final-wa primary-wa" id="finalWa1" aria-disabled="false">
                 <span>發送 WhatsApp</span>
                 <small>5482 4802</small>
               </button>
-              <button type="button" class="final-wa primary-wa" id="finalWa2" disabled aria-disabled="true">
+              <button type="button" class="final-wa primary-wa" id="finalWa2" aria-disabled="false">
                 <span>發送 WhatsApp</span>
                 <small>6806 8004</small>
               </button>
@@ -2866,6 +2915,71 @@
       };
     }
 
+    function receiverFieldWrap(el){
+      return el ? el.closest('.receiver-field') : null;
+    }
+
+    function setReceiverFieldError(el,message){
+      const wrap = receiverFieldWrap(el);
+      if(!wrap) return;
+      wrap.classList.add('field-invalid');
+      el.setAttribute('aria-invalid','true');
+      let msg = wrap.querySelector('.field-error-message');
+      if(!msg){
+        msg = document.createElement('small');
+        msg.className = 'field-error-message';
+        msg.setAttribute('role','alert');
+        wrap.appendChild(msg);
+      }
+      msg.textContent = message;
+    }
+
+    function clearReceiverFieldError(el){
+      const wrap = receiverFieldWrap(el);
+      if(!wrap) return;
+      wrap.classList.remove('field-invalid');
+      el.removeAttribute('aria-invalid');
+      wrap.querySelector('.field-error-message')?.remove();
+    }
+
+    function setArrangementError(message){
+      const box = document.querySelector('.receiver-arrangement');
+      if(!box) return;
+      box.classList.add('field-invalid');
+      let msg = box.querySelector('.arrangement-error-message');
+      if(!msg){
+        msg = document.createElement('div');
+        msg.className = 'arrangement-error-message';
+        msg.setAttribute('role','alert');
+        box.appendChild(msg);
+      }
+      msg.textContent = message;
+      box.querySelectorAll('.receiver-choice').forEach(el=>el.classList.add('field-invalid-choice'));
+    }
+
+    function clearArrangementError(){
+      const box = document.querySelector('.receiver-arrangement');
+      if(!box) return;
+      box.classList.remove('field-invalid');
+      box.querySelector('.arrangement-error-message')?.remove();
+      box.querySelectorAll('.receiver-choice').forEach(el=>el.classList.remove('field-invalid-choice'));
+    }
+
+    function receiverValidationErrors(){
+      const r = receiverData();
+      const errors = [];
+      if(!r.name) errors.push({el:receiverName,msg:'請填寫收貨人姓名。'});
+      const cleanedPhone = r.phone.replace(/[\s-]/g,'');
+      if(!r.phone) errors.push({el:receiverPhone,msg:'請填寫聯絡電話。'});
+      else if(!/^\d{8}$/.test(cleanedPhone)) errors.push({el:receiverPhone,msg:'請輸入 8 位香港電話號碼。'});
+      if(!zoneSelect.value) errors.push({el:zoneSelect,msg:'請先選擇配送分區。'});
+      if(!r.address) errors.push({el:receiverAddress,msg:'請填寫完整中文收貨地址。'});
+      if(!r.date) errors.push({el:dateInput,msg:'請選擇收貨日期。'});
+      if(!r.slot) errors.push({el:slotSelect,msg:'請選擇收貨時段。'});
+      if(!r.arrangement) errors.push({arrangement:true,msg:'請選擇「有人收貨」或「可掛門口」。'});
+      return errors;
+    }
+
     function receiverReady(){
       const r = receiverData();
       const validPhone = /^\d{8}$/.test(r.phone.replace(/[\s-]/g,''));
@@ -2875,25 +2989,30 @@
     }
 
     function validateReceiver(){
-      const r = receiverData();
-      const missing = [];
-      if(!r.name) missing.push('姓名');
-      if(!r.phone) missing.push('電話');
-      else if(!/^\d{8}$/.test(r.phone.replace(/[\s-]/g,''))){
-        alert('電話請輸入 8 位香港電話號碼。');
-        receiverPhone.focus();
-        return false;
+      [receiverName,receiverPhone,zoneSelect,receiverAddress,dateInput,slotSelect].forEach(clearReceiverFieldError);
+      clearArrangementError();
+
+      const errors = receiverValidationErrors();
+      if(!errors.length) return true;
+
+      errors.forEach(err=>{
+        if(err.arrangement) setArrangementError(err.msg);
+        else setReceiverFieldError(err.el,err.msg);
+      });
+
+      const first = errors[0];
+      const target = first.arrangement
+        ? document.querySelector('.receiver-arrangement')
+        : receiverFieldWrap(first.el);
+
+      target?.scrollIntoView({behavior:'smooth',block:'center'});
+      if(first.el){
+        setTimeout(()=>first.el.focus({preventScroll:true}),250);
       }
-      if(!zoneSelect.value) missing.push('配送分區');
-      if(!r.address) missing.push('中文地址');
-      if(!r.date) missing.push('收貨日期');
-      if(!r.arrangement) missing.push('收貨安排');
-      if(missing.length){
-        alert('請先填妥：' + missing.join('、'));
-        document.getElementById('receiver').scrollIntoView({behavior:'smooth',block:'start'});
-        return false;
-      }
-      return true;
+
+      const note = document.getElementById('finalSubmitNote');
+      if(note) note.textContent = '請先修正上面紅色標示嘅資料，再發送 WhatsApp。';
+      return false;
     }
 
     function buildMessage(){
@@ -3253,8 +3372,8 @@
       previewGated.classList.toggle('ready', ready);
       [wa1,wa2].forEach(btn=>{
         if(!btn) return;
-        btn.disabled = !ready;
-        btn.setAttribute('aria-disabled', ready ? 'false' : 'true');
+        btn.disabled = false;
+        btn.setAttribute('aria-disabled','false');
       });
       if(submitNote){
         submitNote.textContent = ready
@@ -3314,11 +3433,32 @@
     document.getElementById('finalWa1')?.addEventListener('click',()=>openFinalWhatsapp('54824802'));
     document.getElementById('finalWa2')?.addEventListener('click',()=>openFinalWhatsapp('68068004'));
 
+    const validateOneReceiverField = (el)=>{
+      if(!el || el === receiverNote) return;
+      const err = receiverValidationErrors().find(item=>item.el === el);
+      if(err) setReceiverFieldError(el,err.msg);
+      else clearReceiverFieldError(el);
+    };
+
     [receiverName,receiverPhone,receiverAddress,zoneSelect,dateInput,slotSelect,receiverNote].forEach(el=>{
-      if(el) el.addEventListener('input', updateFinalPreview);
-      if(el) el.addEventListener('change', updateFinalPreview);
+      if(!el) return;
+      el.addEventListener('input',()=>{
+        if(el.closest('.field-invalid')) validateOneReceiverField(el);
+        updateFinalPreview();
+      });
+      el.addEventListener('change',()=>{
+        validateOneReceiverField(el);
+        updateFinalPreview();
+      });
+      if(el !== receiverNote){
+        el.addEventListener('blur',()=>validateOneReceiverField(el));
+      }
     });
-    document.querySelectorAll('input[name="receiveArrangement"]').forEach(el=>el.addEventListener('change',updateFinalPreview));
+
+    document.querySelectorAll('input[name="receiveArrangement"]').forEach(el=>el.addEventListener('change',()=>{
+      clearArrangementError();
+      updateFinalPreview();
+    }));
 
     function clampExtraTool(value = toolQtyState){
       let v = parseInt(value || '1',10);
