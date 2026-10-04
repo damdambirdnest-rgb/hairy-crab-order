@@ -1211,6 +1211,8 @@
       .faq-addon-grid{grid-template-columns:1fr}
     }
 
+  
+    #packages,#single{scroll-margin-top:96px}
   </style>
 </head>
 <body>
@@ -2673,7 +2675,16 @@
       renderAddressZoneResult();
     }
 
-    modeButtons.forEach(btn => btn.addEventListener('click', () => setPurchaseMode(btn.dataset.purchaseMode)));
+    modeButtons.forEach(btn => btn.addEventListener('click', () => {
+      const mode = btn.dataset.purchaseMode;
+      setPurchaseMode(mode);
+
+      // 揀購買方式後，自動帶客人去相應選購區。
+      requestAnimationFrame(() => {
+        const target = mode === 'single' ? singleSection : packagesSection;
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }));
     mobileChooseBtn.addEventListener('click', () => {
       const target = purchaseMode === 'package' ? orderSection : document.querySelector('.single-builder');
       target.scrollIntoView({behavior:'smooth',block:'start'});
