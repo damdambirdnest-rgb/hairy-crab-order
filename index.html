@@ -1711,6 +1711,93 @@
       .brand p{max-width:175px}
     }
 
+  
+    /* 側邊快速導航：套餐 / 自選 / 頁頂 */
+    .floating-quick-nav{
+      position:fixed;
+      right:22px;
+      bottom:28px;
+      z-index:70;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+    }
+    .floating-quick-nav.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+    .floating-quick-btn{
+      width:58px;
+      height:58px;
+      border:1px solid #c9975c;
+      border-radius:18px;
+      background:#fffaf3;
+      color:#6f281f;
+      box-shadow:0 12px 28px rgba(72,28,21,.16);
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:2px;
+      transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;
+    }
+    .floating-quick-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 32px rgba(72,28,21,.22);
+    }
+    .floating-quick-btn.active,
+    .floating-quick-btn.back-to-top{
+      background:linear-gradient(160deg,#7b2a20 0%,#521b15 100%);
+      color:#fff8ef;
+    }
+    .floating-quick-icon{
+      font-size:15px;
+      line-height:1;
+      font-weight:950;
+    }
+    .floating-quick-text,
+    .back-to-top-text{
+      font-size:10px;
+      line-height:1.1;
+      font-weight:900;
+      letter-spacing:.05em;
+    }
+    .back-to-top{
+      position:static!important;
+      right:auto!important;
+      bottom:auto!important;
+      opacity:1!important;
+      visibility:visible!important;
+      transform:none!important;
+    }
+    .back-to-top-arrow{
+      font-size:20px;
+      line-height:1;
+      font-weight:900;
+    }
+
+    @media(max-width:760px){
+      .floating-quick-nav{
+        right:12px;
+        bottom:calc(82px + env(safe-area-inset-bottom));
+        gap:7px;
+      }
+      .floating-quick-btn{
+        width:48px;
+        height:48px;
+        border-radius:14px;
+      }
+      .floating-quick-icon{font-size:13px}
+      .floating-quick-text,.back-to-top-text{font-size:8px}
+      .back-to-top-arrow{font-size:17px}
+    }
+
   </style>
 </head>
 <body>
@@ -2512,10 +2599,20 @@
     <div class="wrap">© 2026 啖啖燕窩 DAMDAMBIRDNEST · 秋蟹到家</div>
   </footer>
 
-  <button type="button" class="back-to-top" id="backToTop" aria-label="返回頁頂">
-    <span class="back-to-top-arrow">↑</span>
-    <span class="back-to-top-text">頁頂</span>
-  </button>
+  <div class="floating-quick-nav" id="floatingQuickNav" aria-label="快速導航">
+    <button type="button" class="floating-quick-btn mode-shortcut active" id="floatingPackageBtn" aria-label="跳到套餐">
+      <span class="floating-quick-icon">蟹</span>
+      <span class="floating-quick-text">套餐</span>
+    </button>
+    <button type="button" class="floating-quick-btn mode-shortcut" id="floatingSingleBtn" aria-label="跳到單隻自選">
+      <span class="floating-quick-icon">＋</span>
+      <span class="floating-quick-text">自選</span>
+    </button>
+    <button type="button" class="floating-quick-btn back-to-top" id="backToTop" aria-label="返回頁頂">
+      <span class="back-to-top-arrow">↑</span>
+      <span class="back-to-top-text">頁頂</span>
+    </button>
+  </div>
 
   <div class="mobilebar">
     <div class="meta"><small id="mobileModeLabel">套餐優惠 · 現時總價</small><strong id="mobileTotal">$798</strong></div>
@@ -3147,6 +3244,9 @@
     const modeButtons = document.querySelectorAll('[data-purchase-mode]');
     const mobileModeLabel = document.getElementById('mobileModeLabel');
     const mobileChooseBtn = document.getElementById('mobileChooseBtn');
+    const floatingQuickNav = document.getElementById('floatingQuickNav');
+    const floatingPackageBtn = document.getElementById('floatingPackageBtn');
+    const floatingSingleBtn = document.getElementById('floatingSingleBtn');
 
     function placeActiveFlow(mode){
       if(!buyModeSection || !receiverSection) return;
@@ -3174,6 +3274,8 @@
         btn.classList.toggle('active', active);
         btn.setAttribute('aria-selected', active ? 'true' : 'false');
       });
+      floatingPackageBtn?.classList.toggle('active', packageActive);
+      floatingSingleBtn?.classList.toggle('active', !packageActive);
 
       placeActiveFlow(purchaseMode);
 
@@ -3204,10 +3306,19 @@
       target.scrollIntoView({behavior:'smooth',block:'start'});
     });
 
+    floatingPackageBtn?.addEventListener('click',()=>{
+      setPurchaseMode('package');
+      requestAnimationFrame(()=>orderSection?.scrollIntoView({behavior:'smooth',block:'start'}));
+    });
+    floatingSingleBtn?.addEventListener('click',()=>{
+      setPurchaseMode('single');
+      requestAnimationFrame(()=>singleSection?.scrollIntoView({behavior:'smooth',block:'start'}));
+    });
+
     const backToTop = document.getElementById('backToTop');
     function updateBackToTop(){
-      if(!backToTop) return;
-      backToTop.classList.toggle('show', window.scrollY > 420);
+      if(!floatingQuickNav) return;
+      floatingQuickNav.classList.toggle('show', window.scrollY > 420);
     }
     window.addEventListener('scroll', updateBackToTop, {passive:true});
     backToTop?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
