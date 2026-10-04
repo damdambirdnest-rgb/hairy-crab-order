@@ -1008,7 +1008,21 @@
     .address-zone-result.pending{display:none!important}
 
   
-    .buy-mode-note,.service-notice,.order-tip,.zone-auto-hint,.final-submit-note,.toll-note{display:none!important}
+    .buy-mode-note,.order-tip,.zone-auto-hint,.toll-note{display:none!important}
+  
+    .service-notice{display:grid!important}
+    .final-submit-note{
+      display:block!important;
+      margin-top:10px;
+      padding:11px 13px;
+      border-radius:12px;
+      background:#f7ede1;
+      border:1px solid #dec5a7;
+      color:#655146;
+      font-size:12px;
+      line-height:1.55;
+      text-align:center;
+    }
   </style>
 </head>
 <body>
@@ -1143,8 +1157,16 @@
             <small>4 隻起 · 公乸數量自己揀 · 4–5 隻基本配送 +$80</small>
           </button>
         </div>
+
+        <div class="service-notice" role="note" aria-label="代蒸服務提示">
+          <div class="service-notice-icon">!</div>
+          <div>
+            <strong>暫不提供代蒸服務</strong>
+            <span>因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。收到後可參考網站「蒸煮方法」自行處理。</span>
+          </div>
+          <a href="steaming.html">查看蒸煮方法 →</a>
+        </div>
       </div>
-</div>
     </section>
 
 
@@ -1406,6 +1428,9 @@
               <span>發送 WhatsApp</span>
               <small>6806 8004</small>
             </button>
+          </div>
+          <div class="final-submit-note">
+            按下後會開啟 WhatsApp，產品、收貨資料、配送費及總價已自動整理好；確認內容無誤後按「傳送」即可。
           </div>
         </div>
       </div>
@@ -1706,6 +1731,10 @@
             <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
           </details>
           <details>
+            <summary>可以代蒸大閘蟹嗎？</summary>
+            <p>暫時唔可以。因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。網站設有保存及清蒸指南，收到後可以直接跟住處理。</p>
+          </details>
+          <details>
             <summary>套餐可以再加單隻蟹嗎？</summary>
             <p>可以。套餐落單區可直接加購蟹公 5–5.5兩（$110／隻）或蟹乸 4.5–5兩（$130／隻），會跟套餐一齊配送，不會再收一次基本配送費。</p>
           </details>
@@ -1942,6 +1971,7 @@
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
+        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
@@ -2240,6 +2270,7 @@
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
+        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
