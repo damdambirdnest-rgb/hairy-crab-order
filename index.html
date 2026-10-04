@@ -1272,6 +1272,445 @@
       .back-to-top-text{font-size:9px}
     }
 
+  
+    /* =========================================================
+       MOBILE CONVERSION PASS
+       功能不變，只針對手機閱讀、觸控、密度及安全區優化
+       ========================================================= */
+    @media(max-width:680px){
+      html{scroll-padding-top:74px}
+      body{
+        overflow-x:hidden;
+        font-size:16px;
+        -webkit-text-size-adjust:100%;
+        padding-bottom:calc(74px + env(safe-area-inset-bottom));
+      }
+      .wrap{width:calc(100% - 20px);max-width:none}
+      section{padding-top:38px;padding-bottom:38px}
+      main>section{scroll-margin-top:76px}
+
+      /* Header */
+      .topbar{
+        padding:8px 10px;
+        font-size:10px;
+        line-height:1.45;
+        letter-spacing:.03em;
+      }
+      .nav{height:62px;gap:10px}
+      .brand{gap:9px;min-width:0}
+      .brand-mark{width:36px;height:36px;font-size:16px;flex:0 0 36px}
+      .brand h1{font-size:15px;letter-spacing:.05em;white-space:nowrap}
+      .brand p{
+        max-width:220px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        font-size:9px;
+        letter-spacing:.08em;
+      }
+
+      /* Hero: keep visual but shorten the first screen */
+      .hero{padding:12px 0 8px}
+      .hero-shell{border-radius:24px}
+      .hero-inner{display:block;min-height:0}
+      .hero-copy{padding:28px 20px 18px}
+      .sale-ribbon{
+        display:inline-flex;
+        max-width:100%;
+        white-space:normal;
+        line-height:1.35;
+        font-size:10px;
+      }
+      .hero .eyebrow{font-size:9px;letter-spacing:.12em}
+      .hero .eyebrow:before{width:18px}
+      .hero h2{
+        font-size:34px;
+        line-height:1.06;
+        margin:12px 0 14px;
+        letter-spacing:-.035em;
+      }
+      .hero-lead{font-size:14px;line-height:1.65}
+      .hero-lead strong{font-size:15px}
+      .hero-features{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px;
+        margin-top:18px;
+      }
+      .hero-feature{
+        min-height:78px;
+        padding:11px 10px 10px 15px;
+        border-radius:12px;
+      }
+      .hero-feature:before{left:7px;top:14px;font-size:7px}
+      .hero-feature-label{font-size:11px;padding-left:6px}
+      .hero-feature p{font-size:11px;line-height:1.4;padding-left:6px;margin-top:4px}
+      .hero-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+        margin-top:18px;
+      }
+      .hero-actions .btn{
+        width:100%;
+        min-height:48px;
+        padding:12px 16px;
+        border-radius:14px;
+        font-size:14px;
+      }
+      .trust-row{gap:6px;margin-top:14px}
+      .trust-pill{font-size:9px;padding:6px 8px}
+
+      .hero-art{
+        padding:0 14px 18px;
+        min-height:0;
+      }
+      .hero-panel{
+        width:min(310px,88vw);
+        border-radius:22px;
+        padding:14px;
+      }
+      .hero-badge{top:12px;right:12px;font-size:9px;padding:6px 8px}
+      .plate{inset:62px 34px 34px}
+      .crab-svg{left:42px;right:42px;top:78px;bottom:58px}
+      .hero-price{
+        left:12px;bottom:12px;
+        min-width:0;
+        padding:12px 13px 11px;
+        border-radius:14px;
+      }
+      .hero-price strong{font-size:27px}
+
+      /* Headings */
+      .section-title{margin-bottom:16px;gap:10px}
+      .section-title h2{
+        font-size:29px;
+        line-height:1.08;
+        margin-top:5px;
+      }
+      .section-title p{
+        font-size:14px;
+        line-height:1.6;
+      }
+      .eyebrow{font-size:10px;letter-spacing:.1em}
+      .eyebrow:before{width:20px}
+
+      /* Quick cards: 2x2 instead of a very long list */
+      .quick-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:8px;
+      }
+      .quick-card{
+        min-height:128px;
+        padding:15px;
+        border-radius:16px;
+      }
+      .quick-card strong{font-size:10px;margin-bottom:5px}
+      .quick-card span{font-size:23px}
+      .quick-card p{font-size:11px;line-height:1.45;margin-top:7px}
+
+      /* Purchase mode */
+      .buy-mode-section{padding:34px 0 16px}
+      .buy-mode-head{margin-bottom:14px}
+      .buy-mode-head h2{font-size:30px;line-height:1.08}
+      .buy-mode-head p{font-size:13px;line-height:1.55}
+      .buy-mode-switch{padding:6px;border-radius:18px;gap:7px}
+      .purchase-mode-btn{
+        min-height:94px;
+        padding:15px 16px;
+        border-radius:14px;
+      }
+      .purchase-mode-btn strong{font-size:19px}
+      .purchase-mode-btn small{font-size:11px;line-height:1.45}
+      .mode-badge{font-size:9px}
+      .service-notice{
+        grid-template-columns:30px 1fr;
+        padding:12px;
+        border-radius:14px;
+      }
+      .service-notice-icon{width:28px;height:28px}
+      .service-notice strong{font-size:12px}
+      .service-notice span{font-size:10px;line-height:1.45}
+      .service-notice a{
+        grid-column:2;
+        justify-self:start;
+        min-height:36px;
+        display:inline-flex;
+        align-items:center;
+        font-size:10px;
+      }
+
+      /* Package checkout */
+      #order,#single,#receiver{padding-top:34px}
+      .order-grid{display:block}
+      .builder-card,.summary-card,.single-info,.single-builder,.receiver-card{
+        border-radius:20px;
+      }
+      .builder-card{padding:18px}
+      .step{padding:18px 0}
+      .step-head{
+        display:block;
+        margin-bottom:10px;
+      }
+      .step-head strong{display:block;font-size:16px;line-height:1.35}
+      .step-head span{display:block;margin-top:3px;font-size:10px;line-height:1.4}
+      .option-grid{grid-template-columns:1fr!important;gap:7px}
+      .option-btn{
+        min-height:66px;
+        padding:12px 13px;
+        border-radius:14px;
+      }
+      .option-btn.active{padding:11px 12px}
+      .option-btn b{font-size:15px}
+      .option-btn small{font-size:11px;line-height:1.4}
+
+      .package-addon-groups{grid-template-columns:1fr!important;gap:10px}
+      .package-addon-group{padding:12px;border-radius:15px}
+      .package-addon-group-head strong{font-size:16px}
+      .package-addon-group-head>span{font-size:10px}
+      .package-addon-size-row{
+        grid-template-columns:1fr auto!important;
+        gap:8px;
+        padding:10px;
+      }
+      .package-addon-size-row>b{
+        grid-column:2;
+        grid-row:1;
+        font-size:15px;
+      }
+      .package-addon-size-row .package-crab-counter{
+        grid-column:1/-1;
+        justify-content:end;
+        grid-template-columns:44px 52px 44px;
+        gap:6px;
+      }
+      .package-crab-counter button,
+      .package-crab-counter input{
+        height:44px;
+        border-radius:11px;
+      }
+      .package-crab-counter input{width:52px;font-size:16px}
+      .package-crab-addon-note{
+        display:block;
+        padding:10px 11px;
+        font-size:10px;
+        line-height:1.45;
+      }
+      .package-crab-addon-note strong{
+        display:block;
+        text-align:left;
+        margin-top:4px;
+        font-size:12px;
+      }
+
+      .tool-addon-inline{
+        display:block;
+        padding:13px;
+        border-radius:14px;
+      }
+      .tool-addon-copy{align-items:flex-start}
+      .tool-addon-controls{
+        margin-top:10px;
+        justify-content:space-between;
+        width:100%;
+      }
+      .addon-counter{grid-template-columns:44px 54px 44px}
+      .addon-counter button,.addon-counter input{height:44px}
+      .addon-counter input{width:54px;font-size:16px}
+
+      .summary-card{
+        position:static;
+        margin-top:12px;
+        padding:18px;
+      }
+      .summary-card h3{font-size:24px}
+      .summary-row{padding:10px 0;gap:12px}
+      .summary-row span{font-size:11px}
+      .summary-row strong{font-size:12px;max-width:62%}
+      .summary-total strong{font-size:34px}
+      .summary-box{padding:12px;border-radius:14px;font-size:11px;line-height:1.5}
+      .summary-actions{display:grid;grid-template-columns:1fr;gap:7px}
+      .summary-actions button{min-height:46px}
+      .checkout-next button{min-height:48px}
+
+      /* Single purchase */
+      .single-shell{display:block}
+      .single-info,.single-builder{padding:18px}
+      .single-info{margin-bottom:12px}
+      .single-info h3{font-size:28px;line-height:1.12}
+      .single-retail-overview{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+      }
+      .retail-overview-card{padding:12px}
+      .retail-overview-card strong{font-size:17px}
+      .retail-overview-card b{font-size:12px}
+      .single-rule{font-size:11.5px;line-height:1.5}
+      .size-group{padding:12px;border-radius:15px}
+      .size-group-title strong{font-size:16px}
+      .size-choice-row{
+        grid-template-columns:1fr auto;
+        gap:8px;
+        padding:10px;
+      }
+      .size-choice-price{
+        grid-column:2;
+        grid-row:1;
+        font-size:15px;
+      }
+      .size-choice-counter{
+        grid-column:1/-1;
+        justify-content:end;
+        grid-template-columns:44px 52px 44px;
+        gap:6px;
+      }
+      .size-choice-counter button,.size-choice-counter input{
+        height:44px;
+        border-radius:11px;
+      }
+      .size-choice-counter input{width:52px;font-size:16px}
+      .single-summary{padding:15px;border-radius:16px}
+      .single-summary-row{font-size:12px}
+      .single-breakdown-row strong{max-width:62%}
+      .single-total strong{font-size:30px}
+      .single-alert{font-size:11px;line-height:1.5}
+
+      /* Forms: 16px prevents iOS auto zoom */
+      .receiver-card{padding:18px}
+      .receiver-head{margin-bottom:16px}
+      .receiver-head h2{font-size:28px}
+      .receiver-grid{grid-template-columns:1fr;gap:11px}
+      .receiver-field-wide{grid-column:auto}
+      .receiver-field label,.receiver-arrangement-copy strong{font-size:13px}
+      .receiver-field input,
+      .receiver-field textarea,
+      .receiver-field select,
+      .select,.date-input{
+        min-height:50px;
+        padding:13px;
+        border-radius:13px;
+        font-size:16px!important;
+      }
+      .receiver-field textarea{min-height:82px}
+      .receiver-hint{font-size:10px}
+      .receiver-arrangement{
+        display:block;
+        margin-top:12px;
+        padding:13px;
+        border-radius:15px;
+      }
+      .receiver-arrangement-copy small{font-size:10px;line-height:1.45}
+      .receiver-choice-row{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:7px;
+        margin-top:10px;
+      }
+      .receiver-choice{
+        min-height:46px;
+        justify-content:center;
+        padding:10px;
+        border-radius:12px;
+        font-size:12px;
+      }
+
+      .final-order-preview{
+        padding:15px;
+        border-radius:16px;
+      }
+      .final-order-head{align-items:flex-start}
+      .final-order-head strong{font-size:15px}
+      .final-order-head b{font-size:28px}
+      .final-order-meta{font-size:10px;line-height:1.5}
+      .final-submit{grid-template-columns:1fr;gap:8px}
+      .final-wa{min-height:52px;border-radius:13px;font-size:14px}
+      .final-submit-note{font-size:10px;line-height:1.5;padding:10px}
+
+      /* Info sections */
+      .info-stack .compact-info-card{padding:18px 16px}
+      .info-stack .info-card-head h3{font-size:24px}
+      .info-card-badge{font-size:9px}
+      .info-stack .gift-list{
+        grid-template-columns:repeat(2,minmax(0,1fr))!important;
+        gap:8px;
+      }
+      .info-stack .gift-item{
+        min-height:88px!important;
+        padding:12px;
+      }
+      .gift-item strong{font-size:12px}
+      .gift-item span{font-size:10px}
+      .info-stack .delivery-zones{grid-template-columns:1fr!important;gap:8px}
+      .info-stack .delivery-zone{
+        min-height:auto!important;
+        padding:13px;
+      }
+      .delivery-zone strong{font-size:13px;margin-bottom:4px}
+      .delivery-zone b{font-size:18px}
+      .delivery-zone p{font-size:11px;line-height:1.45}
+
+      /* Guide + FAQ */
+      .guide-grid{grid-template-columns:1fr;gap:9px}
+      .guide-card{padding:15px;border-radius:16px;gap:12px}
+      .guide-icon{width:44px;height:44px;flex-basis:44px;border-radius:13px}
+      .guide-card h3{font-size:20px}
+      .guide-card p{font-size:11px}
+      .faq-clean{padding:20px 16px;border-radius:20px}
+      .faq-heading{padding-bottom:14px;margin-bottom:2px}
+      .faq-heading h3{font-size:27px}
+      .faq-count{font-size:9px}
+      .faq-list summary{
+        min-height:58px;
+        padding:15px 40px 15px 0;
+        font-size:15px;
+      }
+      .faq-list summary::after{width:28px;height:28px;right:0}
+      .faq-answer{padding:0 40px 16px 0}
+      .faq-answer p{font-size:13px!important;line-height:1.65}
+      .faq-addon-grid{grid-template-columns:1fr;gap:8px}
+      .faq-addon-group{padding:12px}
+      .faq-addon-list>div{padding:8px 9px}
+      .faq-addon-list span{font-size:12px}
+      .faq-addon-list b{font-size:13px}
+
+      /* Fixed mobile controls + safe area */
+      .mobilebar{
+        min-height:68px;
+        padding:9px 10px calc(9px + env(safe-area-inset-bottom));
+        gap:8px;
+        box-shadow:0 -8px 24px rgba(50,30,18,.08);
+      }
+      .mobilebar small{font-size:9px}
+      .mobilebar strong{font-size:20px}
+      .mobilebar button{
+        min-height:46px;
+        padding:11px 15px;
+        font-size:13px;
+      }
+      .back-to-top{
+        right:12px;
+        bottom:calc(82px + env(safe-area-inset-bottom));
+        width:48px;
+        height:48px;
+        border-radius:14px;
+      }
+      .back-to-top-arrow{font-size:17px}
+      .back-to-top-text{font-size:8px}
+      footer{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
+    }
+
+    @media(max-width:360px){
+      .wrap{width:calc(100% - 16px)}
+      .hero h2{font-size:31px}
+      .hero-features{grid-template-columns:1fr}
+      .quick-grid{grid-template-columns:1fr!important}
+      .single-retail-overview{grid-template-columns:1fr}
+      .info-stack .gift-list{grid-template-columns:1fr!important}
+      .receiver-choice-row{grid-template-columns:1fr}
+      .final-order-head{display:block}
+      .final-order-head b{display:block;margin-top:8px}
+      .brand p{max-width:175px}
+    }
+
   </style>
 </head>
 <body>
