@@ -510,7 +510,7 @@
     .guide-card small{font-size:10px;letter-spacing:.13em;color:#8b3025;font-weight:900}
     .guide-card h3{font-family:Georgia,"Noto Serif TC",serif;font-size:24px;margin:4px 0 6px;color:#2b1b15}
     .guide-card p{margin:0;color:#66564d;font-size:13px;line-height:1.6}
-    .guide-card span{display:inline-block;margin-top:12px;color:#7f2a20;font-weight:900;font-size:12px}
+    .guide-card span{display:inline-flex;align-items:center;margin-top:12px;color:#7f2a20;font-weight:900;font-size:12px;padding:7px 10px;border-radius:999px;background:#f4e6d7}
     @media(max-width:760px){.guide-grid{grid-template-columns:1fr}.guide-card{padding:18px}}
 
   </style>
@@ -531,7 +531,8 @@
         <a href="#buy-mode">選購大閘蟹</a>
         <a href="#bonus">附送</a>
         <a href="#delivery">配送</a>
-        <a href="#guide">食蟹指南</a>
+        <a href="storage.html">保存方法</a>
+        <a href="steaming.html">蒸煮方法</a>
         <a href="#faq">FAQ</a>
       </nav>
       <a class="navcta" href="#buy-mode">立即選購</a>
@@ -607,7 +608,7 @@
           <div class="quick-card"><strong>兩種買法</strong><span>4 / 6隻起</span><p>自由配搭 4 隻起；套餐優惠 6 隻起。</p></div>
           <div class="quick-card"><strong>皇牌推薦</strong><span>8隻 $798</span><p>公乸雙拼，3–4 人家庭分享最容易揀。</p></div>
           <div class="quick-card"><strong>基本配送區</strong><span>包送</span><p>較遠地區 +$30；遠區配送 +$70。</p></div>
-          <div class="quick-card"><strong>套餐附送</strong><span>食蟹四寶</span><p>套餐免費附送；額外吃蟹工具可 $18／份加購。</p></div>
+          <div class="quick-card"><strong>套餐附送</strong><span>食蟹四寶</span><p>食蟹工具默認贈送 1 份；需要更多可 +$18／份。</p></div>
         </div>
       </div>
     </section>
@@ -751,7 +752,7 @@
               <div class="single-summary-row"><span>蟹款小計</span><strong id="singleCrabSubtotal">$480</strong></div>
               <div class="single-summary-row"><span>配送費</span><strong id="singleShipping">$80</strong></div>
               <div class="single-summary-row"><span>食蟹四寶</span><strong id="singleKitFee">不加購</strong></div>
-              <div class="single-summary-row"><span>額外吃蟹工具</span><strong id="singleExtraTools">不加購</strong></div>
+              <div class="single-summary-row"><span>食蟹工具</span><strong id="singleExtraTools">1份（已贈送）</strong></div>
               <div class="single-total"><div><small>單點預估總價</small></div><strong id="singleTotal">$560</strong></div>
             </div>
             <div class="single-alert" id="singleAlert">4–5隻屬單點小單，基本配送區另收 $80 配送費。</div>
@@ -874,7 +875,7 @@
           <div class="gift-list">
             <div class="gift-item"><strong>香醋 × 1</strong><span>大閘蟹經典配搭，風味更完整。</span></div>
             <div class="gift-item"><strong>紫蘇葉</strong><span>蒸蟹常見配料，照顧食用體驗。</span></div>
-            <div class="gift-item"><strong>吃蟹工具 × 2</strong><span>每套兩份工具，拆蟹更方便。</span></div>
+            <div class="gift-item"><strong>食蟹工具 × 1</strong><span>默認贈送 1 份；第 2 份起每份 +$18。</span></div>
             <div class="gift-item"><strong>紅糖薑棗茶 × 3</strong><span>飯後沖飲，完整配套一次過齊備。</span></div>
           </div>
         </div>
@@ -962,8 +963,8 @@
               <div class="summary-row"><span>套餐價</span><strong id="sumBase">$798</strong></div>
               <div class="summary-row"><span>配送附加費</span><strong id="sumShip">+$0</strong></div>
               <div class="summary-row"><span>配送分區</span><strong id="sumZone">基本配送區</strong></div>
-              <div class="summary-row"><span>附送</span><strong>食蟹四寶（已包括）</strong></div>
-              <div class="summary-row"><span>額外吃蟹工具</span><strong id="sumExtraTools">不加購</strong></div>
+              <div class="summary-row"><span>其他附送</span><strong>香醋、紫蘇葉、紅糖薑棗茶</strong></div>
+              <div class="summary-row"><span>食蟹工具</span><strong id="sumExtraTools">1份（已贈送）</strong></div>
             </div>
             <div class="summary-total">
               <div><small>預估總價</small><small>特殊地址會改為待確認</small></div>
@@ -992,7 +993,7 @@
             <div class="eyebrow">食蟹指南 · CARE & COOK</div>
             <h2>收到之後，點保存、點蒸？</h2>
           </div>
-          <p>兩個獨立指南頁，客人落單後可以直接照住做，減少客服重複回答保存同蒸煮問題。</p>
+          <p>保存同蒸煮指南已直接連接主頁；客人可以由呢度進入，食完亦可以隨時返回落單頁。</p>
         </div>
         <div class="guide-grid">
           <a class="guide-card" href="storage.html">
@@ -1110,7 +1111,7 @@
     function render(){
       const base = prices[state.qty][state.mix];
       const toolQty = clampExtraTool();
-      const toolCost = toolQty * EXTRA_TOOL_PRICE;
+      const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
       const isSpecial = state.zoneFee === 'special';
       const total = isSpecial ? '待確認' : `${base + Number(state.zoneFee) + toolCost}`;
       const shipLabel = isSpecial ? '待確認' : `+${state.zoneFee}`;
@@ -1160,8 +1161,8 @@
         slot: slotSelect.value,
         arrangement: arrangement ? arrangement.value : '',
         note: receiverNote ? receiverNote.value.trim() : '',
-        extraTools: extraToolQty ? Math.max(0, Math.min(20, parseInt(extraToolQty.value || '0',10) || 0)) : 0,
-        get extraToolCost(){ return this.extraTools * EXTRA_TOOL_PRICE; }
+        extraTools: extraToolQty ? Math.max(1, Math.min(20, parseInt(extraToolQty.value || '1',10) || 1)) : 1,
+        get extraToolCost(){ return Math.max(0, this.extraTools - 1) * EXTRA_TOOL_PRICE; }
       };
     }
 
@@ -1263,7 +1264,7 @@
       const shipping = special ? null : baseShipping + zoneExtra;
       const kitFee = singleKit.checked ? 18 : 0;
       const toolQty = clampExtraTool();
-      const toolCost = toolQty * EXTRA_TOOL_PRICE;
+      const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
       const total = shipping === null ? null : crabSubtotal + shipping + kitFee + toolCost;
       return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,toolQty,toolCost,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value};
     }
@@ -1430,7 +1431,7 @@
       renderSingle();
       updateFinalPreview();
     }
-    extraToolMinus?.addEventListener('click',()=>{ extraToolQty.value = Math.max(0,clampExtraTool()-1); refreshAfterToolChange(); });
+    extraToolMinus?.addEventListener('click',()=>{ extraToolQty.value = Math.max(1,clampExtraTool()-1); refreshAfterToolChange(); });
     extraToolPlus?.addEventListener('click',()=>{ extraToolQty.value = Math.min(20,clampExtraTool()+1); refreshAfterToolChange(); });
     extraToolQty?.addEventListener('input',refreshAfterToolChange);
 
