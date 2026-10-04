@@ -501,6 +501,18 @@
       .final-submit{grid-template-columns:1fr}
     }
 
+  
+    .guide-section{padding-top:26px}
+    .guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .guide-card{display:flex;gap:18px;align-items:flex-start;background:#fffdf9;border:1px solid #d8c1a3;border-radius:24px;padding:22px;box-shadow:0 12px 30px rgba(59,38,24,.055);transition:.2s ease}
+    .guide-card:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(59,38,24,.09);border-color:#c79a62}
+    .guide-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;flex:0 0 52px;background:#68271f;color:#fff5e8;font-size:24px;font-weight:900}
+    .guide-card small{font-size:10px;letter-spacing:.13em;color:#8b3025;font-weight:900}
+    .guide-card h3{font-family:Georgia,"Noto Serif TC",serif;font-size:24px;margin:4px 0 6px;color:#2b1b15}
+    .guide-card p{margin:0;color:#66564d;font-size:13px;line-height:1.6}
+    .guide-card span{display:inline-block;margin-top:12px;color:#7f2a20;font-weight:900;font-size:12px}
+    @media(max-width:760px){.guide-grid{grid-template-columns:1fr}.guide-card{padding:18px}}
+
   </style>
 </head>
 <body>
@@ -519,6 +531,7 @@
         <a href="#buy-mode">選購大閘蟹</a>
         <a href="#bonus">附送</a>
         <a href="#delivery">配送</a>
+        <a href="#guide">食蟹指南</a>
         <a href="#faq">FAQ</a>
       </nav>
       <a class="navcta" href="#buy-mode">立即選購</a>
@@ -967,6 +980,39 @@
             </div>
             <div class="summary-foot">價格及配送安排以確認訂單時資料為準。</div>
           </aside>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="guide" class="guide-section">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">食蟹指南 · CARE & COOK</div>
+            <h2>收到之後，點保存、點蒸？</h2>
+          </div>
+          <p>兩個獨立指南頁，客人落單後可以直接照住做，減少客服重複回答保存同蒸煮問題。</p>
+        </div>
+        <div class="guide-grid">
+          <a class="guide-card" href="storage.html">
+            <div class="guide-icon">❄</div>
+            <div>
+              <small>STORAGE GUIDE</small>
+              <h3>大閘蟹保存方法</h3>
+              <p>收到活蟹後點冷藏、點避免交叉污染、熟蟹點處理，一頁睇清。</p>
+              <span>查看保存指南 →</span>
+            </div>
+          </a>
+          <a class="guide-card" href="steaming.html">
+            <div class="guide-icon">♨</div>
+            <div>
+              <small>STEAMING GUIDE</small>
+              <h3>大閘蟹清蒸方法</h3>
+              <p>由刷洗、擺位到蒸煮時間，連你而家出售嘅蟹公／蟹乸規格一齊寫清楚。</p>
+              <span>查看蒸煮指南 →</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
