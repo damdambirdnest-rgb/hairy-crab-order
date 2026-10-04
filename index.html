@@ -603,6 +603,36 @@
       .package-price-option strong{font-size:18px}
     }
 
+  
+    /* 套餐可加購單隻大閘蟹 */
+    .package-crab-addon-step .step-head strong em{font-style:normal;font-size:11px;color:#8b6b5d;font-weight:700}
+    .package-crab-addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .package-crab-addon-item{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:15px 16px;border-radius:16px;background:#fffaf3;border:1px solid #dcc3a3
+    }
+    .package-crab-addon-copy strong{display:block;font-size:15px;color:#2c1b15}
+    .package-crab-addon-copy small{display:block;margin-top:2px;color:#746158;font-size:11px}
+    .package-crab-addon-copy b{display:block;margin-top:5px;color:#7f2a20;font-size:14px}
+    .package-crab-counter{display:grid;grid-template-columns:38px 48px 38px;gap:6px;flex:0 0 auto}
+    .package-crab-counter button,.package-crab-counter input{
+      height:40px;border:1px solid #cfae86;border-radius:11px;background:#fffdf9;
+      color:#351f17;text-align:center;font-weight:900
+    }
+    .package-crab-counter button{cursor:pointer;background:#f5e8d8;font-size:18px}
+    .package-crab-counter input{width:48px}
+    .package-crab-addon-note{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      margin-top:10px;padding:11px 13px;border-radius:12px;background:#f5ebdf;
+      color:#68544a;font-size:11px
+    }
+    .package-crab-addon-note strong{color:#7f2a20;font-size:12px;text-align:right}
+    @media(max-width:680px){
+      .package-crab-addon-grid{grid-template-columns:1fr}
+      .package-crab-addon-note{display:block}
+      .package-crab-addon-note strong{display:block;margin-top:5px;text-align:left}
+    }
+
   </style>
 </head>
 <body>
@@ -1055,9 +1085,9 @@
         <div class="section-title">
           <div>
             <div class="eyebrow">訂購產品 · 套餐設定</div>
-            <h2>套餐揀好之後，完成配送設定。</h2>
+            <h2>揀套餐，再按需要加單隻。</h2>
           </div>
-          <p>呢一區只屬於「套餐優惠」。揀隻數、公乸配搭同配送區，即時顯示套餐總價。</p>
+          <p>先揀套餐同公乸配搭；想食多幾隻，可以直接加購蟹公／蟹乸，再揀配送區。全部會合併成同一張訂單。</p>
         </div>
 
         <div class="order-grid">
@@ -1086,9 +1116,47 @@
               </div>
             </div>
 
+            <div class="step package-crab-addon-step">
+              <div class="step-head">
+                <strong>③ 加購單隻大閘蟹 <em>（可選）</em></strong>
+                <span>跟套餐一齊送，不另收基本配送費</span>
+              </div>
+              <div class="package-crab-addon-grid">
+                <div class="package-crab-addon-item">
+                  <div class="package-crab-addon-copy">
+                    <strong>蟹公</strong>
+                    <small>5–5.5兩</small>
+                    <b>$110／隻</b>
+                  </div>
+                  <div class="package-crab-counter">
+                    <button type="button" data-package-crab="male" data-step="-1" aria-label="減少加購蟹公">−</button>
+                    <input id="packageAddMale" value="0" inputmode="numeric" aria-label="加購蟹公數量">
+                    <button type="button" data-package-crab="male" data-step="1" aria-label="增加加購蟹公">＋</button>
+                  </div>
+                </div>
+
+                <div class="package-crab-addon-item">
+                  <div class="package-crab-addon-copy">
+                    <strong>蟹乸</strong>
+                    <small>4.5–5兩</small>
+                    <b>$130／隻</b>
+                  </div>
+                  <div class="package-crab-counter">
+                    <button type="button" data-package-crab="female" data-step="-1" aria-label="減少加購蟹乸">−</button>
+                    <input id="packageAddFemale" value="0" inputmode="numeric" aria-label="加購蟹乸數量">
+                    <button type="button" data-package-crab="female" data-step="1" aria-label="增加加購蟹乸">＋</button>
+                  </div>
+                </div>
+              </div>
+              <div class="package-crab-addon-note">
+                套餐加購單隻只計蟹價，不會再加一次基本配送費。
+                <strong id="packageCrabAddonSubtotal">暫未加購</strong>
+              </div>
+            </div>
+
             <div class="step">
               <div class="step-head">
-                <strong>③ 揀配送分區</strong>
+                <strong>④ 揀配送分區</strong>
                 <span>只計固定附加費</span>
               </div>
               <select class="select" id="zone">
@@ -1102,7 +1170,7 @@
 
             <div class="step tool-order-step">
               <div class="step-head">
-                <strong>④ 食蟹工具</strong>
+                <strong>⑤ 食蟹工具</strong>
                 <span>默認贈送 1 份</span>
               </div>
               <div class="tool-addon-inline">
@@ -1123,7 +1191,7 @@
 
             <div class="step receiver-linked-note">
               <div class="step-head">
-                <strong>⑤ 收貨資料</strong>
+                <strong>⑥ 收貨資料</strong>
                 <span>下一步填寫</span>
               </div>
               <div class="order-tip">完成套餐、配送及加購後，再填姓名、電話、中文地址、收貨日期、時段及收貨安排。</div>
@@ -1137,6 +1205,7 @@
               <div class="summary-row"><span>配搭</span><strong id="sumMix">公乸雙拼</strong></div>
               <div class="summary-row"><span>規格</span><strong id="sumSize">公 5–5.5 兩 / 乸 4.5–5 兩</strong></div>
               <div class="summary-row"><span>套餐價</span><strong id="sumBase">$798</strong></div>
+              <div class="summary-row"><span>單隻加購</span><strong id="sumCrabAddon">不加購</strong></div>
               <div class="summary-row"><span>配送附加費</span><strong id="sumShip">+$0</strong></div>
               <div class="summary-row"><span>配送分區</span><strong id="sumZone">基本配送區</strong></div>
               <div class="summary-row"><span>其他附送</span><strong>香醋、紫蘇葉、紅糖薑棗茶</strong></div>
@@ -1204,6 +1273,10 @@
             <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
           </details>
           <details>
+            <summary>套餐可以再加單隻蟹嗎？</summary>
+            <p>可以。套餐落單區可直接加購蟹公 5–5.5兩（$110／隻）或蟹乸 4.5–5兩（$130／隻），會跟套餐一齊配送，不會再收一次基本配送費。</p>
+          </details>
+          <details>
             <summary>點解有啲地區要加附加費？</summary>
             <p>基本配送區已經包送；較遠地區按 +$30、遠區配送按 +$70；特殊地址另行確認。</p>
           </details>
@@ -1243,6 +1316,8 @@
 
   <script>
     const EXTRA_TOOL_PRICE = 18;
+    const PACKAGE_ADD_MALE_PRICE = 110;
+    const PACKAGE_ADD_FEMALE_PRICE = 130;
 
     const prices = {
       6: { male: 628, mixed: 668, female: 728 },
@@ -1258,12 +1333,14 @@
       female:'蟹乸 4.5–5 兩'
     };
 
-    let state = { qty: 8, mix: 'mixed', zoneFee: 0, zoneName: '基本配送區' };
+    let state = { qty: 8, mix: 'mixed', zoneFee: 0, zoneName: '基本配送區', addMale: 0, addFemale: 0 };
     let purchaseMode = 'package';
 
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
     const zoneSelect = document.getElementById('zone');
+    const packageAddMale = document.getElementById('packageAddMale');
+    const packageAddFemale = document.getElementById('packageAddFemale');
     const dateInput = document.getElementById('receiveDate');
     const slotSelect = document.getElementById('receiveSlot');
     const receiverName = document.getElementById('receiverName');
@@ -1284,27 +1361,60 @@
       dateInput.value = `${yyyy}-${mm}-${dd}`;
     }
 
+    function clampPackageAddon(v){
+      v = parseInt(v || '0',10);
+      if(Number.isNaN(v)) return 0;
+      return Math.max(0,Math.min(20,v));
+    }
+
+    function packageAddonData(){
+      state.addMale = clampPackageAddon(packageAddMale ? packageAddMale.value : state.addMale);
+      state.addFemale = clampPackageAddon(packageAddFemale ? packageAddFemale.value : state.addFemale);
+      if(packageAddMale) packageAddMale.value = state.addMale;
+      if(packageAddFemale) packageAddFemale.value = state.addFemale;
+      const cost = state.addMale * PACKAGE_ADD_MALE_PRICE + state.addFemale * PACKAGE_ADD_FEMALE_PRICE;
+      const count = state.addMale + state.addFemale;
+      return {male:state.addMale,female:state.addFemale,count,cost};
+    }
+
     function render(){
       const base = prices[state.qty][state.mix];
+      const addon = packageAddonData();
       const toolQty = clampExtraTool();
       const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
       const isSpecial = state.zoneFee === 'special';
-      const total = isSpecial ? '待確認' : `${base + Number(state.zoneFee) + toolCost}`;
-      const shipLabel = isSpecial ? '待確認' : `+${state.zoneFee}`;
+      const knownSubtotal = base + addon.cost + toolCost;
+      const total = isSpecial ? '待確認' : `$${knownSubtotal + Number(state.zoneFee)}`;
+      const shipLabel = isSpecial ? '待確認' : `+$${state.zoneFee}`;
 
       document.getElementById('sumPack').textContent = packNames[state.qty];
       document.getElementById('sumMix').textContent = mixNames[state.mix];
       document.getElementById('sumSize').textContent = sizeNames[state.mix];
       document.getElementById('sumBase').textContent = `$${base}`;
+      document.getElementById('sumCrabAddon').textContent = addon.count
+        ? `${addon.male ? addon.male+'公' : ''}${addon.male && addon.female ? ' + ' : ''}${addon.female ? addon.female+'乸' : ''}｜+$${addon.cost}`
+        : '不加購';
       document.getElementById('sumShip').textContent = shipLabel;
       document.getElementById('sumZone').textContent = state.zoneName;
-      document.getElementById('sumExtraTools').textContent = toolQty === 1 ? '1份（免費）' : `${toolQty}份｜加購 +${toolCost}`;
+      document.getElementById('sumExtraTools').textContent = toolQty === 1 ? '1份（免費）' : `${toolQty}份｜加購 +$${toolCost}`;
       document.getElementById('sumTotal').textContent = total;
+
+      const addonSubtotal = document.getElementById('packageCrabAddonSubtotal');
+      if(addonSubtotal){
+        addonSubtotal.textContent = addon.count
+          ? `加購 ${addon.count} 隻｜+$${addon.cost}`
+          : '暫未加購';
+      }
+
       if(purchaseMode === 'package') document.getElementById('mobileTotal').textContent = total;
 
+      const addonText = addon.count
+        ? `，另加 ${addon.male ? addon.male+'隻公' : ''}${addon.male && addon.female ? '、' : ''}${addon.female ? addon.female+'隻乸' : ''}`
+        : '';
+
       document.getElementById('summaryText').textContent = isSpecial
-        ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。食蟹工具 ${toolQty} 份。`
-        : `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，現時總價為 ${base + Number(state.zoneFee) + toolCost}。`;
+        ? `你揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}${addonText}，配送費需要再確認；已知商品小計 $ ${knownSubtotal}。`.replace('$ ','$')
+        : `你揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}${addonText}，配送至 ${state.zoneName}，現時總價為 $${knownSubtotal + Number(state.zoneFee)}。`;
 
       qtyChoices.forEach(btn => btn.classList.toggle('active', Number(btn.dataset.qty) === state.qty));
       mixChoices.forEach(btn => btn.classList.toggle('active', btn.dataset.mix === state.mix));
@@ -1313,6 +1423,20 @@
 
     qtyChoices.forEach(btn => btn.addEventListener('click', () => { state.qty = Number(btn.dataset.qty); render(); }));
     mixChoices.forEach(btn => btn.addEventListener('click', () => { state.mix = btn.dataset.mix; render(); }));
+
+    document.querySelectorAll('[data-package-crab]').forEach(btn => btn.addEventListener('click',()=>{
+      const key = btn.dataset.packageCrab === 'male' ? 'addMale' : 'addFemale';
+      state[key] = clampPackageAddon(Number(state[key] || 0) + Number(btn.dataset.step));
+      if(key === 'addMale') packageAddMale.value = state[key];
+      else packageAddFemale.value = state[key];
+      render();
+    }));
+    [packageAddMale,packageAddFemale].forEach(input => input?.addEventListener('input',()=>{
+      state.addMale = clampPackageAddon(packageAddMale.value);
+      state.addFemale = clampPackageAddon(packageAddFemale.value);
+      render();
+    }));
+
     packageButtons.forEach(btn => btn.addEventListener('click', () => {
       setPurchaseMode('package');
       state.qty = Number(btn.dataset.chooseQty);
@@ -1366,7 +1490,9 @@
     function buildMessage(){
       const r = receiverData();
       const base = prices[state.qty][state.mix];
-      const total = state.zoneFee === 'special' ? '待確認' : `${base + Number(state.zoneFee) + r.extraToolCost}`;
+      const addon = packageAddonData();
+      const knownSubtotal = base + addon.cost + r.extraToolCost;
+      const total = state.zoneFee === 'special' ? '待確認' : `$${knownSubtotal + Number(state.zoneFee)}`;
       const ship = state.zoneFee === 'special' ? '特殊地址（配送費待確認）' : `${state.zoneName}（+$${state.zoneFee}）`;
       return [
         '【大閘蟹訂購】',
@@ -1382,9 +1508,12 @@
         `訂購產品：${packNames[state.qty]}｜${mixNames[state.mix]}`,
         `規格：${sizeNames[state.mix]}`,
         `套餐價：$${base}`,
+        ...(addon.male ? [`套餐加購蟹公 5–5.5兩：${addon.male}隻 × $110 = +$${addon.male * PACKAGE_ADD_MALE_PRICE}`] : []),
+        ...(addon.female ? [`套餐加購蟹乸 4.5–5兩：${addon.female}隻 × $130 = +$${addon.female * PACKAGE_ADD_FEMALE_PRICE}`] : []),
         `配送分區：${ship}`,
         '附送：香醋 x1、紫蘇葉、食蟹工具 x1、紅糖薑棗茶 x3',
-        ...(r.extraTools > 1 ? [`食蟹工具加購：+${r.extraTools - 1}份｜+${r.extraToolCost}`] : []),
+        ...(r.extraTools > 1 ? [`食蟹工具加購：+${r.extraTools - 1}份｜+$${r.extraToolCost}`] : []),
+        ...(state.zoneFee === 'special' ? [`已知商品小計：$${knownSubtotal}`] : []),
         `總價：${total}`
       ].join('\n');
     }
