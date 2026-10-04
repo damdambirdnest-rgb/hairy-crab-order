@@ -513,10 +513,32 @@
     .guide-card span{display:inline-flex;align-items:center;margin-top:12px;color:#7f2a20;font-weight:900;font-size:12px;padding:7px 10px;border-radius:999px;background:#f4e6d7}
     @media(max-width:760px){.guide-grid{grid-template-columns:1fr}.guide-card{padding:18px}}
 
+  
+    /* 食蟹工具加購：直接放入落單流程 */
+    .purchase-addon-section{display:none!important}
+    .tool-order-step{background:#fbf3e7;border:1px solid #d9bd96;border-radius:18px;padding:18px;margin-top:2px}
+    .tool-addon-inline{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 16px;border-radius:16px;background:#fffaf3;border:1px solid #d8bf9e}
+    .single-tool-addon{margin-top:14px}
+    .tool-addon-copy{display:flex;align-items:center;gap:11px;min-width:0}
+    .tool-addon-copy b{display:block;color:#2b1b15;font-size:15px}
+    .tool-addon-copy small{display:block;color:#6a584e;font-size:11px;line-height:1.45;margin-top:2px}
+    .tool-addon-badge{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;padding:6px 9px;border-radius:999px;background:#7b2b20;color:#fff5e9;font-size:10px;font-weight:900;letter-spacing:.08em}
+    .tool-addon-controls{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+    .addon-counter{display:grid;grid-template-columns:42px 58px 42px;gap:7px;align-items:center}
+    .addon-counter button,.addon-counter input{height:42px;border:1px solid #cfae86;border-radius:12px;background:#fffdf9;color:#351f17;text-align:center;font-weight:900}
+    .addon-counter button{cursor:pointer;font-size:20px;background:#f5e8d8}
+    .addon-counter input{width:58px}
+    .addon-subtotal{min-width:82px;text-align:right;color:#705e53;font-size:10px}
+    .addon-subtotal strong{display:block;color:#812c21;font-size:18px;line-height:1.2;margin-top:2px}
+    @media(max-width:680px){
+      .tool-addon-inline{display:block}
+      .tool-addon-controls{margin-top:12px;justify-content:space-between}
+      .tool-addon-copy{align-items:flex-start}
+    }
   </style>
 </head>
 <body>
-  <div class="topbar">秋天限定 · 套餐 6 隻起 · 自由配搭 4 隻起 · 套餐免費送食蟹四寶</div>
+  <div class="topbar">秋天限定 · 套餐 6 隻起 · 自由配搭 4 隻起 · 每單贈送食蟹工具 1 份</div>
 
   <header>
     <div class="wrap nav">
@@ -552,14 +574,14 @@
               <ul class="hero-bullets">
                 <li><b>套餐優惠：</b>6 / 8 / 10 隻，基本配送區包送</li>
                 <li><b>自由配搭：</b>4 隻起，蟹公蟹乸數量自己決定</li>
-                <li>套餐免費送食蟹四寶；自由配搭可 +$18 加購</li>
+                <li>每單贈送食蟹工具 1 份；第 2 份起每份 +$18</li>
                 <li>其他地區按固定分區補配送差額</li>
               </ul>
               <div class="hero-actions">
                 <a class="btn primary" href="#buy-mode">立即揀購買方式</a>
                 <a class="btn secondary" href="#buy-mode">套餐／自由配搭</a>
               </div>
-              <div class="trust-row"><span class="trust-pill">4兩以上先上架</span><span class="trust-pill">套餐基本區包送</span><span class="trust-pill">套餐免費送食蟹四寶</span></div>
+              <div class="trust-row"><span class="trust-pill">4兩以上先上架</span><span class="trust-pill">套餐基本區包送</span><span class="trust-pill">食蟹工具 1 份免費</span></div>
             </div>
             <div class="hero-art" aria-hidden="true">
               <div class="plate-glow"></div>
@@ -608,7 +630,7 @@
           <div class="quick-card"><strong>兩種買法</strong><span>4 / 6隻起</span><p>自由配搭 4 隻起；套餐優惠 6 隻起。</p></div>
           <div class="quick-card"><strong>皇牌推薦</strong><span>8隻 $798</span><p>公乸雙拼，3–4 人家庭分享最容易揀。</p></div>
           <div class="quick-card"><strong>基本配送區</strong><span>包送</span><p>較遠地區 +$30；遠區配送 +$70。</p></div>
-          <div class="quick-card"><strong>套餐附送</strong><span>食蟹四寶</span><p>食蟹工具默認贈送 1 份；需要更多可 +$18／份。</p></div>
+          <div class="quick-card"><strong>食蟹工具</strong><span>1份免費</span><p>默認贈送 1 份；第 2 份開始每份 +$18。</p></div>
         </div>
       </div>
     </section>
@@ -645,7 +667,7 @@
             <div class="eyebrow">訂購產品 · 套餐優惠</div>
             <h2>套餐：揀隻數，再揀公乸配搭。</h2>
           </div>
-          <p>套餐固定 6、8、10 隻；基本配送區包送，並免費附送食蟹四寶。想自己決定公乸數量，可切換上方「自由配搭」。</p>
+          <p>套餐固定 6、8、10 隻；基本配送區包送，並附送食蟹配套及食蟹工具 1 份。需要更多工具可在落單區直接加購。</p>
         </div>
 
         <div class="package-grid">
@@ -718,7 +740,7 @@
               <div class="single-rule">4–5 隻：基本配送區配送費 +$80。</div>
               <div class="single-rule">6 隻或以上：基本配送區包送。</div>
               <div class="single-rule">其他地區按 +$30 / +$70 補配送差額；特殊地址另行確認。</div>
-              <div class="single-rule">食蟹四寶單點可加購 +$18；套餐則免費附送。</div>
+              <div class="single-rule">自由配搭可 +$18 加購香醋、紫蘇葉及紅糖薑棗茶；食蟹工具 1 份已免費贈送。</div>
             </div>
           </div>
 
@@ -746,13 +768,29 @@
                 </select>
               </div>
             </div>
-            <label class="kit-toggle"><input id="singleKit" type="checkbox"><span><strong>加購食蟹四寶 +$18</strong><span>香醋 ×1、紫蘇葉、吃蟹工具 ×2、紅糖薑棗茶 ×3</span></span></label>
+
+            <div class="tool-addon-inline single-tool-addon">
+              <div class="tool-addon-copy">
+                <span class="tool-addon-badge">可加購</span>
+                <div><b>食蟹工具</b><small>默認贈送 1 份；由第 2 份開始，每份 +$18。</small></div>
+              </div>
+              <div class="tool-addon-controls">
+                <div class="addon-counter">
+                  <button type="button" data-tool-action="-1" aria-label="減少食蟹工具">−</button>
+                  <input value="1" inputmode="numeric" data-tool-qty aria-label="食蟹工具總份數">
+                  <button type="button" data-tool-action="1" aria-label="增加食蟹工具">＋</button>
+                </div>
+                <div class="addon-subtotal">加購小計 <strong data-tool-subtotal>$0</strong></div>
+              </div>
+            </div>
+
+            <label class="kit-toggle"><input id="singleKit" type="checkbox"><span><strong>加購食蟹配套 +$18</strong><span>香醋 ×1、紫蘇葉、紅糖薑棗茶 ×3（食蟹工具已獨立計算）</span></span></label>
             <div class="single-summary">
               <div class="single-summary-row"><span>大閘蟹</span><strong id="singleItems">2公 + 2乸｜4隻</strong></div>
               <div class="single-summary-row"><span>蟹款小計</span><strong id="singleCrabSubtotal">$480</strong></div>
               <div class="single-summary-row"><span>配送費</span><strong id="singleShipping">$80</strong></div>
-              <div class="single-summary-row"><span>食蟹四寶</span><strong id="singleKitFee">不加購</strong></div>
-              <div class="single-summary-row"><span>食蟹工具</span><strong id="singleExtraTools">1份（已贈送）</strong></div>
+              <div class="single-summary-row"><span>食蟹配套</span><strong id="singleKitFee">不加購</strong></div>
+              <div class="single-summary-row"><span>食蟹工具</span><strong id="singleExtraTools">1份（免費）</strong></div>
               <div class="single-total"><div><small>單點預估總價</small></div><strong id="singleTotal">$560</strong></div>
             </div>
             <div class="single-alert" id="singleAlert">4–5隻屬單點小單，基本配送區另收 $80 配送費。</div>
@@ -760,26 +798,6 @@
               <button type="button" id="singleToReceiver">下一步：填收貨資料</button>
               <small>系統會連同自由配搭數量、配送費及總價一併整理。</small>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="addons" class="purchase-addon-section">
-      <div class="wrap">
-        <div class="addon-card">
-          <div class="addon-copy">
-            <div class="eyebrow">加購選項</div>
-            <strong>額外吃蟹工具 <em>$18／份</em></strong>
-            <small>套餐本身已包括吃蟹工具 2 份；如需要更多工具，可在此加購。加購金額會即時加入總價及 WhatsApp 訂單。</small>
-          </div>
-          <div class="addon-right">
-            <div class="addon-counter">
-              <button type="button" id="extraToolMinus" aria-label="減少額外吃蟹工具">−</button>
-              <input id="extraToolQty" value="0" inputmode="numeric" aria-label="額外吃蟹工具數量">
-              <button type="button" id="extraToolPlus" aria-label="增加額外吃蟹工具">＋</button>
-            </div>
-            <div class="addon-subtotal">小計 <strong id="extraToolSubtotal">$0</strong></div>
           </div>
         </div>
       </div>
@@ -875,7 +893,7 @@
           <div class="gift-list">
             <div class="gift-item"><strong>香醋 × 1</strong><span>大閘蟹經典配搭，風味更完整。</span></div>
             <div class="gift-item"><strong>紫蘇葉</strong><span>蒸蟹常見配料，照顧食用體驗。</span></div>
-            <div class="gift-item"><strong>食蟹工具 × 1</strong><span>默認贈送 1 份；第 2 份起每份 +$18。</span></div>
+            <div class="gift-item"><strong>食蟹工具 × 1</strong><span>每單默認贈送 1 份；需要更多可於落單區 +$18／份加購。</span></div>
             <div class="gift-item"><strong>紅糖薑棗茶 × 3</strong><span>飯後沖飲，完整配套一次過齊備。</span></div>
           </div>
         </div>
@@ -945,12 +963,33 @@
               <div class="order-tip">如屬特殊地址，配送費會再個別確認。</div>
             </div>
 
+            <div class="step tool-order-step">
+              <div class="step-head">
+                <strong>④ 食蟹工具</strong>
+                <span>默認贈送 1 份</span>
+              </div>
+              <div class="tool-addon-inline">
+                <div class="tool-addon-copy">
+                  <span class="tool-addon-badge">可加購</span>
+                  <div><b>食蟹工具</b><small>第 1 份免費；由第 2 份開始，每份 +$18。</small></div>
+                </div>
+                <div class="tool-addon-controls">
+                  <div class="addon-counter">
+                    <button type="button" data-tool-action="-1" aria-label="減少食蟹工具">−</button>
+                    <input value="1" inputmode="numeric" data-tool-qty aria-label="食蟹工具總份數">
+                    <button type="button" data-tool-action="1" aria-label="增加食蟹工具">＋</button>
+                  </div>
+                  <div class="addon-subtotal">加購小計 <strong data-tool-subtotal>$0</strong></div>
+                </div>
+              </div>
+            </div>
+
             <div class="step receiver-linked-note">
               <div class="step-head">
-                <strong>④ 收貨資料</strong>
-                <span>已統一放於上方填寫</span>
+                <strong>⑤ 收貨資料</strong>
+                <span>下一步填寫</span>
               </div>
-              <div class="order-tip">姓名、電話、中文地址、收貨日期、時段及收貨安排會自動加入 WhatsApp 訂單內容。</div>
+              <div class="order-tip">完成套餐、配送及加購後，再填姓名、電話、中文地址、收貨日期、時段及收貨安排。</div>
             </div>
           </div>
 
@@ -964,7 +1003,7 @@
               <div class="summary-row"><span>配送附加費</span><strong id="sumShip">+$0</strong></div>
               <div class="summary-row"><span>配送分區</span><strong id="sumZone">基本配送區</strong></div>
               <div class="summary-row"><span>其他附送</span><strong>香醋、紫蘇葉、紅糖薑棗茶</strong></div>
-              <div class="summary-row"><span>食蟹工具</span><strong id="sumExtraTools">1份（已贈送）</strong></div>
+              <div class="summary-row"><span>食蟹工具</span><strong id="sumExtraTools">1份（免費）</strong></div>
             </div>
             <div class="summary-total">
               <div><small>預估總價</small><small>特殊地址會改為待確認</small></div>
@@ -1025,7 +1064,7 @@
         <div class="faq-grid">
           <details open>
             <summary>套餐已包咩？</summary>
-            <p>套餐已包括大閘蟹本身、基本配送成本，以及食蟹四寶：香醋、紫蘇葉、吃蟹工具 2 份、紅糖薑棗茶 3 包。</p>
+            <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
           </details>
           <details>
             <summary>點解有啲地區要加附加費？</summary>
@@ -1094,9 +1133,9 @@
     const receiverPhone = document.getElementById('receiverPhone');
     const receiverAddress = document.getElementById('receiverAddress');
     const receiverNote = document.getElementById('receiverNote');
-    const extraToolQty = document.getElementById('extraToolQty');
-    const extraToolMinus = document.getElementById('extraToolMinus');
-    const extraToolPlus = document.getElementById('extraToolPlus');
+    const toolQtyInputs = [...document.querySelectorAll('[data-tool-qty]')];
+    const toolSubtotalEls = [...document.querySelectorAll('[data-tool-subtotal]')];
+    let toolQtyState = 1;
     const packageButtons = document.querySelectorAll('[data-choose-qty]');
 
     function setMinDate(){
@@ -1122,12 +1161,12 @@
       document.getElementById('sumBase').textContent = `$${base}`;
       document.getElementById('sumShip').textContent = shipLabel;
       document.getElementById('sumZone').textContent = state.zoneName;
-      document.getElementById('sumExtraTools').textContent = toolQty ? `${toolQty}份｜+${toolCost}` : '不加購';
+      document.getElementById('sumExtraTools').textContent = toolQty === 1 ? '1份（免費）' : `${toolQty}份｜加購 +${toolCost}`;
       document.getElementById('sumTotal').textContent = total;
       if(purchaseMode === 'package') document.getElementById('mobileTotal').textContent = total;
 
       document.getElementById('summaryText').textContent = isSpecial
-        ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。${toolQty ? `另加工具 ${toolQty} 份（+${toolCost}）。` : ''}`
+        ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。食蟹工具 ${toolQty} 份。`
         : `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，現時總價為 ${base + Number(state.zoneFee) + toolCost}。`;
 
       qtyChoices.forEach(btn => btn.classList.toggle('active', Number(btn.dataset.qty) === state.qty));
@@ -1161,7 +1200,7 @@
         slot: slotSelect.value,
         arrangement: arrangement ? arrangement.value : '',
         note: receiverNote ? receiverNote.value.trim() : '',
-        extraTools: extraToolQty ? Math.max(1, Math.min(20, parseInt(extraToolQty.value || '1',10) || 1)) : 1,
+        extraTools: clampExtraTool(),
         get extraToolCost(){ return Math.max(0, this.extraTools - 1) * EXTRA_TOOL_PRICE; }
       };
     }
@@ -1207,8 +1246,8 @@
         `規格：${sizeNames[state.mix]}`,
         `套餐價：$${base}`,
         `配送分區：${ship}`,
-        '附送：香醋 x1、紫蘇葉、吃蟹工具 x2、紅糖薑棗茶 x3',
-        ...(r.extraTools ? [`加購工具：額外吃蟹工具 × ${r.extraTools}｜$18/份｜+${r.extraToolCost}`] : []),
+        '附送：香醋 x1、紫蘇葉、食蟹工具 x1、紅糖薑棗茶 x3',
+        ...(r.extraTools > 1 ? [`食蟹工具加購：+${r.extraTools - 1}份｜+${r.extraToolCost}`] : []),
         `總價：${total}`
       ].join('\n');
     }
@@ -1291,6 +1330,7 @@
       document.getElementById('singleCrabSubtotal').textContent = `$${d.crabSubtotal}`;
       document.getElementById('singleShipping').textContent = d.special ? '待確認' : (d.shipping === 0 ? '$0（包送）' : `$${d.shipping}`);
       document.getElementById('singleKitFee').textContent = d.kitFee ? '+$18' : '不加購';
+      document.getElementById('singleExtraTools').textContent = d.toolQty === 1 ? '1份（免費）' : `${d.toolQty}份｜加購 +${d.toolCost}`;
       document.getElementById('singleTotal').textContent = d.total === null ? '待確認' : `${d.total}`;
       if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = d.total === null ? '待確認' : `${d.total}`;
       const alert = document.getElementById('singleAlert');
@@ -1342,8 +1382,9 @@
         `蟹乸 4.5–5兩：${d.female}隻 × $130`,
         `蟹款小計：$${d.crabSubtotal}`,
         `配送：${shipText}`,
-        `食蟹四寶：${d.kitFee ? '加購 +$18' : '不加購'}`,
-        ...(r.extraTools ? [`加購工具：額外吃蟹工具 × ${r.extraTools}｜$18/份｜+${r.extraToolCost}`] : []),
+        `食蟹配套：${d.kitFee ? '加購 +$18（香醋、紫蘇葉、紅糖薑棗茶）' : '不加購'}`,
+        '食蟹工具：1份免費',
+        ...(r.extraTools > 1 ? [`食蟹工具加購：+${r.extraTools - 1}份｜+${r.extraToolCost}`] : []),
         `總價：${totalText}`
       ].join('\n');
     }
@@ -1370,17 +1411,21 @@
         const d = singleData();
         productEl.textContent = `自由配搭｜${d.male}公 + ${d.female}乸｜共 ${d.count} 隻`;
         totalEl.textContent = d.total === null ? '待確認' : `${d.total}`;
+        const toolText = d.toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${d.toolQty}份（加購+${d.toolCost}）`;
         metaEl.textContent = d.special
-          ? `特殊地址｜配送費待確認｜食蟹四寶：${d.kitFee ? '已加購' : '不加購'}`
-          : `${d.zoneName}｜配送費 ${d.shipping}｜食蟹四寶：${d.kitFee ? '已加購' : '不加購'}`;
+          ? `特殊地址｜配送費待確認｜食蟹配套：${d.kitFee ? '已加購' : '不加購'}｜${toolText}`
+          : `${d.zoneName}｜配送費 ${d.shipping}｜食蟹配套：${d.kitFee ? '已加購' : '不加購'}｜${toolText}`;
       }else{
         const base = prices[state.qty][state.mix];
         const special = state.zoneFee === 'special';
+        const toolQty = clampExtraTool();
+        const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
         productEl.textContent = `${packNames[state.qty]}｜${mixNames[state.mix]}`;
-        totalEl.textContent = special ? '待確認' : `${base + Number(state.zoneFee)}`;
+        totalEl.textContent = special ? '待確認' : `${base + Number(state.zoneFee) + toolCost}`;
+        const toolText = toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${toolQty}份（加購+${toolCost}）`;
         metaEl.textContent = special
-          ? '特殊地址｜配送費待確認｜食蟹四寶已包括'
-          : `${state.zoneName}｜配送附加費 +${state.zoneFee}｜食蟹四寶已包括`;
+          ? `特殊地址｜配送費待確認｜${toolText}`
+          : `${state.zoneName}｜配送附加費 +${state.zoneFee}｜${toolText}`;
       }
     }
 
@@ -1415,25 +1460,26 @@
     });
     document.querySelectorAll('input[name="receiveArrangement"]').forEach(el=>el.addEventListener('change',updateFinalPreview));
 
-    function clampExtraTool(){
-      if(!extraToolQty) return 0;
-      let v = parseInt(extraToolQty.value || '0',10);
-      if(Number.isNaN(v)) v = 0;
-      v = Math.max(0,Math.min(20,v));
-      extraToolQty.value = v;
-      const subtotal = document.getElementById('extraToolSubtotal');
-      if(subtotal) subtotal.textContent = `${v * EXTRA_TOOL_PRICE}`;
-      return v;
+    function clampExtraTool(value = toolQtyState){
+      let v = parseInt(value || '1',10);
+      if(Number.isNaN(v)) v = 1;
+      toolQtyState = Math.max(1,Math.min(20,v));
+      const extraCost = Math.max(0, toolQtyState - 1) * EXTRA_TOOL_PRICE;
+      toolQtyInputs.forEach(input => { if(document.activeElement !== input) input.value = toolQtyState; });
+      toolSubtotalEls.forEach(el => el.textContent = `${extraCost}`);
+      return toolQtyState;
     }
-    function refreshAfterToolChange(){
-      clampExtraTool();
+    function refreshAfterToolChange(value){
+      clampExtraTool(value);
+      toolQtyInputs.forEach(input => input.value = toolQtyState);
       render();
       renderSingle();
       updateFinalPreview();
     }
-    extraToolMinus?.addEventListener('click',()=>{ extraToolQty.value = Math.max(1,clampExtraTool()-1); refreshAfterToolChange(); });
-    extraToolPlus?.addEventListener('click',()=>{ extraToolQty.value = Math.min(20,clampExtraTool()+1); refreshAfterToolChange(); });
-    extraToolQty?.addEventListener('input',refreshAfterToolChange);
+    document.querySelectorAll('[data-tool-action]').forEach(btn => btn.addEventListener('click',()=>{
+      refreshAfterToolChange(toolQtyState + Number(btn.dataset.toolAction));
+    }));
+    toolQtyInputs.forEach(input => input.addEventListener('input',()=>refreshAfterToolChange(input.value)));
 
     // 套餐 / 自由配搭：同一個選購入口，只顯示一種買法
     const packagesSection = document.getElementById('packages');
@@ -1483,6 +1529,7 @@
     });
 
     setMinDate();
+    clampExtraTool(1);
     setPurchaseMode('package');
     renderSingle();
     updateFinalPreview();
