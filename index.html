@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>啖啖燕窩｜秋蟹到家・大閘蟹訂購</title>
+  <meta name="description" content="啖啖燕窩秋季限定大閘蟹訂購，6隻起送，全公、公乸雙拼、全乸三種套餐，指定地區包送。" />
+  <style>
+    :root{
+      --bg:#f6efe6;
+      --paper:#fffaf4;
+      --paper-soft:#f8f0e4;
+      --ink:#241813;
+      --muted:#594b43;
+      --line:#d8c2a7;
+      --line-strong:#cfb08a;
+      --red:#8d2c22;
+      --red-deep:#5d1f16;
+      --gold:#c69245;
+      --gold-soft:#ead6b6;
+      --brown:#2d221d;
+      --green:#4f6551;
+      --shadow:0 18px 50px rgba(47,34,23,.08);
+      --shadow-lg:0 28px 90px rgba(37,27,18,.16);
+      --r-xl:36px;
+      --r-lg:24px;
+      --r-md:18px;
+      --r-sm:14px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(180deg,#fbf6ef 0%,#f6ede2 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.65}
+    img,svg{display:block;max-width:100%}
+    button,input,select{font:inherit}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .topbar{background:linear-gradient(90deg,#4a2119 0%,#6f2a20 100%);color:#fff3e6;text-align:center;padding:10px 12px;font-size:12px;letter-spacing:.08em}
+    header{position:sticky;top:0;z-index:50;background:rgba(247,241,233,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(90,64,44,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#b14a33,#7f291b);color:#fff;font-family:Georgia,"Noto Serif TC",serif;font-size:19px;font-weight:700;box-shadow:0 10px 20px rgba(128,41,27,.25)}
+    .brand h1{margin:0;font-size:17px;letter-spacing:.08em}
+    .brand p{margin:2px 0 0;font-size:11px;letter-spacing:.18em;color:var(--muted)}
+    .navlinks{display:flex;gap:24px;color:#62584f;font-size:14px}
+    .navcta{padding:12px 18px;border-radius:999px;background:var(--ink);color:#fff;font-weight:800}
+
+    .hero{padding:30px 0 18px}
+    .hero-shell{position:relative;overflow:hidden;border-radius:40px;background:radial-gradient(circle at 18% 18%,rgba(214,149,78,.22),transparent 34%),linear-gradient(135deg,#37241e 0%,#241612 44%,#4b1f17 100%);color:#fff;box-shadow:var(--shadow-lg)}
+    .hero-inner{display:grid;grid-template-columns:1.08fr .92fr;gap:0;min-height:610px}
+    .hero-copy{padding:58px 54px 50px;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:#dfba82}
+    .eyebrow:before{content:"";width:28px;height:1px;background:#dfba82;display:block}
+    .hero h2,.section-title h2,.summary-card h3,.package-card h3{font-family:Georgia,"Noto Serif TC",serif;letter-spacing:-.03em}
+    .hero h2{font-size:clamp(40px,6.8vw,80px);line-height:1.02;margin:16px 0 20px}
+    .hero-lead{max-width:560px;font-size:17px;color:#efe5d8;margin:0}
+    .hero-bullets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin:28px 0 0;padding:0;list-style:none;max-width:520px}
+    .hero-bullets li{display:flex;gap:10px;color:#fff5e8;font-size:14px}
+    .hero-bullets li::before{content:"✦";color:#dfba82;flex:0 0 auto}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;font-weight:900;transition:.18s}
+    .btn.primary{background:#fff;color:var(--ink)}
+    .btn.secondary{border:1px solid rgba(255,255,255,.22);color:#fff;background:rgba(255,255,255,.04)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .hero-art{position:relative;padding:50px 38px 40px 0;display:flex;align-items:center;justify-content:center}
+    .plate-glow{position:absolute;inset:auto 25px 52px auto;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(255,191,123,.22),rgba(204,91,49,.12) 35%,transparent 72%)}
+    .hero-panel{position:relative;width:min(510px,100%);aspect-ratio:1/1.02;border-radius:34px;padding:26px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+    .hero-badge{position:absolute;top:18px;right:18px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.13);font-size:12px;font-weight:800;color:#fce9d5}
+    .plate{position:absolute;inset:92px 58px 52px 58px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#504239 0,#2a211d 58%,#181311 100%);box-shadow:inset 0 0 0 18px rgba(255,255,255,.025),0 30px 60px rgba(0,0,0,.28)}
+    .hero-price{position:absolute;left:22px;bottom:22px;padding:18px 18px 16px;border-radius:20px;background:rgba(255,250,244,.98);color:var(--ink);box-shadow:0 22px 40px rgba(0,0,0,.18);min-width:216px}
+    .hero-price small{display:block;font-size:11px;color:var(--muted);letter-spacing:.04em}
+    .hero-price strong{display:block;font-size:38px;line-height:1;margin-top:6px}
+    .hero-price span{display:block;font-size:12px;font-weight:800;color:var(--red);margin-top:6px}
+    .leaf{position:absolute;opacity:.9}
+    .leaf-1{left:14px;top:18px;width:88px;transform:rotate(-16deg)}
+    .leaf-2{right:28px;bottom:92px;width:70px;transform:rotate(12deg)}
+    .leaf-3{left:24px;bottom:80px;width:54px;transform:rotate(-24deg);opacity:.5}
+    .crab-svg{position:absolute;left:82px;right:82px;top:112px;bottom:86px;filter:drop-shadow(0 26px 28px rgba(0,0,0,.34))}
+
+    section{padding:30px 0}
+    .section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:18px}
+    .section-title h2{font-size:clamp(30px,4vw,48px);margin:6px 0 0}
+    .section-title p{margin:0;max-width:540px;color:#51463e;font-size:15px}
+
+    .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .quick-card{background:linear-gradient(180deg,#fffaf4 0%,#f7efe3 100%);border:1px solid var(--line-strong);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+    .quick-card strong{display:block;font-size:15px;margin-bottom:8px}
+    .quick-card span{display:block;font-size:32px;line-height:1.1;font-weight:950;color:var(--red);letter-spacing:-.03em}
+    .quick-card p{margin:10px 0 0;color:#564b43;font-size:13px}
+
+    .package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .package-card{background:linear-gradient(180deg,#fffaf4 0%,#f8efe3 100%);border:1px solid #d7b48b;border-radius:28px;padding:26px;box-shadow:0 18px 36px rgba(92,58,26,.10);position:relative;overflow:hidden}
+    .package-card.featured{background:linear-gradient(180deg,#6f2a20 0%,#471914 100%);color:#fff;border-color:#a87846;transform:translateY(-2px)}
+    .package-tag{display:inline-flex;align-items:center;border-radius:999px;padding:7px 11px;background:#efe0c8;color:#6a4930;font-size:11px;font-weight:900;letter-spacing:.06em;border:1px solid #e0c097}
+    .package-card.featured .package-tag{background:#f0cf97;color:#4b2417;border-color:#f0cf97}
+    .package-card h3{font-size:28px;margin:16px 0 2px;position:relative;z-index:1}
+    .sub{font-size:13px;color:#554a42}
+    .package-card.featured .sub{color:#eaded2}
+    .price-from{margin:18px 0 12px}
+    .price-from small{display:block;font-size:12px;color:#5d5249;margin-bottom:4px}
+    .package-card.featured .price-from small{color:#cab9aa}
+    .price-from strong{font-size:42px;line-height:1;letter-spacing:-.03em}
+    .table{margin-top:12px;border-top:1px solid #dec8ae;position:relative;z-index:1}
+    .package-card.featured .table{border-color:rgba(255,241,225,.22)}
+    .row{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+    .package-card.featured .row{border-color:rgba(255,255,255,.12)}
+    .row span:first-child{color:#554a42}
+    .package-card.featured .row span:first-child{color:#eaded2}
+    .package-note{margin-top:14px;padding:14px 16px;border-radius:16px;background:#f6eee4;font-size:13px;color:#3f342d;border:1px solid #ead9c6}
+    .package-card.featured .package-note{background:rgba(255,255,255,.12);color:#fff3e8;border:1px solid rgba(255,255,255,.12)}
+    .package-button{width:100%;margin-top:18px;padding:14px 16px;border-radius:15px;border:0;background:linear-gradient(180deg,#8d2c22 0%,#6d211a 100%);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 12px 24px rgba(109,33,26,.18)}
+    .package-card.featured .package-button{background:linear-gradient(180deg,#f2d39e 0%,#dfb06e 100%);color:#4a2418;border:0;box-shadow:0 12px 24px rgba(0,0,0,.18)}
+
+    .two-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+    .gift-card,.delivery-card{background:linear-gradient(180deg,#fffaf4 0%,#f7efe3 100%);border:1px solid var(--line-strong);border-radius:28px;padding:28px;box-shadow:var(--shadow)}
+    .gift-card .mini{font-size:12px;letter-spacing:.18em;font-weight:900;color:var(--red)}
+    .gift-card h3,.delivery-card h3,.faq-wrap h3{font-family:Georgia,"Noto Serif TC",serif;font-size:30px;letter-spacing:-.03em;margin:10px 0 12px}
+    .gift-card p,.delivery-card p{color:#564b43;margin:0 0 18px}
+    .gift-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .gift-item{padding:16px;border-radius:18px;background:var(--paper-soft);border:1px solid #ebdfd1}
+    .gift-item strong{display:block;font-size:15px;margin-bottom:3px}
+    .gift-item span{font-size:13px;color:#5a4f47}
+    .delivery-zones{display:grid;gap:12px}
+    .delivery-zone{padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--paper-soft)}
+    .delivery-zone.top{background:#f8efe4;border-color:#e6d2bc}
+    .delivery-zone strong{display:flex;justify-content:space-between;gap:12px;font-size:16px;margin-bottom:8px}
+    .delivery-zone b{font-size:24px;color:var(--red);letter-spacing:-.03em}
+    .delivery-zone p{margin:0;color:#544940;font-size:13px}
+
+    .order-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:16px;align-items:start}
+    .builder-card,.summary-card{background:linear-gradient(180deg,#fffaf4 0%,#f8f0e6 100%);border:1px solid var(--line-strong);border-radius:30px;box-shadow:var(--shadow)}
+    .builder-card{padding:30px}
+    .summary-card{padding:24px;position:sticky;top:98px;background:linear-gradient(180deg,#3a211a 0%,#5a2419 100%);color:#fff;border-color:#8f5d35}
+    .summary-card h3{font-size:28px;margin:0 0 14px}
+    .step{padding:22px 0;border-top:1px solid var(--line)}
+    .step:first-child{padding-top:0;border-top:0}
+    .step-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+    .step-head strong{font-size:17px}
+    .step-head span{font-size:12px;color:#5f544b}
+    .option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .option-btn{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff;text-align:left;cursor:pointer;transition:.18s}
+    .option-btn b{display:block;font-size:16px}
+    .option-btn small{display:block;margin-top:4px;color:#564b43;line-height:1.45}
+    .option-btn.active{border:2px solid var(--red);background:#fff8f3;padding:15px;box-shadow:0 10px 22px rgba(159,56,36,.08)}
+    .select,.date-input{width:100%;padding:14px 15px;border-radius:16px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+    .time-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .order-tip{margin-top:14px;padding:14px 16px;border-radius:16px;background:#f6eee4;font-size:13px;color:#433832;border:1px solid #ead9c6}
+
+    .summary-list{display:grid;gap:0;margin-top:10px}
+    .summary-row{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+    .summary-row span{font-size:13px;color:#ded3c8}
+    .summary-row strong{font-size:14px;color:#ffffff;text-align:right}
+    .summary-total{display:flex;justify-content:space-between;align-items:flex-end;padding-top:18px}
+    .summary-total small{display:block;font-size:12px;color:#b9ada1}
+    .summary-total strong{font-size:42px;line-height:1;letter-spacing:-.04em}
+    .summary-box{margin-top:16px;padding:16px;border-radius:18px;background:rgba(255,255,255,.10);font-size:13px;color:#fff4ea;border:1px solid rgba(255,255,255,.10)}
+    .summary-actions{display:flex;gap:10px;margin-top:16px}
+    .summary-actions button{flex:1;padding:13px 16px;border-radius:14px;border:0;font-weight:900;cursor:pointer}
+    .summary-actions .primary{background:#fff;color:var(--ink)}
+    .summary-actions .secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.18)}
+    .summary-foot{margin-top:10px;font-size:11px;color:#b5a89d;text-align:center}
+
+    .faq-wrap{background:linear-gradient(180deg,#fffaf4 0%,#f8efe4 100%);border:1px solid var(--line-strong);border-radius:28px;padding:28px;box-shadow:var(--shadow)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    details{border:1px solid var(--line-strong);border-radius:18px;padding:16px 18px;background:var(--paper-soft)}
+    summary{font-weight:900;cursor:pointer;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0;color:#544940;font-size:14px}
+    footer{padding:34px 0 90px;color:#5b5048;font-size:12px}
+
+    .mobilebar{display:none}
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
+    .modal.show{display:flex}
+    .modal-card{width:min(640px,100%);background:#fffaf2;color:#2a1811;border:1px solid #cda66f;border-radius:24px;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.22)}
+    .modal-card h4{margin:0 0 10px;font-size:24px;font-family:Georgia,"Noto Serif TC",serif;color:#2a1811}
+    .modal-card p{margin:0 0 14px;color:#5a493f}
+    .modal textarea{width:100%;height:240px;border:1px solid #c9ad88;border-radius:16px;background:#fffdf9;color:#2a1811!important;-webkit-text-fill-color:#2a1811!important;opacity:1;padding:16px;resize:none;font:inherit;line-height:1.7;caret-color:#2a1811;box-shadow:inset 0 1px 0 rgba(0,0,0,.02)}
+    .modal textarea[readonly]{color:#2a1811!important;-webkit-text-fill-color:#2a1811!important;background:#fffdf9!important;opacity:1!important}
+    .modal textarea::selection{background:#ead2aa;color:#2a1811}
+    .modal-actions{display:flex;gap:10px;margin-top:14px}.modal-actions button{flex:1;padding:12px 16px;border-radius:14px;border:1px solid #6f281d;font-weight:900;cursor:pointer}
+    .modal-actions .copybtn{background:#6f281d;color:#fffaf2}.modal-actions .closebtn{background:#fffaf2;color:#2a1811}
+
+    .package-card::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:linear-gradient(90deg,#d7ab6b 0%,#8d2c22 100%)}
+    .package-card::after{content:"";position:absolute;right:-16px;top:-16px;width:96px;height:96px;border-radius:50%;background:radial-gradient(circle,rgba(198,146,69,.18) 0%,rgba(198,146,69,0) 72%)}
+    .package-card.featured::before{background:linear-gradient(90deg,#f3d7a8 0%,#fff4de 100%)}
+    .package-button:hover{transform:translateY(-1px);filter:brightness(1.03)}
+
+    /* Luxury autumn upgrade + contrast safety */
+    body{background:#f6efe5;color:#231711}
+    .topbar{background:#5b1f18;color:#fff8ef}
+    header{background:rgba(250,245,238,.95);border-bottom:1px solid #d7b98f}
+    .brand-mark{background:#7c271c;color:#fff8ef;border:1px solid #d8ae70;box-shadow:0 8px 18px rgba(83,31,22,.18)}
+    .brand h1{color:#2b1812}
+    .brand p{color:#745f50}
+    .navlinks{color:#4b3a31}
+    .navcta{background:#71241a;color:#fff8ef;box-shadow:0 8px 18px rgba(113,36,26,.18)}
+    .hero-shell{background:radial-gradient(circle at 18% 14%,rgba(213,151,78,.20),transparent 36%),linear-gradient(135deg,#24130f 0%,#4c1d16 58%,#29150f 100%)}
+    .hero-lead,.hero-bullets li{color:#fff4e8}
+    .hero .eyebrow{color:#e2b66f}
+    .hero .eyebrow:before{background:#e2b66f}
+    .section-title .eyebrow,.faq-wrap>.eyebrow{color:#7b281e}
+    .section-title .eyebrow:before,.faq-wrap>.eyebrow:before{background:#7b281e}
+    .gift-card .mini,.delivery-card .mini{color:#7b281e;font-size:12px;letter-spacing:.18em;font-weight:900}
+    .btn.primary{background:#e2b66f;color:#32190f}
+    .btn.secondary{border-color:#d7ad72;color:#fff8ef;background:rgba(255,255,255,.04)}
+    .quick-card,.package-card,.gift-card,.delivery-card,.builder-card,.faq-wrap{background:#fffaf2;color:#261812}
+    .quick-card p,.section-title p,.sub,.gift-card p,.delivery-card p,.gift-item span,.delivery-zone p,.option-btn small,details p{color:#58483f}
+    .quick-card strong,.package-card h3,.gift-card h3,.delivery-card h3,.faq-wrap h3,.step-head strong,summary{color:#2a1811}
+    .quick-card span,.delivery-zone b{color:#8b2c20}
+    .package-card{border:1px solid #cda66f;box-shadow:0 22px 45px rgba(70,38,19,.10)}
+    .package-card.featured{background:linear-gradient(180deg,#69251d 0%,#40150f 100%);border:1px solid #d5aa69;color:#fff9f1;box-shadow:0 28px 60px rgba(75,27,19,.24)}
+    .package-card.featured h3,.package-card.featured .price-from strong,.package-card.featured b{color:#fffaf2}
+    .package-card.featured .sub,.package-card.featured .row span:first-child{color:#f1ded0}
+    .package-card.featured .package-note{color:#fff6ed;background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.16)}
+    .package-tag{background:#f2e2c9;color:#6b482d;border-color:#d9b67f}
+    .package-card.featured .package-tag{background:#e7c27f;color:#3d2114;border-color:#e7c27f}
+    .package-button{background:#79271d;color:#fffaf2}
+    .package-card.featured .package-button{background:#e2b66f;color:#3a1d12}
+    .gift-item,.delivery-zone,details,.order-tip{background:#f8eee1;border-color:#ddc5a4;color:#2b1b14}
+    .delivery-zone.top{background:#f2dfc5;border-color:#cda66f}
+    .builder-card{border-color:#cda66f}
+    .option-btn{background:#fffdf9;color:#251711;border-color:#d8c1a3}
+    .option-btn b{color:#251711}
+    .option-btn.active{background:#f6e6d4;border-color:#8b2c20}
+    .select,.date-input{background:#fffdf9;color:#251711;border-color:#cdb89b}
+    .summary-card{background:linear-gradient(180deg,#351711 0%,#5a2118 100%);border:1px solid #b68149;color:#fffaf2}
+    .summary-card h3,.summary-row strong,.summary-total strong{color:#fffaf2}
+    .summary-row span,.summary-total small,.summary-foot{color:#eaded2}
+    .summary-box{background:rgba(255,255,255,.10);color:#fff9f1;border-color:rgba(255,255,255,.18)}
+    .summary-actions .primary{background:#e2b66f;color:#32190f}
+    .summary-actions .secondary{color:#fffaf2;border-color:#c99d67;background:rgba(255,255,255,.04)}
+    .contact-strip{margin-top:18px;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;background:#fffaf2;border:1px solid #cda66f;border-radius:22px;padding:16px 18px;box-shadow:0 12px 30px rgba(70,38,19,.08)}
+    .contact-strip strong{display:block;color:#2a1811;font-size:15px}
+    .contact-strip span{display:block;color:#655348;font-size:12px;margin-top:2px}
+    .wa-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 17px;border-radius:14px;background:#225b38;color:#fff;font-weight:900;border:1px solid #17492c;white-space:nowrap;box-shadow:0 8px 16px rgba(34,91,56,.16)}
+    .wa-btn.alt{background:#7a2a1e;border-color:#642117}
+    .trust-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .trust-pill{padding:8px 11px;border-radius:999px;border:1px solid rgba(226,182,111,.35);background:rgba(255,255,255,.06);color:#fff0df;font-size:12px;font-weight:800}
+    .sale-ribbon{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px 12px;border-radius:999px;background:#e2b66f;color:#3b1d12;font-size:12px;font-weight:950;letter-spacing:.04em}
+    .premium-rule{height:1px;background:linear-gradient(90deg,transparent,#cda66f,transparent);margin:6px 0 0}
+    .whatsapp-duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .whatsapp-duo a{display:flex;align-items:center;justify-content:center;padding:13px 12px;border-radius:14px;background:#225b38;color:#fff;font-weight:900;border:1px solid #17492c;text-align:center}
+    .whatsapp-duo a:last-child{background:#7a2a1e;border-color:#642117}
+    .toll-note{margin-top:12px;padding:12px 14px;border-radius:14px;background:#f4e7d8;border:1px solid #d9bd9d;color:#46362d;font-size:12px}
+    footer{color:#5c493f}
+    @media(max-width:760px){.contact-strip{grid-template-columns:1fr}.wa-btn{width:100%}.whatsapp-duo{grid-template-columns:1fr}}
+
+
+    /* Contrast safeguard for browser themes */
+    input,select,textarea,button{color-scheme:light}
+    .select,.date-input,.option-btn{color:#251711!important;-webkit-text-fill-color:#251711}
+    .option-btn b,.option-btn small{opacity:1}
+
+
+    /* A la carte section */
+    .single-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:16px;align-items:stretch}
+    .single-info,.single-builder{background:#fffaf2;border:1px solid #cda66f;border-radius:30px;box-shadow:0 22px 45px rgba(70,38,19,.10)}
+    .single-info{padding:30px;position:relative;overflow:hidden}
+    .single-info:before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(180deg,#d7aa68 0%,#7a271d 100%)}
+    .single-kicker{font-size:12px;letter-spacing:.18em;color:#7b281e;font-weight:900}
+    .single-info h3{font-family:Georgia,"Noto Serif TC",serif;font-size:32px;line-height:1.15;margin:10px 0 12px;color:#2a1811}
+    .single-info>p{margin:0;color:#58483f;font-size:14px}
+    .single-price-list{display:grid;gap:10px;margin-top:22px}
+    .single-price-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border-radius:18px;background:#f8eee1;border:1px solid #ddc5a4;color:#2a1811}
+    .single-price-item strong{display:block;font-size:16px;color:#2a1811}
+    .single-price-item small{display:block;margin-top:3px;color:#665449}
+    .single-price-item b{font-size:26px;line-height:1;color:#84291f;white-space:nowrap}
+    .single-rules{margin-top:18px;display:grid;gap:9px}
+    .single-rule{display:flex;gap:10px;align-items:flex-start;color:#49372e;font-size:13px}
+    .single-rule:before{content:"✓";display:grid;place-items:center;flex:0 0 20px;height:20px;border-radius:50%;background:#7a271d;color:#fff;font-size:11px;font-weight:900;margin-top:1px}
+    .single-builder{padding:28px}
+    .single-builder h3{margin:0 0 4px;font-family:Georgia,"Noto Serif TC",serif;font-size:28px;color:#2a1811}
+    .single-builder .intro{margin:0 0 20px;color:#5a493f;font-size:13px}
+    .crab-pickers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .crab-picker{padding:18px;border-radius:20px;background:#fffdf9;border:1px solid #d8c1a3;color:#251711}
+    .crab-picker .head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .crab-picker strong{font-size:17px;color:#251711}
+    .crab-picker small{display:block;margin-top:3px;color:#665449}
+    .crab-picker .unit-price{font-weight:950;color:#84291f;white-space:nowrap}
+    .counter{display:grid;grid-template-columns:44px 1fr 44px;gap:8px;align-items:center;margin-top:16px}
+    .counter button{height:44px;border-radius:13px;border:1px solid #cfae86;background:#f7eadb;color:#4a2418;font-size:22px;font-weight:900;cursor:pointer}
+    .counter input{height:44px;width:100%;border-radius:13px;border:1px solid #cfae86;background:#fff;color:#251711!important;-webkit-text-fill-color:#251711!important;text-align:center;font-weight:950;font-size:18px}
+    .single-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .single-field{display:flex;flex-direction:column;gap:7px}
+    .single-field label{font-size:12px;color:#5d4c42;font-weight:800}
+    .single-field select{width:100%;padding:13px 14px;border-radius:14px;border:1px solid #cdb89b;background:#fffdf9;color:#251711!important;-webkit-text-fill-color:#251711!important}
+    .kit-toggle{display:flex;align-items:flex-start;gap:10px;margin-top:14px;padding:14px 16px;border-radius:16px;background:#f8eee1;border:1px solid #ddc5a4;color:#34231b}
+    .kit-toggle input{margin-top:4px;accent-color:#7a271d}
+    .kit-toggle strong{display:block;color:#2a1811;font-size:14px}.kit-toggle span{display:block;color:#635147;font-size:12px;margin-top:2px}
+    .single-summary{margin-top:16px;padding:18px;border-radius:20px;background:linear-gradient(180deg,#3b1812 0%,#63261c 100%);color:#fffaf2;border:1px solid #a86f3e}
+    .single-summary-row{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:13px}
+    .single-summary-row span{color:#eaded2}.single-summary-row strong{color:#fffaf2;text-align:right}
+    .single-total{display:flex;justify-content:space-between;align-items:end;padding-top:14px}.single-total small{display:block;color:#eaded2}.single-total strong{font-size:36px;line-height:1;color:#fffaf2}
+    .single-alert{margin-top:12px;padding:11px 13px;border-radius:13px;background:#f4dfbd;color:#452718;font-size:12px;font-weight:800}
+    .single-alert.good{background:#dfe9de;color:#29412d}
+    .single-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .single-actions a{display:flex;align-items:center;justify-content:center;padding:12px;border-radius:13px;background:#225b38;color:#fff;font-weight:900;text-align:center;border:1px solid #17492c}
+    .single-actions a:last-child{background:#7a2a1e;border-color:#642117}
+    @media(max-width:900px){.single-shell{grid-template-columns:1fr}.crab-pickers,.single-options{grid-template-columns:1fr}}
+    @media(max-width:520px){.single-actions{grid-template-columns:1fr}}
+
+    @media (max-width: 980px){
+      .hero-inner,.two-grid,.order-grid{grid-template-columns:1fr}
+      .hero-art{padding:0 28px 38px}
+      .hero-copy{padding:50px 32px 24px}
+      .section-title{flex-direction:column;align-items:flex-start}
+      .quick-grid,.package-grid{grid-template-columns:1fr 1fr}
+      .summary-card{position:static}
+      .navlinks{display:none}
+    }
+    @media (max-width: 680px){
+      .wrap{width:min(100% - 22px,1180px)}
+      .nav{height:66px}
+      .navcta{display:none}
+      .hero{padding-top:18px}
+      .hero-shell{border-radius:28px}
+      .hero-copy{padding:34px 22px 10px}
+      .hero h2{font-size:40px}
+      .hero-lead{font-size:15px}
+      .hero-bullets{grid-template-columns:1fr}
+      .hero-art{padding:8px 14px 22px}
+      .hero-panel{padding:18px;border-radius:24px}
+      .plate{inset:74px 38px 42px 38px}
+      .crab-svg{left:52px;right:52px;top:96px;bottom:72px}
+      .leaf-1{width:62px}.leaf-2{width:52px}.leaf-3{width:44px}
+      .hero-price{left:14px;bottom:14px;min-width:0}
+      .hero-price strong{font-size:32px}
+      .quick-grid,.package-grid,.gift-list,.faq-grid,.option-grid{grid-template-columns:1fr}
+      .time-grid{grid-template-columns:1fr}
+      .builder-card{padding:18px}
+      .summary-card{padding:20px}
+      .mobilebar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,251,245,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 12px;gap:10px;align-items:center}
+      .mobilebar .meta{flex:1}
+      .mobilebar small{display:block;font-size:10px;color:var(--muted)}
+      .mobilebar strong{display:block;font-size:22px;line-height:1.1}
+      .mobilebar button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:12px 16px;font-weight:900}
+      footer{padding-bottom:110px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">秋天限定 · 6隻起送 · 指定地區包送 · 每套免費送食蟹四寶</div>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="brand">
+        <span class="brand-mark">啖</span>
+        <span>
+          <h1>啖啖燕窩</h1>
+          <p>DAMDAMBIRDNEST · 秋蟹到家</p>
+        </span>
+      </a>
+      <nav class="navlinks">
+        <a href="#packages">套餐</a>
+        <a href="#single">自由單點</a>
+        <a href="#bonus">附送</a>
+        <a href="#delivery">配送</a>
+        <a href="#order">立即訂購</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="navcta" href="#order">立即落單</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-shell">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <div class="sale-ribbon">2026 秋季限定 · 6隻起送</div>
+              <div class="eyebrow">DAMDAMBIRDNEST · AUTUMN SELECTION</div>
+              <h2>一到秋天，<br>就係食蟹最好時候。</h2>
+              <p class="hero-lead">精選 4 兩以上大閘蟹，蟹公主打 5–5.5 兩、蟹乸主打 4.5–5 兩。由二人晚餐到家庭聚會，一次過揀好份量、配搭同配送地區。</p>
+              <ul class="hero-bullets">
+                <li>6 隻起送，適合二人晚餐至家庭分享</li>
+                <li>全公、公乸雙拼、全乸三種配搭可選</li>
+                <li>基本配送區已包送，遠區只補固定差額</li>
+                <li>每套免費送食蟹四寶，唔使另外加購</li>
+              </ul>
+              <div class="hero-actions">
+                <a class="btn primary" href="#order">立即揀套餐</a>
+                <a class="btn secondary" href="#packages">睇全部價錢</a>
+              </div>
+              <div class="trust-row"><span class="trust-pill">4兩以上先上架</span><span class="trust-pill">基本區包送</span><span class="trust-pill">食蟹四寶免費送</span></div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="plate-glow"></div>
+              <div class="hero-panel">
+                <div class="hero-badge">秋天限定 · 皇牌推薦</div>
+                <svg class="leaf leaf-1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path fill="#c75e39" d="M60 4C42 26 41 37 35 48C24 67 7 74 7 74c17 4 27 10 35 17c12 10 18 25 18 25s5-22 17-34c9-8 18-12 36-14c0 0-18-10-27-29C79 24 79 15 60 4z"/><path fill="#e4b16a" d="M58 15c-1 29-5 44-18 67"/></svg>
+                <svg class="leaf leaf-2" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path fill="#d8a153" d="M60 7c-13 18-14 27-20 37C28 62 12 71 12 71c14 5 22 10 29 16c11 10 19 26 19 26s4-19 17-31c8-8 16-12 32-16c0 0-16-10-23-25C78 28 77 21 60 7z"/></svg>
+                <svg class="leaf leaf-3" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><path fill="#7b5730" d="M60 7c-13 18-14 27-20 37C28 62 12 71 12 71c14 5 22 10 29 16c11 10 19 26 19 26s4-19 17-31c8-8 16-12 32-16c0 0-16-10-23-25C78 28 77 21 60 7z"/></svg>
+                <div class="plate"></div>
+                <svg class="crab-svg" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="crabGrad" x1="0" x2="1">
+                      <stop offset="0" stop-color="#e68452"/>
+                      <stop offset="1" stop-color="#9e3820"/>
+                    </linearGradient>
+                  </defs>
+                  <g fill="none" stroke="url(#crabGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="352" cy="267" rx="128" ry="96" fill="rgba(184,74,38,.23)"/>
+                    <path d="M264 226C217 183 177 163 131 171M257 261C193 245 151 249 104 285M263 304C208 326 165 355 139 397"/>
+                    <path d="M441 226C489 183 530 163 576 171M448 261C512 245 554 249 601 285M442 304C497 326 540 355 566 397"/>
+                    <path d="M159 168C126 135 98 133 75 145C105 176 121 188 145 192"/>
+                    <path d="M549 168C582 135 610 133 633 145C603 176 587 188 563 192"/>
+                    <path d="M301 183C284 145 271 117 274 86"/>
+                    <path d="M408 183C425 145 438 117 435 86"/>
+                    <circle cx="274" cy="78" r="10" fill="#e68452" stroke="none"/>
+                    <circle cx="435" cy="78" r="10" fill="#e68452" stroke="none"/>
+                    <path d="M314 243C338 260 372 260 396 243"/>
+                    <path d="M311 308C347 332 386 332 422 307"/>
+                  </g>
+                </svg>
+                <div class="hero-price">
+                  <small>皇牌套餐 · 8隻公乸雙拼</small>
+                  <strong>$798</strong>
+                  <span>基本配送區已包送</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="contact-strip">
+        <div><strong>想直接 WhatsApp 落單？</strong><span>兩個客服號碼都可以處理大閘蟹訂單。</span></div>
+        <a class="wa-btn" href="https://wa.me/85254824802" target="_blank" rel="noopener">WhatsApp 5482 4802</a>
+        <a class="wa-btn alt" href="https://wa.me/85268068004" target="_blank" rel="noopener">WhatsApp 6806 8004</a>
+      </div>
+    </div>
+
+    <section>
+      <div class="wrap">
+        <div class="quick-grid">
+          <div class="quick-card"><strong>起送門檻</strong><span>6隻</span><p>唔做太碎單，二人晚餐起步都合適。</p></div>
+          <div class="quick-card"><strong>主力推薦</strong><span>8隻</span><p>最適合家庭分享，價位同份量最平衡。</p></div>
+          <div class="quick-card"><strong>配送邏輯</strong><span>包送起</span><p>基本區已包送，遠區補固定附加費即可。</p></div>
+          <div class="quick-card"><strong>附送配套</strong><span>$18</span><p>食蟹四寶免費送，落單唔需要再加購。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">套餐一覽</div>
+            <h2>先揀隻數，再揀公乸配搭。</h2>
+          </div>
+          <p>6、8、10 隻三款份量，由二人晚餐到家庭聚餐都容易揀；基本配送區已包送。</p>
+        </div>
+
+        <div class="package-grid">
+          <article class="package-card">
+            <span class="package-tag">2–3 人 · 入門首選</span>
+            <h3>6隻嘗鮮裝</h3>
+            <div class="sub">第一次食／二人晚餐／小聚都啱</div>
+            <div class="price-from"><small>套餐由</small><strong>$628</strong></div>
+            <div class="table">
+              <div class="row"><span>全公</span><b>$628</b></div>
+              <div class="row"><span>公乸雙拼</span><b>$668</b></div>
+              <div class="row"><span>全乸</span><b>$728</b></div>
+            </div>
+            <div class="package-note">雙拼默認平均分配，6 隻即 3 公 + 3 乸。</div>
+            <button class="package-button" data-choose-qty="6">立即選擇</button>
+          </article>
+
+          <article class="package-card featured">
+            <span class="package-tag">皇牌推薦 · 3–4 人</span>
+            <h3>8隻皇牌裝</h3>
+            <div class="sub">最適合家庭分享，性價比最高</div>
+            <div class="price-from"><small>套餐由</small><strong>$758</strong></div>
+            <div class="table">
+              <div class="row"><span>全公</span><b>$758</b></div>
+              <div class="row"><span>公乸雙拼</span><b>$798</b></div>
+              <div class="row"><span>全乸</span><b>$858</b></div>
+            </div>
+            <div class="package-note">主力推介：公蟹 5–5.5 兩 × 4 ＋ 蟹乸 4.5–5 兩 × 4。</div>
+            <button class="package-button" data-choose-qty="8">立即選擇</button>
+          </article>
+
+          <article class="package-card">
+            <span class="package-tag">4–5 人 · 聚會分享</span>
+            <h3>10隻分享裝</h3>
+            <div class="sub">份量更充足，適合多人聚餐</div>
+            <div class="price-from"><small>套餐由</small><strong>$898</strong></div>
+            <div class="table">
+              <div class="row"><span>全公</span><b>$898</b></div>
+              <div class="row"><span>公乸雙拼</span><b>$938</b></div>
+              <div class="row"><span>全乸</span><b>$998</b></div>
+            </div>
+            <div class="package-note">適合公司聚會或多人晚飯，一次過落單更方便。</div>
+            <button class="package-button" data-choose-qty="10">立即選擇</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="single">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">自由單點</div>
+            <h2>想自己配？4隻起送。</h2>
+          </div>
+          <p>單點適合想自己控制公乸比例嘅客人；買到 6 隻或以上，基本配送區包送，而套餐仍然會比逐隻單點更抵。</p>
+        </div>
+        <div class="single-shell">
+          <div class="single-info">
+            <div class="single-kicker">À LA CARTE · 4隻起送</div>
+            <h3>逐隻自選，<br>公乸比例由你決定。</h3>
+            <p>單點唔綁固定配搭，適合想多公、少乸，或者只食某一款嘅客人。</p>
+            <div class="single-price-list">
+              <div class="single-price-item"><div><strong>蟹公 5–5.5兩</strong><small>單點價</small></div><b>$110／隻</b></div>
+              <div class="single-price-item"><div><strong>蟹乸 4.5–5兩</strong><small>單點價</small></div><b>$130／隻</b></div>
+            </div>
+            <div class="single-rules">
+              <div class="single-rule">最低 4 隻起送；1–3 隻不設即日配送。</div>
+              <div class="single-rule">4–5 隻：基本配送區配送費 +$80。</div>
+              <div class="single-rule">6 隻或以上：基本配送區包送。</div>
+              <div class="single-rule">其他地區再按 +$30 / +$60 / +$80 補配送差額。</div>
+              <div class="single-rule">食蟹四寶單點可加購 +$18；套餐則免費附送。</div>
+            </div>
+          </div>
+
+          <div class="single-builder">
+            <h3>自由配搭計價</h3>
+            <p class="intro">調整公蟹、蟹乸數量，再揀配送區，即時睇到單點總價。</p>
+            <div class="crab-pickers">
+              <div class="crab-picker">
+                <div class="head"><div><strong>蟹公</strong><small>5–5.5兩</small></div><div class="unit-price">$110／隻</div></div>
+                <div class="counter"><button type="button" data-counter="male" data-step="-1">−</button><input id="singleMale" value="2" inputmode="numeric" aria-label="蟹公數量"><button type="button" data-counter="male" data-step="1">＋</button></div>
+              </div>
+              <div class="crab-picker">
+                <div class="head"><div><strong>蟹乸</strong><small>4.5–5兩</small></div><div class="unit-price">$130／隻</div></div>
+                <div class="counter"><button type="button" data-counter="female" data-step="-1">−</button><input id="singleFemale" value="2" inputmode="numeric" aria-label="蟹乸數量"><button type="button" data-counter="female" data-step="1">＋</button></div>
+              </div>
+            </div>
+            <div class="single-options">
+              <div class="single-field">
+                <label for="singleZone">配送地區</label>
+                <select id="singleZone">
+                  <option value="0" data-zone-name="基本配送區">基本配送區｜+$0附加費</option>
+                  <option value="30" data-zone-name="較遠地區">大埔／元朗／天水圍／將軍澳｜+$30</option>
+                  <option value="60" data-zone-name="港島 / 偏遠">港島／粉嶺／上水／西貢／村屋｜+$60</option>
+                  <option value="80" data-zone-name="東涌">東涌市區｜+$80</option>
+                  <option value="special" data-zone-name="特殊地址">機場／愉景灣／特殊地址｜待確認</option>
+                </select>
+              </div>
+              <div class="single-field">
+                <label for="singleSlot">送貨時段</label>
+                <select id="singleSlot">
+                  <option>12:00–15:00</option>
+                  <option>15:00–18:00</option>
+                  <option>16:00–19:00</option>
+                </select>
+              </div>
+            </div>
+            <label class="kit-toggle"><input id="singleKit" type="checkbox"><span><strong>加購食蟹四寶 +$18</strong><span>香醋 ×1、紫蘇葉、吃蟹工具 ×2、紅糖薑棗茶 ×3</span></span></label>
+            <div class="single-summary">
+              <div class="single-summary-row"><span>大閘蟹</span><strong id="singleItems">2公 + 2乸｜4隻</strong></div>
+              <div class="single-summary-row"><span>蟹款小計</span><strong id="singleCrabSubtotal">$480</strong></div>
+              <div class="single-summary-row"><span>配送費</span><strong id="singleShipping">$80</strong></div>
+              <div class="single-summary-row"><span>食蟹四寶</span><strong id="singleKitFee">不加購</strong></div>
+              <div class="single-total"><div><small>單點預估總價</small></div><strong id="singleTotal">$560</strong></div>
+            </div>
+            <div class="single-alert" id="singleAlert">4–5隻屬單點小單，基本配送區另收 $80 配送費。</div>
+            <div class="single-actions">
+              <a href="#" id="singleWa1">WhatsApp 5482 4802</a>
+              <a href="#" id="singleWa2">WhatsApp 6806 8004</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bonus">
+      <div class="wrap two-grid">
+        <div class="gift-card">
+          <div class="mini">每套免費附送</div>
+          <h3>食蟹四寶，落單已經包埋。</h3>
+          <p>所有套餐統一免費附送，開餐所需配套一次過準備好。</p>
+          <div class="gift-list">
+            <div class="gift-item"><strong>香醋 × 1</strong><span>大閘蟹經典配搭，風味更完整。</span></div>
+            <div class="gift-item"><strong>紫蘇葉</strong><span>蒸蟹常見配料，照顧食用體驗。</span></div>
+            <div class="gift-item"><strong>吃蟹工具 × 2</strong><span>每套兩份工具，拆蟹更方便。</span></div>
+            <div class="gift-item"><strong>紅糖薑棗茶 × 3</strong><span>飯後沖飲，完整配套一次過齊備。</span></div>
+          </div>
+        </div>
+
+        <div class="delivery-card" id="delivery">
+          <div class="mini">配送分區</div>
+          <h3>配送收費，一眼睇清。</h3>
+          <p>基本配送區已包送；較遠地區只需補固定附加費。</p>
+          <div class="delivery-zones">
+            <div class="delivery-zone top"><strong><span>基本配送區</span><b>+$0</b></strong><p>荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門</p></div>
+            <div class="delivery-zone"><strong><span>較遠地區</span><b>+$30</b></strong><p>大埔、元朗、天水圍、將軍澳</p></div>
+            <div class="delivery-zone"><strong><span>港島／偏遠</span><b>+$60</b></strong><p>港島、粉嶺、上水、西貢、村屋及較深入地址</p></div>
+            <div class="toll-note">港島配送涉及過海隧道；實際 Lalamove 訂單仍可能包含隧道／橋費及時段附加費。此網站暫以固定分區附加費計算。</div>
+            <div class="delivery-zone"><strong><span>東涌</span><b>+$80</b></strong><p>東涌市區；機場、愉景灣及其他特殊地址需另行確認</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="order">
+      <div class="wrap">
+        <div class="section-title">
+          <div>
+            <div class="eyebrow">立即訂購</div>
+            <h2>揀三樣，即時計到最終價。</h2>
+          </div>
+          <p>揀套餐、揀公乸配搭，再揀配送區，即時顯示應付價錢。</p>
+        </div>
+
+        <div class="order-grid">
+          <div class="builder-card">
+            <div class="step">
+              <div class="step-head">
+                <strong>① 揀套餐隻數</strong>
+                <span>6 隻 / 8 隻 / 10 隻</span>
+              </div>
+              <div class="option-grid" id="qtyChoices">
+                <button class="option-btn" data-qty="6"><b>6隻嘗鮮裝</b><small>2–3 人 · 套餐由 $628 起</small></button>
+                <button class="option-btn active" data-qty="8"><b>8隻皇牌裝</b><small>3–4 人 · 最推薦</small></button>
+                <button class="option-btn" data-qty="10"><b>10隻分享裝</b><small>4–5 人 · 套餐由 $898 起</small></button>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-head">
+                <strong>② 揀公乸配搭</strong>
+                <span>價格會即時更新</span>
+              </div>
+              <div class="option-grid" id="mixChoices">
+                <button class="option-btn" data-mix="male"><b>全公</b><small>公蟹 5–5.5 兩<br>口感紮實、蟹香更明顯</small></button>
+                <button class="option-btn active" data-mix="mixed"><b>公乸雙拼</b><small>公 5–5.5 兩 / 乸 4.5–5 兩<br>食味最平衡</small></button>
+                <button class="option-btn" data-mix="female"><b>全乸</b><small>蟹乸 4.5–5 兩<br>喜歡蟹膏感覺可選</small></button>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-head">
+                <strong>③ 揀配送分區</strong>
+                <span>只計固定附加費</span>
+              </div>
+              <select class="select" id="zone">
+                <option value="0" data-zone-name="基本配送區">基本配送區｜荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門｜+$0</option>
+                <option value="30" data-zone-name="較遠地區">較遠地區｜大埔、元朗、天水圍、將軍澳｜+$30</option>
+                <option value="60" data-zone-name="港島 / 偏遠">港島／偏遠｜港島、粉嶺、上水、西貢、村屋｜+$60</option>
+                <option value="80" data-zone-name="東涌">東涌市區｜+$80</option>
+                <option value="special" data-zone-name="特殊地址">機場、愉景灣及特殊地址｜費用待確認</option>
+              </select>
+              <div class="order-tip">如屬特殊地址，配送費會再個別確認。</div>
+            </div>
+
+            <div class="step">
+              <div class="step-head">
+                <strong>④ 想先睇配送安排</strong>
+                <span>正式落單可再確認</span>
+              </div>
+              <div class="time-grid">
+                <input id="date" class="date-input" type="date" />
+                <select id="slot" class="select">
+                  <option>12:00–15:00</option>
+                  <option>15:00–18:00</option>
+                  <option>16:00–19:00</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-card">
+            <h3>訂購摘要</h3>
+            <div class="summary-list">
+              <div class="summary-row"><span>套餐</span><strong id="sumPack">8隻皇牌裝</strong></div>
+              <div class="summary-row"><span>配搭</span><strong id="sumMix">公乸雙拼</strong></div>
+              <div class="summary-row"><span>規格</span><strong id="sumSize">公 5–5.5 兩 / 乸 4.5–5 兩</strong></div>
+              <div class="summary-row"><span>套餐價</span><strong id="sumBase">$798</strong></div>
+              <div class="summary-row"><span>配送附加費</span><strong id="sumShip">+$0</strong></div>
+              <div class="summary-row"><span>配送分區</span><strong id="sumZone">基本配送區</strong></div>
+              <div class="summary-row"><span>附送</span><strong>食蟹四寶（已包括）</strong></div>
+            </div>
+            <div class="summary-total">
+              <div><small>預估總價</small><small>特殊地址會改為待確認</small></div>
+              <strong id="sumTotal">$798</strong>
+            </div>
+            <div class="summary-box" id="summaryText">你而家揀咗 8 隻皇牌裝・公乸雙拼，配送至基本配送區，現時總價為 $798。</div>
+            <div class="whatsapp-duo">
+              <a href="#" id="wa1">WhatsApp 5482 4802</a>
+              <a href="#" id="wa2">WhatsApp 6806 8004</a>
+            </div>
+            <div class="summary-actions">
+              <button class="secondary" id="whatsappBtn">複製訂購內容</button>
+              <button class="secondary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'});">返回套餐</button>
+            </div>
+            <div class="summary-foot">價格及配送安排以確認訂單時資料為準。</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap faq-wrap">
+        <div class="eyebrow">FAQ</div>
+        <h3>落單前常見問題。</h3>
+        <div class="faq-grid">
+          <details open>
+            <summary>套餐已包咩？</summary>
+            <p>套餐已包括大閘蟹本身、基本配送成本，以及食蟹四寶：香醋、紫蘇葉、吃蟹工具 2 份、紅糖薑棗茶 3 包。</p>
+          </details>
+          <details>
+            <summary>點解有啲地區要加附加費？</summary>
+            <p>基本配送區已經包送；較遠地區、港島／偏遠地區及東涌按區域補固定差額。</p>
+          </details>
+          <details>
+            <summary>公乸雙拼點樣分配？</summary>
+            <p>雙拼按總隻數平均分配，例如 8 隻即 4 公 + 4 乸；6 隻即 3 公 + 3 乸；10 隻即 5 公 + 5 乸。</p>
+          </details>
+          <details>
+            <summary>送貨時間有邊幾段？</summary>
+            <p>可選 12:00–15:00、15:00–18:00、16:00–19:00 三個配送時段，實際安排以確認訂單為準。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 啖啖燕窩 DAMDAMBIRDNEST · 秋蟹到家</div>
+  </footer>
+
+  <div class="mobilebar">
+    <div class="meta"><small>現時總價</small><strong id="mobileTotal">$798</strong></div>
+    <button onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});">立即揀</button>
+  </div>
+
+  <div class="modal" id="copyModal">
+    <div class="modal-card">
+      <h4>訂購內容已整理好</h4>
+      <p>可以直接複製以下內容，再貼去 WhatsApp / 表單 / 客服對話使用。</p>
+      <textarea id="copyText" readonly></textarea>
+      <div class="modal-actions">
+        <button class="copybtn" id="copyBtn">複製文字</button>
+        <button class="closebtn" id="closeBtn">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const prices = {
+      6: { male: 628, mixed: 668, female: 728 },
+      8: { male: 758, mixed: 798, female: 858 },
+      10:{ male: 898, mixed: 938, female: 998 }
+    };
+
+    const packNames = { 6:'6隻嘗鮮裝', 8:'8隻皇牌裝', 10:'10隻分享裝' };
+    const mixNames = { male:'全公', mixed:'公乸雙拼', female:'全乸' };
+    const sizeNames = {
+      male:'公蟹 5–5.5 兩',
+      mixed:'公 5–5.5 兩 / 乸 4.5–5 兩',
+      female:'蟹乸 4.5–5 兩'
+    };
+
+    let state = { qty: 8, mix: 'mixed', zoneFee: 0, zoneName: '基本配送區' };
+
+    const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
+    const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
+    const zoneSelect = document.getElementById('zone');
+    const dateInput = document.getElementById('date');
+    const slotSelect = document.getElementById('slot');
+    const packageButtons = document.querySelectorAll('[data-choose-qty]');
+
+    function setMinDate(){
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      dateInput.min = `${yyyy}-${mm}-${dd}`;
+      dateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    function render(){
+      const base = prices[state.qty][state.mix];
+      const isSpecial = state.zoneFee === 'special';
+      const total = isSpecial ? '待確認' : `$${base + Number(state.zoneFee)}`;
+      const shipLabel = isSpecial ? '待確認' : `+$${state.zoneFee}`;
+
+      document.getElementById('sumPack').textContent = packNames[state.qty];
+      document.getElementById('sumMix').textContent = mixNames[state.mix];
+      document.getElementById('sumSize').textContent = sizeNames[state.mix];
+      document.getElementById('sumBase').textContent = `$${base}`;
+      document.getElementById('sumShip').textContent = shipLabel;
+      document.getElementById('sumZone').textContent = state.zoneName;
+      document.getElementById('sumTotal').textContent = total;
+      document.getElementById('mobileTotal').textContent = total;
+
+      document.getElementById('summaryText').textContent = isSpecial
+        ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。套餐價現時為 $${base}。`
+        : `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，現時總價為 $${base + Number(state.zoneFee)}。`;
+
+      qtyChoices.forEach(btn => btn.classList.toggle('active', Number(btn.dataset.qty) === state.qty));
+      mixChoices.forEach(btn => btn.classList.toggle('active', btn.dataset.mix === state.mix));
+    }
+
+    qtyChoices.forEach(btn => btn.addEventListener('click', () => { state.qty = Number(btn.dataset.qty); render(); }));
+    mixChoices.forEach(btn => btn.addEventListener('click', () => { state.mix = btn.dataset.mix; render(); }));
+    packageButtons.forEach(btn => btn.addEventListener('click', () => {
+      state.qty = Number(btn.dataset.chooseQty);
+      render();
+      document.getElementById('order').scrollIntoView({behavior:'smooth',block:'start'});
+    }));
+
+    zoneSelect.addEventListener('change', e => {
+      const opt = e.target.selectedOptions[0];
+      state.zoneFee = opt.value === 'special' ? 'special' : Number(opt.value);
+      state.zoneName = opt.dataset.zoneName;
+      render();
+    });
+
+    function buildMessage(){
+      const base = prices[state.qty][state.mix];
+      const total = state.zoneFee === 'special' ? '待確認' : `$${base + Number(state.zoneFee)}`;
+      const ship = state.zoneFee === 'special' ? '特殊地址（配送費待確認）' : `${state.zoneName}（+$${state.zoneFee}）`;
+      return [
+        '【大閘蟹訂購內容】',
+        `套餐：${packNames[state.qty]}`,
+        `配搭：${mixNames[state.mix]}`,
+        `規格：${sizeNames[state.mix]}`,
+        `套餐價：$${base}`,
+        `配送分區：${ship}`,
+        '附送：香醋 x1、紫蘇葉、吃蟹工具 x2、紅糖薑棗茶 x3',
+        `配送日期：${dateInput.value || '待定'}`,
+        `配送時段：${slotSelect.value}`,
+        `總價：${total}`
+      ].join('\n');
+    }
+
+    const modal = document.getElementById('copyModal');
+    const copyText = document.getElementById('copyText');
+    document.getElementById('whatsappBtn').addEventListener('click', () => {
+      copyText.value = buildMessage();
+      modal.classList.add('show');
+    });
+    document.getElementById('closeBtn').addEventListener('click', () => modal.classList.remove('show'));
+    modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('show'); });
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyText.value);
+        document.getElementById('copyBtn').textContent = '已複製';
+        setTimeout(()=>document.getElementById('copyBtn').textContent='複製文字',1500);
+      } catch(err){
+        copyText.select();
+        document.execCommand('copy');
+      }
+    });
+
+
+    function whatsappUrl(number){
+      return `https://wa.me/852${number}?text=${encodeURIComponent(buildMessage())}`;
+    }
+    document.getElementById('wa1').addEventListener('click', e => { e.preventDefault(); window.open(whatsappUrl('54824802'),'_blank'); });
+    document.getElementById('wa2').addEventListener('click', e => { e.preventDefault(); window.open(whatsappUrl('68068004'),'_blank'); });
+
+
+    // 自由單點計價
+    const singleMale = document.getElementById('singleMale');
+    const singleFemale = document.getElementById('singleFemale');
+    const singleZone = document.getElementById('singleZone');
+    const singleSlot = document.getElementById('singleSlot');
+    const singleKit = document.getElementById('singleKit');
+
+    function clampSingle(v){
+      v = parseInt(v || '0',10);
+      if(Number.isNaN(v)) return 0;
+      return Math.max(0,Math.min(20,v));
+    }
+
+    function singleData(){
+      const male = clampSingle(singleMale.value);
+      const female = clampSingle(singleFemale.value);
+      const count = male + female;
+      const crabSubtotal = male * 110 + female * 130;
+      const opt = singleZone.selectedOptions[0];
+      const special = opt.value === 'special';
+      const zoneExtra = special ? 0 : Number(opt.value);
+      const baseShipping = count >= 6 ? 0 : 80;
+      const shipping = special ? null : baseShipping + zoneExtra;
+      const kitFee = singleKit.checked ? 18 : 0;
+      const total = shipping === null ? null : crabSubtotal + shipping + kitFee;
+      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,total,zoneName:opt.dataset.zoneName,slot:singleSlot.value};
+    }
+
+    function singleMatchedPackage(d){
+      if(![6,8,10].includes(d.count)) return null;
+      let mix = null;
+      if(d.male === d.count) mix = 'male';
+      else if(d.female === d.count) mix = 'female';
+      else if(d.male === d.female) mix = 'mixed';
+      if(!mix) return null;
+      const packageBase = prices[d.count][mix];
+      const packageShip = d.special ? null : d.zoneExtra;
+      const packageTotal = packageShip === null ? null : packageBase + packageShip;
+      if(packageTotal === null || d.total === null) return null;
+      return {mix,packageTotal,saving:d.total-packageTotal};
+    }
+
+    function renderSingle(){
+      singleMale.value = clampSingle(singleMale.value);
+      singleFemale.value = clampSingle(singleFemale.value);
+      const d = singleData();
+      document.getElementById('singleItems').textContent = `${d.male}公 + ${d.female}乸｜${d.count}隻`;
+      document.getElementById('singleCrabSubtotal').textContent = `$${d.crabSubtotal}`;
+      document.getElementById('singleShipping').textContent = d.special ? '待確認' : (d.shipping === 0 ? '$0（包送）' : `$${d.shipping}`);
+      document.getElementById('singleKitFee').textContent = d.kitFee ? '+$18' : '不加購';
+      document.getElementById('singleTotal').textContent = d.total === null ? '待確認' : `$${d.total}`;
+      const alert = document.getElementById('singleAlert');
+      alert.classList.remove('good');
+      if(d.count < 4){
+        alert.textContent = `仲差 ${4-d.count} 隻先達到最低 4 隻起送門檻。`;
+      } else if(d.count < 6){
+        alert.textContent = `4–5隻屬單點小單；基本配送費 $80，再按配送區補附加費。`;
+      } else {
+        const matched = singleMatchedPackage(d);
+        if(matched && matched.saving > 0){
+          alert.classList.add('good');
+          alert.textContent = `你揀咗 ${d.count} 隻，轉做同配搭套餐約可慳 $${matched.saving}，而且免費送食蟹四寶。`;
+        } else {
+          alert.classList.add('good');
+          alert.textContent = `已滿 6 隻：基本配送區包送；其他地區只補固定附加費。`;
+        }
+      }
+    }
+
+    document.querySelectorAll('[data-counter]').forEach(btn => btn.addEventListener('click',()=>{
+      const input = btn.dataset.counter === 'male' ? singleMale : singleFemale;
+      input.value = clampSingle(Number(input.value||0) + Number(btn.dataset.step));
+      renderSingle();
+    }));
+    [singleMale,singleFemale].forEach(el => el.addEventListener('input',renderSingle));
+    singleZone.addEventListener('change',renderSingle);
+    singleSlot.addEventListener('change',renderSingle);
+    singleKit.addEventListener('change',renderSingle);
+
+    function buildSingleMessage(){
+      const d = singleData();
+      const shipText = d.special ? '特殊地址（配送費待確認）' : `${d.zoneName}｜配送費 $${d.shipping}`;
+      const totalText = d.total === null ? '待確認' : `$${d.total}`;
+      return [
+        '【大閘蟹自由單點】',
+        `蟹公 5–5.5兩：${d.male}隻 × $110`,
+        `蟹乸 4.5–5兩：${d.female}隻 × $130`,
+        `總數：${d.count}隻`,
+        `蟹款小計：$${d.crabSubtotal}`,
+        `配送：${shipText}`,
+        `食蟹四寶：${d.kitFee ? '加購 +$18' : '不加購'}`,
+        `送貨時段：${d.slot}`,
+        `總價：${totalText}`
+      ].join('\n');
+    }
+
+    function singleWhatsapp(number){
+      const d = singleData();
+      if(d.count < 4){ alert('自由單點最低 4 隻起送。'); return; }
+      window.open(`https://wa.me/852${number}?text=${encodeURIComponent(buildSingleMessage())}`,'_blank');
+    }
+    document.getElementById('singleWa1').addEventListener('click',e=>{e.preventDefault();singleWhatsapp('54824802');});
+    document.getElementById('singleWa2').addEventListener('click',e=>{e.preventDefault();singleWhatsapp('68068004');});
+
+    setMinDate();
+    render();
+    renderSingle();
+  </script>
+</body>
+</html>
