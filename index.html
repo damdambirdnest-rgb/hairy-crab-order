@@ -1798,6 +1798,21 @@
       .back-to-top-arrow{font-size:17px}
     }
 
+  
+    .receiver-zone-field{
+      padding:14px;
+      border-radius:16px;
+      background:#f8eee2;
+      border:1px solid #dec5a5;
+    }
+    .receiver-zone-field select{
+      background:#fffdf9;
+      font-weight:700;
+    }
+    @media(max-width:680px){
+      .receiver-zone-field{padding:12px}
+    }
+
   </style>
 </head>
 <body>
@@ -2081,18 +2096,6 @@
               </div>
             </div>
 
-            <div class="single-options one-col">
-              <div class="single-field">
-                <label for="singleZone">配送地區</label>
-                <select id="singleZone">
-                  <option value="0" data-zone-name="基本配送區">基本配送區｜+$0附加費</option>
-                  <option value="30" data-zone-name="較遠地區">大埔／元朗／天水圍／將軍澳｜+$30</option>
-                  <option value="70" data-zone-name="遠區配送">港島一般市區／粉嶺／上水／東涌／西貢市中心｜+$70</option>
-                  <option value="special" data-zone-name="特殊地址">村屋深入位置／深西貢／山頂／赤柱／石澳／機場／愉景灣／禁區／特殊上落貨位置｜待確認</option>
-                </select>
-              </div>
-            </div>
-
             <div class="tool-addon-inline single-tool-addon">
               <div class="tool-addon-copy">
                 <span class="tool-addon-badge">可加購</span>
@@ -2151,6 +2154,15 @@
               <label for="receiverAddress">中文地址 <span>*</span></label>
               <textarea id="receiverAddress" rows="2" autocomplete="street-address" placeholder="請輸入完整中文收貨地址，包括屋苑／大廈、座數、樓層及室號"></textarea>
               <div class="address-zone-result pending" id="addressZoneResult" aria-live="polite"></div>
+            </div>
+            <div class="receiver-field receiver-field-wide receiver-zone-field">
+              <label for="receiverZone">配送分區 <span>*</span></label>
+              <select id="receiverZone" class="select">
+                <option value="0" data-zone-name="基本配送區">基本配送區｜荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門｜+$0</option>
+                <option value="30" data-zone-name="較遠地區">較遠地區｜大埔、元朗、天水圍、將軍澳｜+$30</option>
+                <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區、粉嶺、上水、東涌、西貢市中心｜+$70</option>
+                <option value="special" data-zone-name="特殊地址">特殊地址｜深入村屋、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置｜費用待確認</option>
+              </select>
             </div>
             <div class="receiver-field">
               <label for="receiveDate">收貨日期 <span>*</span></label>
@@ -2389,22 +2401,9 @@
               </div>
             </div>
 
-            <div class="step">
-              <div class="step-head">
-                <strong>④ 揀配送分區</strong>
-                <span>只計固定附加費</span>
-              </div>
-              <select class="select" id="zone">
-                <option value="0" data-zone-name="基本配送區">基本配送區｜荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門｜+$0</option>
-                <option value="30" data-zone-name="較遠地區">較遠地區｜大埔、元朗、天水圍、將軍澳｜+$30</option>
-                <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區、粉嶺、上水、東涌、西貢市中心｜+$70</option>
-                <option value="special" data-zone-name="特殊地址">特殊地址｜村屋深入位置、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置｜費用待確認</option>
-              </select>
-            </div>
-
             <div class="step tool-order-step">
               <div class="step-head">
-                <strong>⑤ 食蟹工具</strong>
+                <strong>④ 食蟹工具</strong>
                 <span>默認贈送 1 份</span>
               </div>
               <div class="tool-addon-inline">
@@ -2425,7 +2424,7 @@
 
             <div class="step receiver-linked-note">
               <div class="step-head">
-                <strong>⑥ 收貨資料</strong>
+                <strong>⑤ 收貨資料</strong>
                 <span>下一步填寫</span>
               </div>
             </div>
@@ -2655,7 +2654,7 @@
 
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
-    const zoneSelect = document.getElementById('zone');
+    const zoneSelect = document.getElementById('receiverZone');
     const packageAddonInputs = [...document.querySelectorAll('.package-addon-input')];
     const dateInput = document.getElementById('receiveDate');
     const slotSelect = document.getElementById('receiveSlot');
@@ -2772,6 +2771,8 @@
       state.zoneName = opt.dataset.zoneName;
       if(!applyingAddressZone) setManualZoneResult(e.target);
       render();
+      renderSingle();
+      renderAddressZoneResult();
     });
 
     function receiverData(){
@@ -2870,7 +2871,7 @@
 
 
     // 單隻自選：多重量即時計價
-    const singleZone = document.getElementById('singleZone');
+    const singleZone = zoneSelect;
     const singleSizeInputs = [...document.querySelectorAll('.single-size-input')];
     const addressZoneResult = document.getElementById('addressZoneResult');
 
@@ -2923,16 +2924,10 @@
 
     function syncZoneSelects(value){
       applyingAddressZone = true;
-
       if(zoneSelect && [...zoneSelect.options].some(o=>o.value===String(value))){
         zoneSelect.value = String(value);
         zoneSelect.dispatchEvent(new Event('change',{bubbles:true}));
       }
-      if(singleZone && [...singleZone.options].some(o=>o.value===String(value))){
-        singleZone.value = String(value);
-        singleZone.dispatchEvent(new Event('change',{bubbles:true}));
-      }
-
       applyingAddressZone = false;
     }
 
@@ -3104,11 +3099,6 @@
       renderSingle();
     }));
     singleSizeInputs.forEach(input => input.addEventListener('input',renderSingle));
-    singleZone.addEventListener('change',e=>{
-      if(!applyingAddressZone) setManualZoneResult(e.target);
-      renderSingle();
-      renderAddressZoneResult();
-    });
 
     function buildSingleMessage(){
       const r = receiverData();
