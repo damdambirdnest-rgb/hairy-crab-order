@@ -917,6 +917,92 @@
       .package-addon-size-row{grid-template-columns:1fr 52px 116px}
     }
 
+  
+    /* 食蟹配套 + 配送分區：改為上下全寬排列 */
+    .info-stack{
+      display:grid!important;
+      grid-template-columns:1fr!important;
+      gap:18px!important;
+      align-items:start!important;
+    }
+    .info-stack .gift-card,
+    .info-stack .delivery-card{
+      width:100%;
+      max-width:none;
+      min-height:0!important;
+      height:auto!important;
+    }
+    .info-stack .compact-info-card{
+      padding:24px 26px;
+      border-radius:24px;
+      box-shadow:0 14px 34px rgba(65,40,24,.06);
+    }
+    .info-stack .info-card-head{
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .info-stack .info-card-head h3{
+      font-size:27px;
+      line-height:1.18;
+      margin-top:6px;
+    }
+    .info-stack .gift-list{
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+    }
+    .info-stack .gift-item{
+      min-height:92px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .info-stack .delivery-zones{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      display:grid;
+      gap:10px;
+    }
+    .info-stack .delivery-zone{
+      min-height:108px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .info-stack .toll-note{
+      grid-column:1/-1;
+      margin-top:0;
+    }
+
+    @media(max-width:900px){
+      .info-stack .gift-list{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .info-stack .delivery-zones{
+        grid-template-columns:1fr;
+      }
+      .info-stack .toll-note{
+        grid-column:auto;
+      }
+    }
+
+    @media(max-width:560px){
+      .info-stack .compact-info-card{
+        padding:20px 18px;
+      }
+      .info-stack .info-card-head{
+        display:block;
+      }
+      .info-stack .info-card-badge{
+        margin-top:9px;
+      }
+      .info-stack .gift-list{
+        grid-template-columns:1fr;
+      }
+      .info-stack .gift-item,
+      .info-stack .delivery-zone{
+        min-height:auto;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1450,16 +1536,16 @@
     </section>
 
     <section id="bonus">
-      <div class="wrap two-grid">
+      <div class="wrap two-grid info-stack">
         <div class="gift-card compact-info-card">
           <div class="info-card-head">
             <div>
               <div class="mini">套餐免費附送</div>
-              <h3>食蟹配套，一次過準備好。</h3>
+              <h3>食蟹配套，落單已經準備好。</h3>
             </div>
             <span class="info-card-badge">套餐已包括</span>
           </div>
-          <p>落單套餐即可免費附送以下配套；食蟹工具第 1 份免費，需要更多可於落單區 +$18／份。</p>
+          <p>套餐已包括以下食蟹配套；食蟹工具第 1 份免費，需要更多可於落單區 +$18／份。</p>
           <div class="gift-list">
             <div class="gift-item"><strong>香醋 <b>× 1</b></strong><span>經典佐蟹配搭</span></div>
             <div class="gift-item"><strong>紫蘇葉</strong><span>清蒸大閘蟹常用</span></div>
@@ -1472,11 +1558,11 @@
           <div class="info-card-head">
             <div>
               <div class="mini">配送分區</div>
-              <h3>配送費，按地區清楚列明。</h3>
+              <h3>配送分區及附加費。</h3>
             </div>
             <span class="info-card-badge">地址可自動判區</span>
           </div>
-          <p>基本配送區包送；其他地區只補固定附加費。填寫中文地址後，系統會自動判斷分區。</p>
+          <p>基本配送區包送；其他地區只補固定附加費。填寫中文地址後，系統會自動判區及更新運費。</p>
           <div class="delivery-zones">
             <div class="delivery-zone top"><strong><span>基本配送區</span><b>$0</b></strong><p>荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門</p></div>
             <div class="delivery-zone"><strong><span>較遠地區</span><b>+$30</b></strong><p>大埔、元朗、天水圍、將軍澳</p></div>
