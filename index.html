@@ -1003,6 +1003,12 @@
       }
     }
 
+  
+    /* 精簡前台：移除非必要提示語，只保留實際狀態／收費結果 */
+    .address-zone-result.pending{display:none!important}
+
+  
+    .buy-mode-note,.service-notice,.order-tip,.zone-auto-hint,.final-submit-note,.toll-note{display:none!important}
   </style>
 </head>
 <body>
@@ -1137,131 +1143,8 @@
             <small>4 隻起 · 公乸數量自己揀 · 4–5 隻基本配送 +$80</small>
           </button>
         </div>
-        <div class="buy-mode-note" id="buyModeNote"><b>你而家揀緊：套餐優惠</b><span>適合想直接揀份量、價錢清楚、基本區包送嘅客人。</span></div>
-        <div class="service-notice" role="note" aria-label="代蒸服務提示">
-          <div class="service-notice-icon">!</div>
-          <div>
-            <strong>溫馨提示｜暫不提供代蒸服務</strong>
-            <span>因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。收到後可參考網站「蒸煮方法」自行處理。</span>
-          </div>
-          <a href="steaming.html">查看蒸煮方法 →</a>
-        </div>
       </div>
-    </section>
-
-    <section id="packages">
-      <div class="wrap">
-        <div class="section-title">
-          <div>
-            <div class="eyebrow">訂購產品 · 套餐優惠</div>
-            <h2>套餐：揀隻數，再揀公乸配搭。</h2>
-          </div>
-          <p>套餐固定 6、8、10 隻；基本配送區包送，並附送食蟹配套及食蟹工具 1 份。需要更多工具可在落單區直接加購。</p>
-        </div>
-
-        <div class="package-grid">
-          <article class="package-card package-card-clean">
-            <div class="package-card-head">
-              <span class="package-audience">2–3 人</span>
-              <span class="package-status">入門首選</span>
-            </div>
-            <div class="package-title-row">
-              <div>
-                <h3>6隻嘗鮮裝</h3>
-                <p>二人晚餐／第一次食／小聚</p>
-              </div>
-              <div class="package-qty"><b>6</b><small>隻</small></div>
-            </div>
-
-            <div class="package-price-options">
-              <div class="package-price-option">
-                <span>全公</span>
-                <strong>$628</strong>
-              </div>
-              <div class="package-price-option recommended">
-                <span>公乸雙拼</span>
-                <strong>$668</strong>
-              </div>
-              <div class="package-price-option">
-                <span>全乸</span>
-                <strong>$728</strong>
-              </div>
-            </div>
-
-            <div class="package-footnote">雙拼：3 公 + 3 乸</div>
-            <div class="package-includes">基本區包送 · 套餐附送配套 · 食蟹工具 1 份</div>
-            <button class="package-button" data-choose-qty="6">選擇 6 隻套餐</button>
-          </article>
-
-          <article class="package-card package-card-clean featured">
-            <div class="popular-ribbon">最多人揀</div>
-            <div class="package-card-head">
-              <span class="package-audience">3–4 人</span>
-              <span class="package-status">皇牌推薦</span>
-            </div>
-            <div class="package-title-row">
-              <div>
-                <h3>8隻皇牌裝</h3>
-                <p>家庭分享／份量與價錢最平衡</p>
-              </div>
-              <div class="package-qty"><b>8</b><small>隻</small></div>
-            </div>
-
-            <div class="package-price-options">
-              <div class="package-price-option">
-                <span>全公</span>
-                <strong>$758</strong>
-              </div>
-              <div class="package-price-option recommended">
-                <span>公乸雙拼</span>
-                <strong>$798</strong>
-                <em>主力推薦</em>
-              </div>
-              <div class="package-price-option">
-                <span>全乸</span>
-                <strong>$858</strong>
-              </div>
-            </div>
-
-            <div class="package-footnote">雙拼：4 公 + 4 乸</div>
-            <div class="package-includes">基本區包送 · 套餐附送配套 · 食蟹工具 1 份</div>
-            <button class="package-button" data-choose-qty="8">選擇 8 隻套餐</button>
-          </article>
-
-          <article class="package-card package-card-clean">
-            <div class="package-card-head">
-              <span class="package-audience">4–5 人</span>
-              <span class="package-status">聚會分享</span>
-            </div>
-            <div class="package-title-row">
-              <div>
-                <h3>10隻分享裝</h3>
-                <p>家庭聚餐／朋友聚會／公司分享</p>
-              </div>
-              <div class="package-qty"><b>10</b><small>隻</small></div>
-            </div>
-
-            <div class="package-price-options">
-              <div class="package-price-option">
-                <span>全公</span>
-                <strong>$898</strong>
-              </div>
-              <div class="package-price-option recommended">
-                <span>公乸雙拼</span>
-                <strong>$938</strong>
-              </div>
-              <div class="package-price-option">
-                <span>全乸</span>
-                <strong>$998</strong>
-              </div>
-            </div>
-
-            <div class="package-footnote">雙拼：5 公 + 5 乸</div>
-            <div class="package-includes">基本區包送 · 套餐附送配套 · 食蟹工具 1 份</div>
-            <button class="package-button" data-choose-qty="10">選擇 10 隻套餐</button>
-          </article>
-        </div>        </div>
-      </div>
+</div>
     </section>
 
 
@@ -1307,7 +1190,6 @@
             <div class="single-builder-head">
               <div>
                 <h3>單隻自選即時計價</h3>
-                <p class="intro">每個重量都可以獨立加減數量，總價會即時更新。</p>
               </div>
               <span class="single-stock-note">零售價</span>
             </div>
@@ -1411,7 +1293,6 @@
                   <option value="70" data-zone-name="遠區配送">港島一般市區／粉嶺／上水／東涌／西貢市中心｜+$70</option>
                   <option value="special" data-zone-name="特殊地址">村屋深入位置／深西貢／山頂／赤柱／石澳／機場／愉景灣／禁區／特殊上落貨位置｜待確認</option>
                 </select>
-                <small class="zone-auto-hint">填寫收貨地址後會自動選區；特殊或未能識別地址會標示「待確認」。</small>
               </div>
             </div>
 
@@ -1458,7 +1339,6 @@
               <div class="eyebrow">STEP 3 · 收貨資料</div>
               <h2>填好資料，一次過送到 WhatsApp。</h2>
             </div>
-            <p>姓名、地址、配送時段、產品及總價會自動整理成完整訂單，客服毋須再逐項追問。</p>
           </div>
 
           <div class="receiver-grid">
@@ -1473,10 +1353,7 @@
             <div class="receiver-field receiver-field-wide">
               <label for="receiverAddress">中文地址 <span>*</span></label>
               <textarea id="receiverAddress" rows="2" autocomplete="street-address" placeholder="請輸入完整中文收貨地址，包括屋苑／大廈、座數、樓層及室號"></textarea>
-              <div class="address-zone-result pending" id="addressZoneResult" aria-live="polite">
-                <span class="address-zone-dot"></span>
-                <div><strong>輸入地址後自動判區</strong><small>系統會按中文地址自動選擇配送分區及更新運費。</small></div>
-              </div>
+              <div class="address-zone-result pending" id="addressZoneResult" aria-live="polite"></div>
             </div>
             <div class="receiver-field">
               <label for="receiveDate">收貨日期 <span>*</span></label>
@@ -1530,7 +1407,6 @@
               <small>6806 8004</small>
             </button>
           </div>
-          <div class="final-submit-note">任選一個客服號碼。WhatsApp 會自動帶入完整訂單，確認無誤後按「傳送」即可。｜目前只提供活蟹配送，暫不設代蒸服務。</div>
         </div>
       </div>
     </section>
@@ -1568,7 +1444,6 @@
             <div class="delivery-zone"><strong><span>較遠地區</span><b>+$30</b></strong><p>大埔、元朗、天水圍、將軍澳</p></div>
             <div class="delivery-zone"><strong><span>遠區配送</span><b>+$70</b></strong><p>港島一般市區、粉嶺、上水、東涌、西貢市中心</p></div>
             <div class="delivery-zone special-delivery"><strong><span>特殊地址</span><b>待確認</b></strong><p>深入村屋、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置</p></div>
-            <div class="toll-note">如貨量、包裝體積或地址需轉用其他車種，實際配送費會於確認訂單時通知。</div>
           </div>
         </div>
       </div>
@@ -1725,7 +1600,6 @@
                 <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區、粉嶺、上水、東涌、西貢市中心｜+$70</option>
                 <option value="special" data-zone-name="特殊地址">特殊地址｜村屋深入位置、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置｜費用待確認</option>
               </select>
-              <div class="order-tip">填寫收貨地址後系統會自動選擇配送區；如判定有誤仍可手動修正。特殊地址會再個別確認。</div>
             </div>
 
             <div class="step tool-order-step">
@@ -1754,7 +1628,6 @@
                 <strong>⑥ 收貨資料</strong>
                 <span>下一步填寫</span>
               </div>
-              <div class="order-tip">完成套餐、配送及加購後，再填姓名、電話、中文地址、收貨日期、時段及收貨安排。</div>
             </div>
           </div>
 
@@ -1831,10 +1704,6 @@
           <details open>
             <summary>套餐已包咩？</summary>
             <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
-          </details>
-          <details>
-            <summary>可以代蒸大閘蟹嗎？</summary>
-            <p>暫時唔可以。因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。網站已提供保存及清蒸指南，收到後可以直接跟住處理。</p>
           </details>
           <details>
             <summary>套餐可以再加單隻蟹嗎？</summary>
@@ -2073,7 +1942,6 @@
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
-        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
@@ -2191,7 +2059,7 @@
 
       if(!d || d.status === 'pending'){
         addressZoneResult.classList.add('pending');
-        addressZoneResult.innerHTML = '<span class="address-zone-dot"></span><div><strong>輸入地址後自動判區</strong><small>系統會按中文地址自動選擇配送分區及更新運費。</small></div>';
+        addressZoneResult.innerHTML = '';
         return;
       }
 
@@ -2372,7 +2240,6 @@
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
-        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
@@ -2489,7 +2356,6 @@
     const orderSection = document.getElementById('order');
     const bonusSection = document.getElementById('bonus');
     const modeButtons = document.querySelectorAll('[data-purchase-mode]');
-    const buyModeNote = document.getElementById('buyModeNote');
     const mobileModeLabel = document.getElementById('mobileModeLabel');
     const mobileChooseBtn = document.getElementById('mobileChooseBtn');
 
@@ -2513,11 +2379,9 @@
       });
 
       if(packageActive){
-        buyModeNote.innerHTML = '<b>你而家揀緊：套餐優惠</b><span>6 / 8 / 10 隻，基本區包送，免費附送食蟹四寶。</span>';
         mobileModeLabel.textContent = '套餐優惠 · 現時總價';
         render();
       }else{
-        buyModeNote.innerHTML = '<b>你而家揀緊：單隻自選</b><span>4 隻起，公乸、重量、數量自己揀；4–5 隻基本配送 +$80。</span>';
         mobileModeLabel.textContent = '單隻自選 · 現時總價';
         renderSingle();
       }
