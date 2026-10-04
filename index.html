@@ -1213,6 +1213,8 @@
 
   
     #packages,#single{scroll-margin-top:96px}
+  
+    #receiver{scroll-margin-top:96px}
   </style>
 </head>
 <body>
@@ -1548,8 +1550,8 @@
         <div class="receiver-card">
           <div class="receiver-head">
             <div>
-              <div class="eyebrow">STEP 3 · 收貨資料</div>
-              <h2>填好資料，一次過送到 WhatsApp。</h2>
+              <div class="eyebrow">下一步 · 收貨資料</div>
+              <h2>填好資料，連同訂單一齊發送。</h2>
             </div>
           </div>
 
@@ -2637,24 +2639,32 @@
     toolQtyInputs.forEach(input => input.addEventListener('input',()=>refreshAfterToolChange(input.value)));
 
     // 套餐 / 單隻自選：同一個選購入口，只顯示一種買法
-    const packagesSection = document.getElementById('packages');
+    const buyModeSection = document.getElementById('buy-mode');
     const singleSection = document.getElementById('single');
     const orderSection = document.getElementById('order');
-    const bonusSection = document.getElementById('bonus');
+    const receiverSection = document.getElementById('receiver');
     const modeButtons = document.querySelectorAll('[data-purchase-mode]');
     const mobileModeLabel = document.getElementById('mobileModeLabel');
     const mobileChooseBtn = document.getElementById('mobileChooseBtn');
 
-    // 將套餐落單設定放到套餐卡後面，避免被附送/配送資訊隔開。
-    if(packagesSection && orderSection && packagesSection.nextElementSibling !== orderSection){
-      packagesSection.insertAdjacentElement('afterend', orderSection);
+    function placeActiveFlow(mode){
+      if(!buyModeSection || !receiverSection) return;
+
+      if(mode === 'single'){
+        // 單隻自選直接放喺購買方式下面；收貨資料再緊接其後。
+        buyModeSection.insertAdjacentElement('afterend', singleSection);
+        singleSection.insertAdjacentElement('afterend', receiverSection);
+      }else{
+        // 套餐落單設定直接放喺購買方式下面；收貨資料再緊接其後。
+        buyModeSection.insertAdjacentElement('afterend', orderSection);
+        orderSection.insertAdjacentElement('afterend', receiverSection);
+      }
     }
 
     function setPurchaseMode(mode){
       purchaseMode = mode === 'single' ? 'single' : 'package';
       const packageActive = purchaseMode === 'package';
 
-      packagesSection.classList.toggle('purchase-hidden', !packageActive);
       orderSection.classList.toggle('purchase-hidden', !packageActive);
       singleSection.classList.toggle('purchase-hidden', packageActive);
 
@@ -2664,6 +2674,8 @@
         btn.setAttribute('aria-selected', active ? 'true' : 'false');
       });
 
+      placeActiveFlow(purchaseMode);
+
       if(packageActive){
         mobileModeLabel.textContent = '套餐優惠 · 現時總價';
         render();
@@ -2671,6 +2683,7 @@
         mobileModeLabel.textContent = '單隻自選 · 現時總價';
         renderSingle();
       }
+
       updateFinalPreview();
       renderAddressZoneResult();
     }
@@ -2679,14 +2692,14 @@
       const mode = btn.dataset.purchaseMode;
       setPurchaseMode(mode);
 
-      // 揀購買方式後，自動帶客人去相應選購區。
       requestAnimationFrame(() => {
-        const target = mode === 'single' ? singleSection : packagesSection;
+        const target = mode === 'single' ? singleSection : orderSection;
         if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
       });
     }));
+
     mobileChooseBtn.addEventListener('click', () => {
-      const target = purchaseMode === 'package' ? orderSection : document.querySelector('.single-builder');
+      const target = purchaseMode === 'package' ? orderSection : singleSection;
       target.scrollIntoView({behavior:'smooth',block:'start'});
     });
 
