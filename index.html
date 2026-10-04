@@ -1042,6 +1042,175 @@
       .faq-addon-grid{grid-template-columns:1fr}
     }
 
+  
+    /* FAQ：單欄高級 Accordion，避免兩欄高低不齊 */
+    .faq-clean{
+      padding:30px;
+      border-radius:26px;
+      background:linear-gradient(180deg,#fffdf9 0%,#f9f1e7 100%);
+      border:1px solid #d9c1a2;
+      box-shadow:0 16px 38px rgba(62,38,22,.065);
+    }
+    .faq-heading{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:20px;
+      padding-bottom:20px;
+      margin-bottom:6px;
+      border-bottom:1px solid #e7d7c2;
+    }
+    .faq-heading h3{
+      margin:6px 0 0;
+      font-family:Georgia,"Noto Serif TC",serif;
+      font-size:32px;
+      line-height:1.12;
+      color:#2a1811;
+    }
+    .faq-count{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 11px;
+      border-radius:999px;
+      background:#f1e2cf;
+      border:1px solid #dcc09c;
+      color:#7d2b21;
+      font-size:11px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .faq-grid.faq-list{
+      display:grid!important;
+      grid-template-columns:1fr!important;
+      gap:0!important;
+    }
+    .faq-list details{
+      margin:0;
+      padding:0;
+      border:0;
+      border-bottom:1px solid #e7d7c2;
+      border-radius:0;
+      background:transparent!important;
+    }
+    .faq-list details:last-child{border-bottom:0}
+    .faq-list summary{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:66px;
+      padding:18px 48px 18px 4px;
+      cursor:pointer;
+      list-style:none;
+      color:#2a1811;
+      font-size:16px;
+      font-weight:900;
+      line-height:1.4;
+    }
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary::after{
+      content:"+";
+      position:absolute;
+      right:4px;
+      top:50%;
+      transform:translateY(-50%);
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#f2e3d1;
+      border:1px solid #d9bd99;
+      color:#7c2b21;
+      font-size:19px;
+      font-weight:700;
+      line-height:1;
+      transition:.18s ease;
+    }
+    .faq-list details[open] summary::after{
+      content:"−";
+      background:#7c2b21;
+      color:#fff7ed;
+      border-color:#7c2b21;
+    }
+    .faq-list details[open] summary{color:#7c2b21}
+    .faq-answer{
+      padding:0 48px 20px 4px;
+      animation:faqFade .18s ease;
+    }
+    .faq-answer p{
+      margin:0!important;
+      max-width:900px;
+      color:#5f4d43!important;
+      font-size:14px!important;
+      line-height:1.75;
+    }
+    @keyframes faqFade{
+      from{opacity:.25;transform:translateY(-3px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .faq-addon-prices{grid-column:auto!important}
+    .faq-addon-body{margin-top:0!important;padding-right:4px}
+    .faq-addon-body>p{margin:0 0 14px!important}
+    .faq-addon-grid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .faq-addon-group{
+      padding:15px;
+      border-radius:16px;
+      background:#fffaf3;
+      border:1px solid #dec7a8;
+    }
+    .faq-addon-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:10px;
+      border-bottom:1px solid #eadbc8;
+    }
+    .faq-addon-title strong{font-size:16px;color:#2b1b15}
+    .faq-addon-title span{font-size:11px;color:#7b675c;font-weight:800}
+    .faq-addon-list{display:grid;gap:7px;margin-top:9px}
+    .faq-addon-list>div{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:9px 10px;
+      border-radius:11px;
+      background:#fffdf9;
+      border:1px solid #eee0cf;
+    }
+    .faq-addon-list span{font-size:13px;color:#43342d}
+    .faq-addon-list b{font-size:14px;color:#84291f;white-space:nowrap}
+    .faq-addon-note{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:11px;
+      background:#f6eadb;
+      color:#684f43;
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    @media(max-width:680px){
+      .faq-clean{padding:22px 18px}
+      .faq-heading{display:block}
+      .faq-heading h3{font-size:27px}
+      .faq-count{margin-top:10px}
+      .faq-list summary{min-height:60px;padding:16px 42px 16px 0;font-size:15px}
+      .faq-list summary::after{right:0;width:28px;height:28px}
+      .faq-answer{padding:0 42px 18px 0}
+      .faq-addon-grid{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
@@ -1741,21 +1910,30 @@
     </section>
 
     <section id="faq">
-      <div class="wrap faq-wrap">
-        <div class="eyebrow">FAQ</div>
-        <h3>落單前常見問題。</h3>
-        <div class="faq-grid">
-          <details open>
-            <summary>套餐已包咩？</summary>
-            <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
-          </details>
+      <div class="wrap faq-wrap faq-clean">
+        <div class="faq-heading">
+          <div>
+            <div class="eyebrow">FAQ</div>
+            <h3>落單前常見問題</h3>
+          </div>
+          <span class="faq-count">6 個常見問題</span>
+        </div>
+
+        <div class="faq-grid faq-list">
           <details>
-            <summary>可以代蒸大閘蟹嗎？</summary>
-            <p>暫時唔可以。因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。網站設有保存及清蒸指南，收到後可以直接跟住處理。</p>
+            <summary>
+              <span class="faq-q">套餐已包咩？</span>
+            </summary>
+            <div class="faq-answer">
+              <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
+            </div>
           </details>
+
           <details class="faq-addon-prices">
-            <summary>套餐可以再加單隻蟹嗎？</summary>
-            <div class="faq-addon-body">
+            <summary>
+              <span class="faq-q">套餐可以再加單隻蟹嗎？</span>
+            </summary>
+            <div class="faq-answer faq-addon-body">
               <p>可以。套餐落單區可直接加購以下所有規格，會跟套餐一齊配送，不會再收一次基本配送費。</p>
 
               <div class="faq-addon-grid">
@@ -1789,17 +1967,41 @@
               <div class="faq-addon-note">套餐加購只計蟹價，不會再加一次基本配送費。</div>
             </div>
           </details>
+
           <details>
-            <summary>點解有啲地區要加附加費？</summary>
-            <p>為盡量確保大閘蟹送到客人手上時仍然生猛新鮮，我哋採用 Lalamove 即時點對點配送，而唔係一般集運或隔日派送。基本配送區已經包送；較遠地區按 +$30、遠區配送按 +$70；特殊地址另行確認。</p>
+            <summary>
+              <span class="faq-q">點解有啲地區要加附加費？</span>
+            </summary>
+            <div class="faq-answer">
+              <p>為盡量確保大閘蟹送到客人手上時仍然生猛新鮮，我哋採用 Lalamove 即時點對點配送，而唔係一般集運或隔日派送。基本配送區已經包送；較遠地區 +$30、遠區配送 +$70；特殊地址另行確認。</p>
+            </div>
           </details>
+
           <details>
-            <summary>公乸雙拼點樣分配？</summary>
-            <p>雙拼按總隻數平均分配，例如 8 隻即 4 公 + 4 乸；6 隻即 3 公 + 3 乸；10 隻即 5 公 + 5 乸。</p>
+            <summary>
+              <span class="faq-q">可以代蒸大閘蟹嗎？</span>
+            </summary>
+            <div class="faq-answer">
+              <p>暫時唔可以。因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。網站設有保存及清蒸指南，收到後可以直接跟住處理。</p>
+            </div>
           </details>
+
           <details>
-            <summary>送貨時間有邊幾段？</summary>
-            <p>可選 12–3、3–6、4–7 三個配送時段。如需要早晨時段或指定時間，會有額外配送費；請確保該時段有人收貨，或可接受掛門口。</p>
+            <summary>
+              <span class="faq-q">公乸雙拼點樣分配？</span>
+            </summary>
+            <div class="faq-answer">
+              <p>雙拼按總隻數平均分配，例如 6 隻即 3 公 + 3 乸、8 隻即 4 公 + 4 乸、10 隻即 5 公 + 5 乸。</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="faq-q">送貨時間有邊幾段？</span>
+            </summary>
+            <div class="faq-answer">
+              <p>可選 12–3、3–6、4–7 三個配送時段。如需要早晨時段或指定時間，會有額外配送費；請確保該時段有人收貨，或可接受掛門口。</p>
+            </div>
           </details>
         </div>
       </div>
