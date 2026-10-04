@@ -1023,6 +1023,25 @@
       line-height:1.55;
       text-align:center;
     }
+  
+    /* FAQ 套餐加購規格價目 */
+    .faq-addon-prices{grid-column:1/-1}
+    .faq-addon-body{margin-top:12px}
+    .faq-addon-body>p{margin:0 0 14px!important}
+    .faq-addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .faq-addon-group{padding:15px;border-radius:16px;background:#fffaf3;border:1px solid #dec7a8}
+    .faq-addon-title{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px solid #eadbc8}
+    .faq-addon-title strong{font-size:16px;color:#2b1b15}
+    .faq-addon-title span{font-size:11px;color:#7b675c;font-weight:800}
+    .faq-addon-list{display:grid;gap:7px;margin-top:9px}
+    .faq-addon-list>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:11px;background:#fffdf9;border:1px solid #eee0cf}
+    .faq-addon-list span{font-size:13px;color:#43342d}
+    .faq-addon-list b{font-size:14px;color:#84291f;white-space:nowrap}
+    .faq-addon-note{margin-top:10px;padding:10px 12px;border-radius:11px;background:#f6eadb;color:#684f43;font-size:12px;line-height:1.5}
+    @media(max-width:680px){
+      .faq-addon-grid{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 <body>
@@ -1734,9 +1753,41 @@
             <summary>可以代蒸大閘蟹嗎？</summary>
             <p>暫時唔可以。因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。網站設有保存及清蒸指南，收到後可以直接跟住處理。</p>
           </details>
-          <details>
+          <details class="faq-addon-prices">
             <summary>套餐可以再加單隻蟹嗎？</summary>
-            <p>可以。套餐落單區可直接加購蟹公 5–5.5兩（$110／隻）或蟹乸 4.5–5兩（$130／隻），會跟套餐一齊配送，不會再收一次基本配送費。</p>
+            <div class="faq-addon-body">
+              <p>可以。套餐落單區可直接加購以下所有規格，會跟套餐一齊配送，不會再收一次基本配送費。</p>
+
+              <div class="faq-addon-grid">
+                <div class="faq-addon-group">
+                  <div class="faq-addon-title">
+                    <strong>蟹公</strong>
+                    <span>5–5.5兩以上</span>
+                  </div>
+                  <div class="faq-addon-list">
+                    <div><span>5–5.5兩</span><b>$110／隻</b></div>
+                    <div><span>5.5–6兩</span><b>$130／隻</b></div>
+                    <div><span>6–6.5兩</span><b>$150／隻</b></div>
+                    <div><span>6.5–7兩</span><b>$170／隻</b></div>
+                  </div>
+                </div>
+
+                <div class="faq-addon-group">
+                  <div class="faq-addon-title">
+                    <strong>蟹乸</strong>
+                    <span>4–4.5兩以上</span>
+                  </div>
+                  <div class="faq-addon-list">
+                    <div><span>4–4.5兩</span><b>$110／隻</b></div>
+                    <div><span>4.5–5兩</span><b>$130／隻</b></div>
+                    <div><span>5–5.5兩</span><b>$150／隻</b></div>
+                    <div><span>5.5–6兩</span><b>$170／隻</b></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-addon-note">套餐加購只計蟹價，不會再加一次基本配送費。</div>
+            </div>
           </details>
           <details>
             <summary>點解有啲地區要加附加費？</summary>
