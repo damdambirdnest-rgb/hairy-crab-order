@@ -1929,6 +1929,38 @@
       background:#fff7f6!important;
     }
 
+  
+    /* 防止 Chrome / Safari 自動填寫將表單染成藍色 */
+    .receiver-field input:-webkit-autofill,
+    .receiver-field input:-webkit-autofill:hover,
+    .receiver-field input:-webkit-autofill:focus,
+    .receiver-field textarea:-webkit-autofill,
+    .receiver-field textarea:-webkit-autofill:hover,
+    .receiver-field textarea:-webkit-autofill:focus,
+    .receiver-field select:-webkit-autofill,
+    .receiver-field select:-webkit-autofill:hover,
+    .receiver-field select:-webkit-autofill:focus{
+      -webkit-text-fill-color:#251711!important;
+      caret-color:#251711!important;
+      -webkit-box-shadow:0 0 0 1000px #fffdf9 inset!important;
+      box-shadow:0 0 0 1000px #fffdf9 inset!important;
+      border-color:#8b392b!important;
+      transition:background-color 9999s ease-out 0s;
+    }
+    .receiver-field.field-invalid input:-webkit-autofill,
+    .receiver-field.field-invalid textarea:-webkit-autofill,
+    .receiver-field.field-invalid select:-webkit-autofill{
+      -webkit-box-shadow:0 0 0 1000px #fff7f6 inset!important;
+      box-shadow:0 0 0 1000px #fff7f6 inset!important;
+      border-color:#c6281f!important;
+    }
+    .receiver-field input:focus,
+    .receiver-field textarea:focus,
+    .receiver-field select:focus{
+      background:#fffdf9!important;
+      outline:none!important;
+    }
+
   </style>
 </head>
 <body>
