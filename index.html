@@ -1215,6 +1215,63 @@
     #packages,#single{scroll-margin-top:96px}
   
     #receiver{scroll-margin-top:96px}
+  
+    /* 側邊返回頁頂 */
+    .back-to-top{
+      position:fixed;
+      right:22px;
+      bottom:28px;
+      z-index:70;
+      width:58px;
+      height:58px;
+      border:1px solid #c9975c;
+      border-radius:18px;
+      background:linear-gradient(160deg,#7b2a20 0%,#521b15 100%);
+      color:#fff8ef;
+      box-shadow:0 14px 34px rgba(72,28,21,.24);
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:1px;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:opacity .2s ease,transform .2s ease,visibility .2s ease,box-shadow .2s ease;
+    }
+    .back-to-top.show{
+      opacity:1;
+      visibility:visible;
+      transform:translateY(0);
+    }
+    .back-to-top:hover{
+      box-shadow:0 18px 38px rgba(72,28,21,.3);
+      transform:translateY(-2px);
+    }
+    .back-to-top-arrow{
+      font-size:20px;
+      line-height:1;
+      font-weight:900;
+    }
+    .back-to-top-text{
+      font-size:10px;
+      line-height:1.1;
+      font-weight:900;
+      letter-spacing:.08em;
+    }
+    @media(max-width:760px){
+      .back-to-top{
+        right:14px;
+        bottom:92px;
+        width:52px;
+        height:52px;
+        border-radius:16px;
+      }
+      .back-to-top-arrow{font-size:18px}
+      .back-to-top-text{font-size:9px}
+    }
+
   </style>
 </head>
 <body>
@@ -2016,6 +2073,11 @@
     <div class="wrap">© 2026 啖啖燕窩 DAMDAMBIRDNEST · 秋蟹到家</div>
   </footer>
 
+  <button type="button" class="back-to-top" id="backToTop" aria-label="返回頁頂">
+    <span class="back-to-top-arrow">↑</span>
+    <span class="back-to-top-text">頁頂</span>
+  </button>
+
   <div class="mobilebar">
     <div class="meta"><small id="mobileModeLabel">套餐優惠 · 現時總價</small><strong id="mobileTotal">$798</strong></div>
     <button type="button" id="mobileChooseBtn">立即落單</button>
@@ -2702,6 +2764,15 @@
       const target = purchaseMode === 'package' ? orderSection : singleSection;
       target.scrollIntoView({behavior:'smooth',block:'start'});
     });
+
+    const backToTop = document.getElementById('backToTop');
+    function updateBackToTop(){
+      if(!backToTop) return;
+      backToTop.classList.toggle('show', window.scrollY > 420);
+    }
+    window.addEventListener('scroll', updateBackToTop, {passive:true});
+    backToTop?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    updateBackToTop();
 
     setMinDate();
     clampExtraTool(1);
