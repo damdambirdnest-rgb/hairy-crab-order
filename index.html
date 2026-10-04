@@ -542,6 +542,67 @@
       .tool-addon-controls{margin-top:12px;justify-content:space-between}
       .tool-addon-copy{align-items:flex-start}
     }
+  
+    /* 套餐卡：統一高級感、減少厚重表格感 */
+    .package-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+    .package-card-clean{
+      position:relative;overflow:visible;display:flex;flex-direction:column;
+      min-height:510px;padding:24px;border-radius:24px;
+      background:#fffdf9;border:1px solid #ddc6a8;
+      box-shadow:0 14px 36px rgba(62,39,23,.07);
+      color:#2b1b15;transform:none!important
+    }
+    .package-card-clean.featured{
+      background:linear-gradient(180deg,#fffaf2 0%,#fffdf9 100%);
+      border:2px solid #8b3025;color:#2b1b15;
+      box-shadow:0 20px 46px rgba(94,38,29,.14)
+    }
+    .popular-ribbon{
+      position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+      padding:6px 14px;border-radius:999px;background:#7f2a20;color:#fff7ec;
+      font-size:11px;font-weight:900;letter-spacing:.06em;white-space:nowrap;
+      box-shadow:0 6px 14px rgba(84,30,22,.16)
+    }
+    .package-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+    .package-audience{font-size:12px;color:#7c675b;font-weight:800}
+    .package-status{padding:6px 10px;border-radius:999px;background:#f1e3d2;color:#6f3929;font-size:10px;font-weight:900;letter-spacing:.06em}
+    .package-card-clean.featured .package-status{background:#7f2a20;color:#fff5e8}
+    .package-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid #eadbc8}
+    .package-title-row h3{font-size:27px;margin:0 0 5px!important;color:#2b1b15}
+    .package-title-row p{margin:0;color:#6b594f;font-size:12px;line-height:1.5}
+    .package-qty{display:flex;align-items:flex-end;gap:3px;flex:0 0 auto;color:#7f2a20;line-height:1}
+    .package-qty b{font-size:44px;letter-spacing:-.05em}
+    .package-qty small{font-size:12px;font-weight:900;margin-bottom:5px}
+    .package-price-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+    .package-price-option{
+      position:relative;min-height:88px;padding:13px 8px 11px;text-align:center;
+      border:1px solid #e4d4c0;border-radius:14px;background:#fbf6ef
+    }
+    .package-price-option span{display:block;color:#6b594f;font-size:11px;font-weight:800}
+    .package-price-option strong{display:block;margin-top:5px;color:#2c1b15;font-size:20px;line-height:1.1}
+    .package-price-option.recommended{border-color:#b77454;background:#f7e9dc}
+    .package-price-option.recommended strong{color:#7f2a20}
+    .package-price-option em{display:inline-block;margin-top:5px;padding:3px 6px;border-radius:999px;background:#7f2a20;color:#fff;font-size:8px;font-style:normal;font-weight:900}
+    .package-footnote{margin-top:13px;color:#725d51;font-size:11px;text-align:center}
+    .package-includes{margin-top:16px;padding:11px 12px;border-radius:12px;background:#f4eadf;color:#5b473d;font-size:11px;line-height:1.45;text-align:center}
+    .package-card-clean .package-button{
+      margin-top:auto;min-height:48px;border-radius:14px;
+      background:#64261e;color:#fff;box-shadow:none;font-size:14px
+    }
+    .package-card-clean.featured .package-button{background:#64261e;color:#fff;box-shadow:none}
+    .package-card-clean .package-button:hover{background:#511d17}
+    @media(max-width:900px){
+      .package-grid{grid-template-columns:1fr}
+      .package-card-clean{min-height:auto}
+    }
+    @media(max-width:480px){
+      .package-card-clean{padding:20px}
+      .package-title-row h3{font-size:24px}
+      .package-qty b{font-size:38px}
+      .package-price-option{min-height:82px;padding:12px 6px 10px}
+      .package-price-option strong{font-size:18px}
+    }
+
   </style>
 </head>
 <body>
@@ -691,48 +752,107 @@
         </div>
 
         <div class="package-grid">
-          <article class="package-card">
-            <span class="package-tag">2–3 人 · 入門首選</span>
-            <h3>6隻嘗鮮裝</h3>
-            <div class="sub">第一次食／二人晚餐／小聚都啱</div>
-            <div class="price-from"><small>套餐由</small><strong>$628</strong></div>
-            <div class="table">
-              <div class="row"><span>全公</span><b>$628</b></div>
-              <div class="row"><span>公乸雙拼</span><b>$668</b></div>
-              <div class="row"><span>全乸</span><b>$728</b></div>
+          <article class="package-card package-card-clean">
+            <div class="package-card-head">
+              <span class="package-audience">2–3 人</span>
+              <span class="package-status">入門首選</span>
             </div>
-            <div class="package-note">雙拼默認平均分配，6 隻即 3 公 + 3 乸。</div>
-            <button class="package-button" data-choose-qty="6">立即選擇</button>
+            <div class="package-title-row">
+              <div>
+                <h3>6隻嘗鮮裝</h3>
+                <p>二人晚餐／第一次食／小聚</p>
+              </div>
+              <div class="package-qty"><b>6</b><small>隻</small></div>
+            </div>
+
+            <div class="package-price-options">
+              <div class="package-price-option">
+                <span>全公</span>
+                <strong>$628</strong>
+              </div>
+              <div class="package-price-option recommended">
+                <span>公乸雙拼</span>
+                <strong>$668</strong>
+              </div>
+              <div class="package-price-option">
+                <span>全乸</span>
+                <strong>$728</strong>
+              </div>
+            </div>
+
+            <div class="package-footnote">雙拼：3 公 + 3 乸</div>
+            <div class="package-includes">基本區包送 · 套餐附送配套 · 食蟹工具 1 份</div>
+            <button class="package-button" data-choose-qty="6">選擇 6 隻套餐</button>
           </article>
 
-          <article class="package-card featured">
-            <span class="package-tag">皇牌推薦 · 3–4 人</span>
-            <h3>8隻皇牌裝</h3>
-            <div class="sub">最適合家庭分享，性價比最高</div>
-            <div class="price-from"><small>套餐由</small><strong>$758</strong></div>
-            <div class="table">
-              <div class="row"><span>全公</span><b>$758</b></div>
-              <div class="row"><span>公乸雙拼</span><b>$798</b></div>
-              <div class="row"><span>全乸</span><b>$858</b></div>
+          <article class="package-card package-card-clean featured">
+            <div class="popular-ribbon">最多人揀</div>
+            <div class="package-card-head">
+              <span class="package-audience">3–4 人</span>
+              <span class="package-status">皇牌推薦</span>
             </div>
-            <div class="package-note">主力推介：公蟹 5–5.5 兩 × 4 ＋ 蟹乸 4.5–5 兩 × 4。</div>
-            <button class="package-button" data-choose-qty="8">立即選擇</button>
+            <div class="package-title-row">
+              <div>
+                <h3>8隻皇牌裝</h3>
+                <p>家庭分享／份量與價錢最平衡</p>
+              </div>
+              <div class="package-qty"><b>8</b><small>隻</small></div>
+            </div>
+
+            <div class="package-price-options">
+              <div class="package-price-option">
+                <span>全公</span>
+                <strong>$758</strong>
+              </div>
+              <div class="package-price-option recommended">
+                <span>公乸雙拼</span>
+                <strong>$798</strong>
+                <em>主力推薦</em>
+              </div>
+              <div class="package-price-option">
+                <span>全乸</span>
+                <strong>$858</strong>
+              </div>
+            </div>
+
+            <div class="package-footnote">雙拼：4 公 + 4 乸</div>
+            <div class="package-includes">基本區包送 · 套餐附送配套 · 食蟹工具 1 份</div>
+            <button class="package-button" data-choose-qty="8">選擇 8 隻套餐</button>
           </article>
 
-          <article class="package-card">
-            <span class="package-tag">4–5 人 · 聚會分享</span>
-            <h3>10隻分享裝</h3>
-            <div class="sub">份量更充足，適合多人聚餐</div>
-            <div class="price-from"><small>套餐由</small><strong>$898</strong></div>
-            <div class="table">
-              <div class="row"><span>全公</span><b>$898</b></div>
-              <div class="row"><span>公乸雙拼</span><b>$938</b></div>
-              <div class="row"><span>全乸</span><b>$998</b></div>
+          <article class="package-card package-card-clean">
+            <div class="package-card-head">
+              <span class="package-audience">4–5 人</span>
+              <span class="package-status">聚會分享</span>
             </div>
-            <div class="package-note">適合公司聚會或多人晚飯，一次過落單更方便。</div>
-            <button class="package-button" data-choose-qty="10">立即選擇</button>
+            <div class="package-title-row">
+              <div>
+                <h3>10隻分享裝</h3>
+                <p>家庭聚餐／朋友聚會／公司分享</p>
+              </div>
+              <div class="package-qty"><b>10</b><small>隻</small></div>
+            </div>
+
+            <div class="package-price-options">
+              <div class="package-price-option">
+                <span>全公</span>
+                <strong>$898</strong>
+              </div>
+              <div class="package-price-option recommended">
+                <span>公乸雙拼</span>
+                <strong>$938</strong>
+              </div>
+              <div class="package-price-option">
+                <span>全乸</span>
+                <strong>$998</strong>
+              </div>
+            </div>
+
+            <div class="package-footnote">雙拼：5 公 + 5 乸</div>
+            <div class="package-includes">基本區包送 · 套餐附送配套 · 食蟹工具 1 份</div>
+            <button class="package-button" data-choose-qty="10">選擇 10 隻套餐</button>
           </article>
-        </div>
+        </div>        </div>
       </div>
     </section>
 
@@ -760,7 +880,7 @@
               <div class="single-rule">4–5 隻：基本配送區配送費 +$80。</div>
               <div class="single-rule">6 隻或以上：基本配送區包送。</div>
               <div class="single-rule">其他地區按 +$30 / +$70 補配送差額；特殊地址另行確認。</div>
-              <div class="single-rule">自由配搭可 +$18 加購香醋、紫蘇葉及紅糖薑棗茶；食蟹工具 1 份已免費贈送。</div>
+              <div class="single-rule">每單免費贈送食蟹工具 1 份；第 2 份起每份 +$18。</div>
             </div>
           </div>
 
@@ -803,13 +923,10 @@
                 <div class="addon-subtotal">加購小計 <strong data-tool-subtotal>$0</strong></div>
               </div>
             </div>
-
-            <label class="kit-toggle"><input id="singleKit" type="checkbox"><span><strong>加購食蟹配套 +$18</strong><span>香醋 ×1、紫蘇葉、紅糖薑棗茶 ×3（食蟹工具已獨立計算）</span></span></label>
             <div class="single-summary">
               <div class="single-summary-row"><span>大閘蟹</span><strong id="singleItems">2公 + 2乸｜4隻</strong></div>
               <div class="single-summary-row"><span>蟹款小計</span><strong id="singleCrabSubtotal">$480</strong></div>
               <div class="single-summary-row"><span>配送費</span><strong id="singleShipping">$80</strong></div>
-              <div class="single-summary-row"><span>食蟹配套</span><strong id="singleKitFee">不加購</strong></div>
               <div class="single-summary-row"><span>食蟹工具</span><strong id="singleExtraTools">1份（免費）</strong></div>
               <div class="single-total"><div><small>單點預估總價</small></div><strong id="singleTotal">$560</strong></div>
             </div>
@@ -1303,7 +1420,6 @@
     const singleMale = document.getElementById('singleMale');
     const singleFemale = document.getElementById('singleFemale');
     const singleZone = document.getElementById('singleZone');
-    const singleKit = document.getElementById('singleKit');
 
     function clampSingle(v){
       v = parseInt(v || '0',10);
@@ -1321,11 +1437,10 @@
       const zoneExtra = special ? 0 : Number(opt.value);
       const baseShipping = count >= 6 ? 0 : 80;
       const shipping = special ? null : baseShipping + zoneExtra;
-      const kitFee = singleKit.checked ? 18 : 0;
       const toolQty = clampExtraTool();
       const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
-      const total = shipping === null ? null : crabSubtotal + shipping + kitFee + toolCost;
-      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,toolQty,toolCost,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value};
+      const total = shipping === null ? null : crabSubtotal + shipping + toolCost;
+      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,toolQty,toolCost,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value};
     }
 
     function singleMatchedPackage(d){
@@ -1349,7 +1464,6 @@
       document.getElementById('singleItems').textContent = `${d.male}公 + ${d.female}乸｜${d.count}隻`;
       document.getElementById('singleCrabSubtotal').textContent = `$${d.crabSubtotal}`;
       document.getElementById('singleShipping').textContent = d.special ? '待確認' : (d.shipping === 0 ? '$0（包送）' : `$${d.shipping}`);
-      document.getElementById('singleKitFee').textContent = d.kitFee ? '+$18' : '不加購';
       document.getElementById('singleExtraTools').textContent = d.toolQty === 1 ? '1份（免費）' : `${d.toolQty}份｜加購 +${d.toolCost}`;
       document.getElementById('singleTotal').textContent = d.total === null ? '待確認' : `${d.total}`;
       if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = d.total === null ? '待確認' : `${d.total}`;
@@ -1363,7 +1477,7 @@
         const matched = singleMatchedPackage(d);
         if(matched && matched.saving > 0){
           alert.classList.add('good');
-          alert.textContent = `你揀咗 ${d.count} 隻，轉做同配搭套餐約可慳 $${matched.saving}，而且免費送食蟹四寶。`;
+          alert.textContent = `你揀咗 ${d.count} 隻，轉做同配搭套餐約可慳 $${matched.saving}，而且套餐價更抵。`;
         } else {
           alert.classList.add('good');
           alert.textContent = `已滿 6 隻：基本配送區包送；其他地區只補固定附加費；特殊地址另行確認。`;
@@ -1379,7 +1493,6 @@
     }));
     [singleMale,singleFemale].forEach(el => el.addEventListener('input',renderSingle));
     singleZone.addEventListener('change',renderSingle);
-    singleKit.addEventListener('change',renderSingle);
 
     function buildSingleMessage(){
       const r = receiverData();
@@ -1402,7 +1515,6 @@
         `蟹乸 4.5–5兩：${d.female}隻 × $130`,
         `蟹款小計：$${d.crabSubtotal}`,
         `配送：${shipText}`,
-        `食蟹配套：${d.kitFee ? '加購 +$18（香醋、紫蘇葉、紅糖薑棗茶）' : '不加購'}`,
         '食蟹工具：1份免費',
         ...(r.extraTools > 1 ? [`食蟹工具加購：+${r.extraTools - 1}份｜+${r.extraToolCost}`] : []),
         `總價：${totalText}`
