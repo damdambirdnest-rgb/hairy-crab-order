@@ -336,10 +336,43 @@
       .mobilebar button{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:12px 16px;font-weight:900}
       footer{padding-bottom:110px}
     }
+  
+    /* Unified purchase mode: package vs custom */
+    .buy-mode-section{padding:68px 0 18px;background:linear-gradient(180deg,rgba(255,250,244,.86),rgba(246,237,226,.45))}
+    .buy-mode-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:20px}
+    .buy-mode-head h2{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(32px,4.3vw,52px);line-height:1.08;margin:7px 0 0;color:#241813}
+    .buy-mode-head p{margin:0;max-width:520px;color:#584a42;font-size:14px}
+    .buy-mode-switch{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:10px;border-radius:30px;background:#eadbc8;border:1px solid #d2b58f;box-shadow:0 18px 44px rgba(73,45,25,.10)}
+    .purchase-mode-btn{position:relative;min-height:138px;border:1px solid transparent;border-radius:23px;padding:22px 24px;text-align:left;background:rgba(255,250,244,.7);color:#3f3028;cursor:pointer;transition:.2s ease;box-shadow:none}
+    .purchase-mode-btn strong{display:block;font-family:Georgia,"Noto Serif TC",serif;font-size:28px;line-height:1.1;margin:8px 0 7px;color:#39241b}
+    .purchase-mode-btn small{display:block;color:#655248;font-size:13px;line-height:1.5}
+    .purchase-mode-btn .mode-badge{display:inline-flex;padding:5px 9px;border-radius:999px;background:#efe2d1;color:#7a2b20;font-size:10px;font-weight:900;letter-spacing:.08em}
+    .purchase-mode-btn.active{background:linear-gradient(145deg,#6e281f,#4d1a15);border-color:#c79a62;box-shadow:0 16px 32px rgba(74,27,20,.22);transform:translateY(-2px)}
+    .purchase-mode-btn.active strong,.purchase-mode-btn.active small{color:#fff8ef}
+    .purchase-mode-btn.active .mode-badge{background:#e8c185;color:#4c2117}
+    .purchase-mode-btn:focus-visible{outline:3px solid #d7aa68;outline-offset:3px}
+    .buy-mode-note{display:flex;align-items:center;gap:12px;margin-top:14px;padding:13px 16px;border:1px solid #d8c0a2;border-radius:16px;background:#fffaf3;color:#4d3a30;font-size:13px}
+    .buy-mode-note b{color:#7b281e;white-space:nowrap}
+    .purchase-hidden{display:none!important}
+    #packages{padding-bottom:26px}
+    #order{padding-top:18px}
+    #order .section-title{margin-bottom:14px}
+    #single{padding-top:26px}
+    @media(max-width:760px){
+      .buy-mode-section{padding:42px 0 10px}
+      .buy-mode-head{display:block}
+      .buy-mode-head p{margin-top:10px}
+      .buy-mode-switch{grid-template-columns:1fr;padding:8px;border-radius:24px}
+      .purchase-mode-btn{min-height:116px;padding:18px;border-radius:18px}
+      .purchase-mode-btn strong{font-size:24px}
+      .buy-mode-note{display:block}
+      .buy-mode-note b{display:block;margin-bottom:3px}
+    }
+
   </style>
 </head>
 <body>
-  <div class="topbar">秋天限定 · 6隻起送 · 指定地區包送 · 每套免費送食蟹四寶</div>
+  <div class="topbar">秋天限定 · 套餐 6 隻起 · 自由配搭 4 隻起 · 套餐免費送食蟹四寶</div>
 
   <header>
     <div class="wrap nav">
@@ -351,14 +384,12 @@
         </span>
       </a>
       <nav class="navlinks">
-        <a href="#packages">套餐</a>
-        <a href="#single">自由單點</a>
+        <a href="#buy-mode">選購大閘蟹</a>
         <a href="#bonus">附送</a>
         <a href="#delivery">配送</a>
-        <a href="#order">立即訂購</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="navcta" href="#order">立即落單</a>
+      <a class="navcta" href="#buy-mode">立即選購</a>
     </div>
   </header>
 
@@ -368,19 +399,19 @@
         <div class="hero-shell">
           <div class="hero-inner">
             <div class="hero-copy">
-              <div class="sale-ribbon">2026 秋季限定 · 6隻起送</div>
+              <div class="sale-ribbon">2026 秋季限定 · 套餐6隻起｜自由配搭4隻起</div>
               <div class="eyebrow">DAMDAMBIRDNEST · AUTUMN SELECTION</div>
               <h2>一到秋天，<br>就係食蟹最好時候。</h2>
               <p class="hero-lead">精選 4 兩以上大閘蟹，蟹公主打 5–5.5 兩、蟹乸主打 4.5–5 兩。由二人晚餐到家庭聚會，一次過揀好份量、配搭同配送地區。</p>
               <ul class="hero-bullets">
-                <li>6 隻起送，適合二人晚餐至家庭分享</li>
-                <li>全公、公乸雙拼、全乸三種配搭可選</li>
-                <li>基本配送區已包送，遠區只補固定差額</li>
-                <li>每套免費送食蟹四寶，唔使另外加購</li>
+                <li><b>套餐優惠：</b>6 / 8 / 10 隻，基本配送區包送</li>
+                <li><b>自由配搭：</b>4 隻起，蟹公蟹乸數量自己決定</li>
+                <li>套餐免費送食蟹四寶；自由配搭可 +$18 加購</li>
+                <li>其他地區按固定分區補配送差額</li>
               </ul>
               <div class="hero-actions">
-                <a class="btn primary" href="#order">立即揀套餐</a>
-                <a class="btn secondary" href="#packages">睇全部價錢</a>
+                <a class="btn primary" href="#buy-mode">立即揀購買方式</a>
+                <a class="btn secondary" href="#buy-mode">套餐／自由配搭</a>
               </div>
               <div class="trust-row"><span class="trust-pill">4兩以上先上架</span><span class="trust-pill">基本區包送</span><span class="trust-pill">食蟹四寶免費送</span></div>
             </div>
@@ -444,14 +475,39 @@
       </div>
     </section>
 
+    <section id="buy-mode" class="buy-mode-section">
+      <div class="wrap">
+        <div class="buy-mode-head">
+          <div>
+            <div class="eyebrow">先揀購買方式</div>
+            <h2>套餐優惠，定自由配搭？</h2>
+          </div>
+          <p>兩種買法唔會同時顯示。揀一種之後，只會見到相應價錢同落單方式。</p>
+        </div>
+        <div class="buy-mode-switch" role="tablist" aria-label="購買方式">
+          <button type="button" class="purchase-mode-btn active" data-purchase-mode="package" role="tab" aria-selected="true">
+            <span class="mode-badge">多人選擇</span>
+            <strong>套餐優惠</strong>
+            <small>6 / 8 / 10 隻 · 基本區包送 · 免費食蟹四寶</small>
+          </button>
+          <button type="button" class="purchase-mode-btn" data-purchase-mode="single" role="tab" aria-selected="false">
+            <span class="mode-badge">彈性自選</span>
+            <strong>自由配搭</strong>
+            <small>4 隻起 · 公乸數量自己揀 · 4–5 隻基本配送 +$80</small>
+          </button>
+        </div>
+        <div class="buy-mode-note" id="buyModeNote"><b>你而家揀緊：套餐優惠</b><span>適合想直接揀份量、價錢清楚、基本區包送嘅客人。</span></div>
+      </div>
+    </section>
+
     <section id="packages">
       <div class="wrap">
         <div class="section-title">
           <div>
-            <div class="eyebrow">套餐一覽</div>
-            <h2>先揀隻數，再揀公乸配搭。</h2>
+            <div class="eyebrow">套餐優惠 · PACKAGE SET</div>
+            <h2>套餐：揀隻數，再揀公乸配搭。</h2>
           </div>
-          <p>6、8、10 隻三款份量，由二人晚餐到家庭聚餐都容易揀；基本配送區已包送。</p>
+          <p>套餐固定 6、8、10 隻；基本配送區包送，並免費附送食蟹四寶。想自己決定公乸數量，可切換上方「自由配搭」。</p>
         </div>
 
         <div class="package-grid">
@@ -505,10 +561,10 @@
       <div class="wrap">
         <div class="section-title">
           <div>
-            <div class="eyebrow">自由單點</div>
-            <h2>想自己配？4隻起送。</h2>
+            <div class="eyebrow">自由配搭 · À LA CARTE</div>
+            <h2>自由配搭：公乸數量自己決定。</h2>
           </div>
-          <p>單點適合想自己控制公乸比例嘅客人；買到 6 隻或以上，基本配送區包送，而套餐仍然會比逐隻單點更抵。</p>
+          <p>4 隻起自由配搭，逐隻計價；4–5 隻基本配送 +$80，6 隻或以上基本配送區包送。想要套餐優惠可隨時切換。</p>
         </div>
         <div class="single-shell">
           <div class="single-info">
@@ -529,7 +585,7 @@
           </div>
 
           <div class="single-builder">
-            <h3>自由配搭計價</h3>
+            <h3>自由配搭即時計價</h3>
             <p class="intro">調整公蟹、蟹乸數量，再揀配送區，即時睇到單點總價。</p>
             <div class="crab-pickers">
               <div class="crab-picker">
@@ -612,10 +668,10 @@
       <div class="wrap">
         <div class="section-title">
           <div>
-            <div class="eyebrow">立即訂購</div>
-            <h2>揀三樣，即時計到最終價。</h2>
+            <div class="eyebrow">套餐落單設定</div>
+            <h2>套餐揀好之後，完成配送設定。</h2>
           </div>
-          <p>揀套餐、揀公乸配搭，再揀配送區，即時顯示應付價錢。</p>
+          <p>呢一區只屬於「套餐優惠」。揀隻數、公乸配搭同配送區，即時顯示套餐總價。</p>
         </div>
 
         <div class="order-grid">
@@ -697,7 +753,7 @@
             </div>
             <div class="summary-actions">
               <button class="secondary" id="whatsappBtn">複製訂購內容</button>
-              <button class="secondary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'});">返回套餐</button>
+              <button class="secondary" onclick="document.getElementById('buy-mode').scrollIntoView({behavior:'smooth'});">轉購買方式</button>
             </div>
             <div class="summary-foot">價格及配送安排以確認訂單時資料為準。</div>
           </aside>
@@ -736,8 +792,8 @@
   </footer>
 
   <div class="mobilebar">
-    <div class="meta"><small>現時總價</small><strong id="mobileTotal">$798</strong></div>
-    <button onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});">立即揀</button>
+    <div class="meta"><small id="mobileModeLabel">套餐優惠 · 現時總價</small><strong id="mobileTotal">$798</strong></div>
+    <button type="button" id="mobileChooseBtn">立即落單</button>
   </div>
 
   <div class="modal" id="copyModal">
@@ -768,6 +824,7 @@
     };
 
     let state = { qty: 8, mix: 'mixed', zoneFee: 0, zoneName: '基本配送區' };
+    let purchaseMode = 'package';
 
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
@@ -798,7 +855,7 @@
       document.getElementById('sumShip').textContent = shipLabel;
       document.getElementById('sumZone').textContent = state.zoneName;
       document.getElementById('sumTotal').textContent = total;
-      document.getElementById('mobileTotal').textContent = total;
+      if(purchaseMode === 'package') document.getElementById('mobileTotal').textContent = total;
 
       document.getElementById('summaryText').textContent = isSpecial
         ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。套餐價現時為 $${base}。`
@@ -811,6 +868,7 @@
     qtyChoices.forEach(btn => btn.addEventListener('click', () => { state.qty = Number(btn.dataset.qty); render(); }));
     mixChoices.forEach(btn => btn.addEventListener('click', () => { state.mix = btn.dataset.mix; render(); }));
     packageButtons.forEach(btn => btn.addEventListener('click', () => {
+      setPurchaseMode('package');
       state.qty = Number(btn.dataset.chooseQty);
       render();
       document.getElementById('order').scrollIntoView({behavior:'smooth',block:'start'});
@@ -918,7 +976,8 @@
       document.getElementById('singleCrabSubtotal').textContent = `$${d.crabSubtotal}`;
       document.getElementById('singleShipping').textContent = d.special ? '待確認' : (d.shipping === 0 ? '$0（包送）' : `$${d.shipping}`);
       document.getElementById('singleKitFee').textContent = d.kitFee ? '+$18' : '不加購';
-      document.getElementById('singleTotal').textContent = d.total === null ? '待確認' : `$${d.total}`;
+      document.getElementById('singleTotal').textContent = d.total === null ? '待確認' : `${d.total}`;
+      if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = d.total === null ? '待確認' : `${d.total}`;
       const alert = document.getElementById('singleAlert');
       alert.classList.remove('good');
       if(d.count < 4){
@@ -972,8 +1031,54 @@
     document.getElementById('singleWa1').addEventListener('click',e=>{e.preventDefault();singleWhatsapp('54824802');});
     document.getElementById('singleWa2').addEventListener('click',e=>{e.preventDefault();singleWhatsapp('68068004');});
 
+    // 套餐 / 自由配搭：同一個選購入口，只顯示一種買法
+    const packagesSection = document.getElementById('packages');
+    const singleSection = document.getElementById('single');
+    const orderSection = document.getElementById('order');
+    const bonusSection = document.getElementById('bonus');
+    const modeButtons = document.querySelectorAll('[data-purchase-mode]');
+    const buyModeNote = document.getElementById('buyModeNote');
+    const mobileModeLabel = document.getElementById('mobileModeLabel');
+    const mobileChooseBtn = document.getElementById('mobileChooseBtn');
+
+    // 將套餐落單設定放到套餐卡後面，避免被附送/配送資訊隔開。
+    if(packagesSection && orderSection && packagesSection.nextElementSibling !== orderSection){
+      packagesSection.insertAdjacentElement('afterend', orderSection);
+    }
+
+    function setPurchaseMode(mode){
+      purchaseMode = mode === 'single' ? 'single' : 'package';
+      const packageActive = purchaseMode === 'package';
+
+      packagesSection.classList.toggle('purchase-hidden', !packageActive);
+      orderSection.classList.toggle('purchase-hidden', !packageActive);
+      singleSection.classList.toggle('purchase-hidden', packageActive);
+
+      modeButtons.forEach(btn => {
+        const active = btn.dataset.purchaseMode === purchaseMode;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      if(packageActive){
+        buyModeNote.innerHTML = '<b>你而家揀緊：套餐優惠</b><span>6 / 8 / 10 隻，基本區包送，免費附送食蟹四寶。</span>';
+        mobileModeLabel.textContent = '套餐優惠 · 現時總價';
+        render();
+      }else{
+        buyModeNote.innerHTML = '<b>你而家揀緊：自由配搭</b><span>4 隻起，公乸數量自己決定；4–5 隻基本配送 +$80。</span>';
+        mobileModeLabel.textContent = '自由配搭 · 現時總價';
+        renderSingle();
+      }
+    }
+
+    modeButtons.forEach(btn => btn.addEventListener('click', () => setPurchaseMode(btn.dataset.purchaseMode)));
+    mobileChooseBtn.addEventListener('click', () => {
+      const target = purchaseMode === 'package' ? orderSection : document.querySelector('.single-builder');
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+
     setMinDate();
-    render();
+    setPurchaseMode('package');
     renderSingle();
   </script>
 </body>
