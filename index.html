@@ -838,6 +838,26 @@
       .single-builder,.single-info{padding:20px}
     }
 
+  
+    /* 地址自動判區 */
+    .address-zone-result{
+      display:flex;align-items:flex-start;gap:10px;margin-top:9px;padding:11px 12px;
+      border-radius:13px;border:1px solid #dec8aa;background:#fff9f1;color:#5f4c42
+    }
+    .address-zone-dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px;margin-top:5px;background:#b89b78;box-shadow:0 0 0 4px rgba(184,155,120,.12)}
+    .address-zone-result strong{display:block;font-size:12px;color:#51382d}
+    .address-zone-result small{display:block;margin-top:2px;font-size:10px;line-height:1.45;color:#756258}
+    .address-zone-result.basic{background:#f2f7f0;border-color:#c9d8c5}
+    .address-zone-result.basic .address-zone-dot{background:#4f7b55;box-shadow:0 0 0 4px rgba(79,123,85,.12)}
+    .address-zone-result.far{background:#fff8e9;border-color:#dfc89d}
+    .address-zone-result.far .address-zone-dot{background:#b47d2b;box-shadow:0 0 0 4px rgba(180,125,43,.12)}
+    .address-zone-result.remote{background:#fff2e8;border-color:#ddbea2}
+    .address-zone-result.remote .address-zone-dot{background:#a55d35;box-shadow:0 0 0 4px rgba(165,93,53,.12)}
+    .address-zone-result.special{background:#fff0ed;border-color:#dbb0aa}
+    .address-zone-result.special .address-zone-dot{background:#8a3327;box-shadow:0 0 0 4px rgba(138,51,39,.12)}
+    .address-zone-result.manual{background:#f5f1eb;border-color:#d7c6b2}
+    .zone-auto-hint{display:block;margin-top:6px;color:#7b685e;font-size:10px;line-height:1.45}
+
   </style>
 </head>
 <body>
@@ -1246,6 +1266,7 @@
                   <option value="70" data-zone-name="遠區配送">港島一般市區／粉嶺／上水／東涌／西貢市中心｜+$70</option>
                   <option value="special" data-zone-name="特殊地址">村屋深入位置／深西貢／山頂／赤柱／石澳／機場／愉景灣／禁區／特殊上落貨位置｜待確認</option>
                 </select>
+                <small class="zone-auto-hint">填寫收貨地址後會自動選區；特殊或未能識別地址會標示「待確認」。</small>
               </div>
             </div>
 
@@ -1307,6 +1328,10 @@
             <div class="receiver-field receiver-field-wide">
               <label for="receiverAddress">中文地址 <span>*</span></label>
               <textarea id="receiverAddress" rows="2" autocomplete="street-address" placeholder="請輸入完整中文收貨地址，包括屋苑／大廈、座數、樓層及室號"></textarea>
+              <div class="address-zone-result pending" id="addressZoneResult" aria-live="polite">
+                <span class="address-zone-dot"></span>
+                <div><strong>輸入地址後自動判區</strong><small>系統會按中文地址自動選擇配送分區及更新運費。</small></div>
+              </div>
             </div>
             <div class="receiver-field">
               <label for="receiveDate">收貨日期 <span>*</span></label>
@@ -1479,7 +1504,7 @@
                 <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區、粉嶺、上水、東涌、西貢市中心｜+$70</option>
                 <option value="special" data-zone-name="特殊地址">特殊地址｜村屋深入位置、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置｜費用待確認</option>
               </select>
-              <div class="order-tip">如屬特殊地址，配送費會再個別確認。</div>
+              <div class="order-tip">填寫收貨地址後系統會自動選擇配送區；如判定有誤仍可手動修正。特殊地址會再個別確認。</div>
             </div>
 
             <div class="step tool-order-step">
@@ -1653,6 +1678,8 @@
 
     let state = { qty: 8, mix: 'mixed', zoneFee: 0, zoneName: '基本配送區', addMale: 0, addFemale: 0 };
     let purchaseMode = 'package';
+    let lastAddressDetection = null;
+    let applyingAddressZone = false;
 
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
@@ -1766,6 +1793,7 @@
       const opt = e.target.selectedOptions[0];
       state.zoneFee = opt.value === 'special' ? 'special' : Number(opt.value);
       state.zoneName = opt.dataset.zoneName;
+      if(!applyingAddressZone) setManualZoneResult(e.target);
       render();
     });
 
@@ -1817,10 +1845,10 @@
         `姓名：${r.name || '未填'}`,
         `電話：${r.phone || '未填'}`,
         `中文地址：${r.address || '未填'}`,
+        `地址判區：${lastAddressDetection && lastAddressDetection.status !== 'pending' ? (lastAddressDetection.status === 'unknown' ? '待人工確認' : lastAddressDetection.name) : '未判定'}`,
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
-        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
@@ -1868,6 +1896,134 @@
     // 單隻自選：多重量即時計價
     const singleZone = document.getElementById('singleZone');
     const singleSizeInputs = [...document.querySelectorAll('.single-size-input')];
+    const addressZoneResult = document.getElementById('addressZoneResult');
+
+    const DELIVERY_ZONE_RULES = [
+      {
+        value:'special', name:'特殊地址', type:'special',
+        keywords:['香港國際機場','機場','愉景灣','山頂','太平山頂','赤柱','石澳','村屋','禁區','清水灣','蠔涌','十四鄉','大網仔','北潭涌','黃石碼頭']
+      },
+      {
+        value:'30', name:'較遠地區', type:'far',
+        keywords:['將軍澳','調景嶺','康城','坑口','寶琳','大埔','太和','元朗','天水圍']
+      },
+      {
+        value:'70', name:'遠區配送', type:'remote',
+        keywords:[
+          '粉嶺','上水','東涌','西貢',
+          '中環','金鐘','灣仔','銅鑼灣','天后','炮台山','北角','鰂魚涌','太古','西灣河','筲箕灣','柴灣','杏花邨',
+          '上環','西營盤','石塘咀','堅尼地城','薄扶林','香港仔','黃竹坑','鴨脷洲','海怡','跑馬地','大坑','半山','港島','南區'
+        ]
+      },
+      {
+        value:'0', name:'基本配送區', type:'basic',
+        keywords:[
+          '荃灣','葵涌','葵青','青衣',
+          '沙田','大圍','馬鞍山','屯門',
+          '九龍','尖沙咀','佐敦','油麻地','旺角','太子','深水埗','長沙灣','荔枝角','美孚',
+          '紅磡','黃埔','土瓜灣','何文田','九龍塘','九龍城','啟德','新蒲崗',
+          '黃大仙','鑽石山','樂富','慈雲山','彩虹','牛池灣',
+          '觀塘','九龍灣','牛頭角','藍田','油塘','秀茂坪'
+        ]
+      }
+    ];
+
+    function detectDeliveryZone(address){
+      const raw = (address || '').replace(/[\s，,。．、]/g,'');
+      if(raw.length < 3) return {status:'pending'};
+
+      for(const rule of DELIVERY_ZONE_RULES){
+        const keyword = rule.keywords.find(k => raw.includes(k));
+        if(keyword) return {...rule,status:'matched',keyword};
+      }
+      return {value:'special',name:'特殊地址',type:'special',status:'unknown',keyword:''};
+    }
+
+    function currentZoneFeeText(value){
+      if(value === 'special') return '配送費待確認';
+      const fee = Number(value);
+      return fee === 0 ? '基本配送區包送' : `分區附加費 +${fee}`;
+    }
+
+    function syncZoneSelects(value){
+      applyingAddressZone = true;
+
+      if(zoneSelect && [...zoneSelect.options].some(o=>o.value===String(value))){
+        zoneSelect.value = String(value);
+        zoneSelect.dispatchEvent(new Event('change',{bubbles:true}));
+      }
+      if(singleZone && [...singleZone.options].some(o=>o.value===String(value))){
+        singleZone.value = String(value);
+        singleZone.dispatchEvent(new Event('change',{bubbles:true}));
+      }
+
+      applyingAddressZone = false;
+    }
+
+    function renderAddressZoneResult(){
+      if(!addressZoneResult) return;
+      const d = lastAddressDetection;
+
+      addressZoneResult.className = 'address-zone-result';
+
+      if(!d || d.status === 'pending'){
+        addressZoneResult.classList.add('pending');
+        addressZoneResult.innerHTML = '<span class="address-zone-dot"></span><div><strong>輸入地址後自動判區</strong><small>系統會按中文地址自動選擇配送分區及更新運費。</small></div>';
+        return;
+      }
+
+      if(d.status === 'manual'){
+        addressZoneResult.classList.add('manual');
+        addressZoneResult.innerHTML = `<span class="address-zone-dot"></span><div><strong>已手動設定：${d.name}</strong><small>${currentZoneFeeText(d.value)}。如地址屬特殊位置，最終配送費以客服確認為準。</small></div>`;
+        return;
+      }
+
+      addressZoneResult.classList.add(d.type || 'special');
+
+      if(d.status === 'unknown'){
+        addressZoneResult.innerHTML = '<span class="address-zone-dot"></span><div><strong>未能自動確認配送區｜待人工確認</strong><small>地址已保留，但系統未能可靠識別地區，因此暫不亂收運費；客服確認後會通知。</small></div>';
+        return;
+      }
+
+      let feeText = currentZoneFeeText(d.value);
+      if(purchaseMode === 'single'){
+        const sd = singleData();
+        if(sd.count >= 4 && sd.shipping !== null){
+          feeText = sd.shipping === 0 ? '現時配送費 $0（包送）' : `現時配送費 ${sd.shipping}`;
+        }else if(sd.count < 4){
+          feeText += '；單隻自選需滿 4 隻起送';
+        }
+      }
+
+      addressZoneResult.innerHTML = `<span class="address-zone-dot"></span><div><strong>系統判定：${d.name}</strong><small>根據「${d.keyword}」判定｜${feeText}。如實際位置屬深入村屋／特殊上落貨地點，仍以客服確認為準。</small></div>`;
+    }
+
+    function applyAddressDetection(){
+      const detected = detectDeliveryZone(receiverAddress.value);
+      lastAddressDetection = detected;
+
+      if(detected.status === 'pending'){
+        renderAddressZoneResult();
+        return;
+      }
+
+      syncZoneSelects(detected.value);
+      renderAddressZoneResult();
+      updateFinalPreview();
+    }
+
+    function setManualZoneResult(select){
+      if(!select || !receiverAddress.value.trim()) return;
+      const opt = select.selectedOptions[0];
+      lastAddressDetection = {
+        status:'manual',
+        value:opt.value,
+        name:opt.dataset.zoneName || opt.textContent.split('｜')[0]
+      };
+      renderAddressZoneResult();
+    }
+
+    receiverAddress.addEventListener('input', applyAddressDetection);
 
     function clampSingle(v){
       v = parseInt(v || '0',10);
@@ -1962,6 +2118,7 @@
         }
       }
       updateFinalPreview();
+      renderAddressZoneResult();
     }
 
     document.querySelectorAll('[data-single-adjust]').forEach(btn => btn.addEventListener('click',()=>{
@@ -1971,7 +2128,11 @@
       renderSingle();
     }));
     singleSizeInputs.forEach(input => input.addEventListener('input',renderSingle));
-    singleZone.addEventListener('change',renderSingle);
+    singleZone.addEventListener('change',e=>{
+      if(!applyingAddressZone) setManualZoneResult(e.target);
+      renderSingle();
+      renderAddressZoneResult();
+    });
 
     function buildSingleMessage(){
       const r = receiverData();
@@ -1984,6 +2145,7 @@
         `姓名：${r.name || '未填'}`,
         `電話：${r.phone || '未填'}`,
         `中文地址：${r.address || '未填'}`,
+        `地址判區：${lastAddressDetection && lastAddressDetection.status !== 'pending' ? (lastAddressDetection.status === 'unknown' ? '待人工確認' : lastAddressDetection.name) : '未判定'}`,
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
@@ -2029,14 +2191,19 @@
           : `${d.zoneName}｜配送費 ${d.shipping}｜${toolText}`;
       }else{
         const base = prices[state.qty][state.mix];
+        const addon = packageAddonData();
         const special = state.zoneFee === 'special';
         const toolQty = clampExtraTool();
         const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
-        productEl.textContent = `${packNames[state.qty]}｜${mixNames[state.mix]}`;
-        totalEl.textContent = special ? '待確認' : `${base + Number(state.zoneFee) + toolCost}`;
+        const knownSubtotal = base + addon.cost + toolCost;
+        const addonText = addon.count
+          ? `｜加購 ${addon.male ? addon.male+'公' : ''}${addon.male && addon.female ? ' + ' : ''}${addon.female ? addon.female+'乸' : ''} +${addon.cost}`
+          : '';
+        productEl.textContent = `${packNames[state.qty]}｜${mixNames[state.mix]}${addonText}`;
+        totalEl.textContent = special ? '待確認' : `${knownSubtotal + Number(state.zoneFee)}`;
         const toolText = toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${toolQty}份（加購+${toolCost}）`;
         metaEl.textContent = special
-          ? `特殊地址｜配送費待確認｜${toolText}`
+          ? `特殊地址｜配送費待確認｜已知商品小計 ${knownSubtotal}｜${toolText}`
           : `${state.zoneName}｜配送附加費 +${state.zoneFee}｜${toolText}`;
       }
     }
@@ -2132,6 +2299,7 @@
         renderSingle();
       }
       updateFinalPreview();
+      renderAddressZoneResult();
     }
 
     modeButtons.forEach(btn => btn.addEventListener('click', () => setPurchaseMode(btn.dataset.purchaseMode)));
