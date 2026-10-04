@@ -1813,6 +1813,26 @@
       .receiver-zone-field{padding:12px}
     }
 
+  
+    .final-checkout-area{display:none}
+    .final-checkout-area.ready{display:block;animation:finalReveal .2s ease}
+    .full-order-preview-btn{
+      width:100%;
+      min-height:48px;
+      margin-top:12px;
+      border:1px solid #7a2a20;
+      border-radius:14px;
+      background:#fff8f0;
+      color:#6f251c;
+      font-weight:950;
+      cursor:pointer;
+    }
+    .full-order-preview-btn:hover{background:#f5e6d5}
+    @keyframes finalReveal{
+      from{opacity:.3;transform:translateY(4px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
   </style>
 </head>
 <body>
@@ -2115,9 +2135,8 @@
               <div class="single-summary-row"><span>大閘蟹</span><strong id="singleItems">2公 + 2乸｜4隻</strong></div>
               <div class="single-summary-row single-breakdown-row"><span>已選規格</span><strong id="singleBreakdown">公5–5.5兩×2、乸4.5–5兩×2</strong></div>
               <div class="single-summary-row"><span>蟹款小計</span><strong id="singleCrabSubtotal">$480</strong></div>
-              <div class="single-summary-row"><span>配送費</span><strong id="singleShipping">$80</strong></div>
               <div class="single-summary-row"><span>食蟹工具</span><strong id="singleExtraTools">1份（免費）</strong></div>
-              <div class="single-total"><div><small>單隻自選預估總價</small></div><strong id="singleTotal">$560</strong></div>
+              <div class="single-total"><div><small>商品小計</small><small>配送費於填妥收貨資料後顯示</small></div><strong id="singleTotal">$480</strong></div>
             </div>
 
             <div class="single-alert" id="singleAlert">4–5 隻屬單隻自選小單，基本配送區另收 $80 配送費。</div>
@@ -2195,29 +2214,33 @@
             </div>
           </div>
 
-          <div class="final-order-preview">
-            <div class="final-order-head">
-              <div>
-                <small>訂單預覽</small>
-                <strong id="finalProduct">8隻皇牌裝｜公乸雙拼</strong>
+          <div class="final-checkout-area" id="finalCheckoutArea">
+            <div class="final-order-preview">
+              <div class="final-order-head">
+                <div>
+                  <small>完整訂單預覽</small>
+                  <strong id="finalProduct">8隻皇牌裝｜公乸雙拼</strong>
+                </div>
+                <b id="finalTotal">$798</b>
               </div>
-              <b id="finalTotal">$798</b>
+              <div class="final-order-meta" id="finalOrderMeta">基本配送區｜配送附加費 $0｜食蟹工具1份免費</div>
             </div>
-            <div class="final-order-meta" id="finalOrderMeta">基本配送區｜食蟹四寶已包括</div>
-          </div>
 
-          <div class="final-submit">
-            <button type="button" class="final-wa primary-wa" id="finalWa1">
-              <span>發送 WhatsApp</span>
-              <small>5482 4802</small>
-            </button>
-            <button type="button" class="final-wa primary-wa" id="finalWa2">
-              <span>發送 WhatsApp</span>
-              <small>6806 8004</small>
-            </button>
-          </div>
-          <div class="final-submit-note">
-            按下後會開啟 WhatsApp，產品、收貨資料、配送費及總價已自動整理好；確認內容無誤後按「傳送」即可。
+            <button type="button" class="full-order-preview-btn" id="fullOrderPreviewBtn">預覽完整訂單</button>
+
+            <div class="final-submit">
+              <button type="button" class="final-wa primary-wa" id="finalWa1">
+                <span>發送 WhatsApp</span>
+                <small>5482 4802</small>
+              </button>
+              <button type="button" class="final-wa primary-wa" id="finalWa2">
+                <span>發送 WhatsApp</span>
+                <small>6806 8004</small>
+              </button>
+            </div>
+            <div class="final-submit-note">
+              按下後會開啟 WhatsApp，產品、收貨資料、配送費及總價已自動整理好；確認內容無誤後按「傳送」即可。
+            </div>
           </div>
         </div>
       </div>
@@ -2268,7 +2291,7 @@
             <div class="eyebrow">訂購產品 · 套餐設定</div>
             <h2>揀套餐，再按需要加單隻。</h2>
           </div>
-          <p>先揀套餐同公乸配搭；想食多幾隻，可以直接加購蟹公／蟹乸，再揀配送區。全部會合併成同一張訂單。</p>
+          <p>先揀套餐同公乸配搭；想食多幾隻，可以直接加購蟹公／蟹乸。配送分區會喺收貨資料一併處理。</p>
         </div>
 
         <div class="order-grid">
@@ -2438,22 +2461,19 @@
               <div class="summary-row"><span>規格</span><strong id="sumSize">公 5–5.5 兩 / 乸 4.5–5 兩</strong></div>
               <div class="summary-row"><span>套餐價</span><strong id="sumBase">$798</strong></div>
               <div class="summary-row"><span>單隻加購</span><strong id="sumCrabAddon">不加購</strong></div>
-              <div class="summary-row"><span>配送附加費</span><strong id="sumShip">+$0</strong></div>
-              <div class="summary-row"><span>配送分區</span><strong id="sumZone">基本配送區</strong></div>
               <div class="summary-row"><span>其他附送</span><strong>香醋、紫蘇葉、紅糖薑棗茶</strong></div>
               <div class="summary-row"><span>食蟹工具</span><strong id="sumExtraTools">1份（免費）</strong></div>
             </div>
             <div class="summary-total">
-              <div><small>預估總價</small><small>特殊地址會改為待確認</small></div>
+              <div><small>商品小計</small><small>配送費於填妥收貨資料後顯示</small></div>
               <strong id="sumTotal">$798</strong>
             </div>
-            <div class="summary-box" id="summaryText">你而家揀咗 8 隻皇牌裝・公乸雙拼，配送至基本配送區，現時總價為 $798。</div>
+            <div class="summary-box" id="summaryText">你而家揀咗 8 隻皇牌裝・公乸雙拼，商品小計為 $798。</div>
             <div class="checkout-next">
               <button type="button" id="packageToReceiver">下一步：填收貨資料</button>
               <small>填妥資料後，產品＋收貨資料會一次過發送到 WhatsApp。</small>
             </div>
             <div class="summary-actions">
-              <button class="secondary" id="whatsappBtn">預覽完整訂單</button>
               <button class="secondary" onclick="document.getElementById('buy-mode').scrollIntoView({behavior:'smooth'});">轉購買方式</button>
             </div>
             <div class="summary-foot">價格及配送安排以確認訂單時資料為準。</div>
@@ -2708,22 +2728,17 @@
       const addon = packageAddonData();
       const toolQty = clampExtraTool();
       const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
-      const isSpecial = state.zoneFee === 'special';
-      const knownSubtotal = base + addon.cost + toolCost;
-      const total = isSpecial ? '待確認' : `$${knownSubtotal + Number(state.zoneFee)}`;
-      const shipLabel = isSpecial ? '待確認' : `+$${state.zoneFee}`;
+      const productSubtotal = base + addon.cost + toolCost;
 
       document.getElementById('sumPack').textContent = packNames[state.qty];
       document.getElementById('sumMix').textContent = mixNames[state.mix];
       document.getElementById('sumSize').textContent = sizeNames[state.mix];
       document.getElementById('sumBase').textContent = `$${base}`;
       document.getElementById('sumCrabAddon').textContent = addon.count
-        ? `${addon.count}隻｜+${addon.cost}`
+        ? `${addon.count}隻｜+$${addon.cost}`
         : '不加購';
-      document.getElementById('sumShip').textContent = shipLabel;
-      document.getElementById('sumZone').textContent = state.zoneName;
       document.getElementById('sumExtraTools').textContent = toolQty === 1 ? '1份（免費）' : `${toolQty}份｜加購 +$${toolCost}`;
-      document.getElementById('sumTotal').textContent = total;
+      document.getElementById('sumTotal').textContent = `$${productSubtotal}`;
 
       const addonSubtotal = document.getElementById('packageCrabAddonSubtotal');
       if(addonSubtotal){
@@ -2732,15 +2747,11 @@
           : '暫未加購';
       }
 
-      if(purchaseMode === 'package') document.getElementById('mobileTotal').textContent = total;
+      if(purchaseMode === 'package') document.getElementById('mobileTotal').textContent = `$${productSubtotal}`;
 
-      const addonText = addon.count
-        ? `，另加單隻 ${addon.count} 隻`
-        : '';
-
-      document.getElementById('summaryText').textContent = isSpecial
-        ? `你揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}${addonText}，配送費需要再確認；已知商品小計 $ ${knownSubtotal}。`.replace('$ ','$')
-        : `你揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}${addonText}，配送至 ${state.zoneName}，現時總價為 $${knownSubtotal + Number(state.zoneFee)}。`;
+      const addonText = addon.count ? `，另加單隻 ${addon.count} 隻` : '';
+      document.getElementById('summaryText').textContent =
+        `你揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}${addonText}，商品小計為 $${productSubtotal}。`;
 
       qtyChoices.forEach(btn => btn.classList.toggle('active', Number(btn.dataset.qty) === state.qty));
       mixChoices.forEach(btn => btn.classList.toggle('active', btn.dataset.mix === state.mix));
@@ -2788,6 +2799,14 @@
         extraTools: clampExtraTool(),
         get extraToolCost(){ return Math.max(0, this.extraTools - 1) * EXTRA_TOOL_PRICE; }
       };
+    }
+
+    function receiverReady(){
+      const r = receiverData();
+      const validPhone = /^\d{8}$/.test(r.phone.replace(/[\s-]/g,''));
+      const baseReady = Boolean(r.name && validPhone && r.address && r.date && r.slot && r.arrangement);
+      if(purchaseMode === 'single') return baseReady && singleData().count >= 4;
+      return baseReady;
     }
 
     function validateReceiver(){
@@ -2845,9 +2864,9 @@
 
     const modal = document.getElementById('copyModal');
     const copyText = document.getElementById('copyText');
-    document.getElementById('whatsappBtn').addEventListener('click', () => {
+    document.getElementById('fullOrderPreviewBtn')?.addEventListener('click', () => {
       if(!validateReceiver()) return;
-      copyText.value = buildMessage();
+      copyText.value = currentOrderMessage();
       modal.classList.add('show');
     });
     document.getElementById('closeBtn').addEventListener('click', () => modal.classList.remove('show'));
@@ -3065,11 +3084,11 @@
 
       document.getElementById('singleItems').textContent = `${d.male}公 + ${d.female}乸｜${d.count}隻`;
       document.getElementById('singleBreakdown').textContent = breakdown;
-      document.getElementById('singleCrabSubtotal').textContent = `$${d.crabSubtotal}`;
-      document.getElementById('singleShipping').textContent = d.special ? '待確認' : (d.shipping === 0 ? '$0（包送）' : `$${d.shipping}`);
-      document.getElementById('singleExtraTools').textContent = d.toolQty === 1 ? '1份（免費）' : `${d.toolQty}份｜加購 +$${d.toolCost}`;
-      document.getElementById('singleTotal').textContent = d.total === null ? '待確認' : `$${d.total}`;
-      if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = d.total === null ? '待確認' : `$${d.total}`;
+      const productSubtotal = d.crabSubtotal + d.toolCost;
+      document.getElementById('singleCrabSubtotal').textContent = `${d.crabSubtotal}`;
+      document.getElementById('singleExtraTools').textContent = d.toolQty === 1 ? '1份（免費）' : `${d.toolQty}份｜加購 +${d.toolCost}`;
+      document.getElementById('singleTotal').textContent = `${productSubtotal}`;
+      if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = `${productSubtotal}`;
 
       const alert = document.getElementById('singleAlert');
       alert.classList.remove('good');
@@ -3145,16 +3164,20 @@
       const productEl = document.getElementById('finalProduct');
       const totalEl = document.getElementById('finalTotal');
       const metaEl = document.getElementById('finalOrderMeta');
-      if(!productEl || !totalEl || !metaEl) return;
+      const checkoutArea = document.getElementById('finalCheckoutArea');
+      if(!productEl || !totalEl || !metaEl || !checkoutArea) return;
+
+      const ready = receiverReady();
+      checkoutArea.classList.toggle('ready', ready);
 
       if(purchaseMode === 'single'){
         const d = singleData();
         productEl.textContent = `單隻自選｜${d.male}公 + ${d.female}乸｜共 ${d.count} 隻`;
-        totalEl.textContent = d.total === null ? '待確認' : `${d.total}`;
-        const toolText = d.toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${d.toolQty}份（加購+${d.toolCost}）`;
+        totalEl.textContent = d.total === null ? '待確認' : `$${d.total}`;
+        const toolText = d.toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${d.toolQty}份（加購+$${d.toolCost}）`;
         metaEl.textContent = d.special
           ? `特殊地址｜配送費待確認｜${toolText}`
-          : `${d.zoneName}｜配送費 ${d.shipping}｜${toolText}`;
+          : `${d.zoneName}｜配送費 $${d.shipping}｜${toolText}`;
       }else{
         const base = prices[state.qty][state.mix];
         const addon = packageAddonData();
@@ -3163,14 +3186,14 @@
         const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
         const knownSubtotal = base + addon.cost + toolCost;
         const addonText = addon.count
-          ? `｜加購 ${addon.male ? addon.male+'公' : ''}${addon.male && addon.female ? ' + ' : ''}${addon.female ? addon.female+'乸' : ''} +${addon.cost}`
+          ? `｜加購單隻 ${addon.count} 隻 +$${addon.cost}`
           : '';
         productEl.textContent = `${packNames[state.qty]}｜${mixNames[state.mix]}${addonText}`;
-        totalEl.textContent = special ? '待確認' : `${knownSubtotal + Number(state.zoneFee)}`;
-        const toolText = toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${toolQty}份（加購+${toolCost}）`;
+        totalEl.textContent = special ? '待確認' : `$${knownSubtotal + Number(state.zoneFee)}`;
+        const toolText = toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${toolQty}份（加購+$${toolCost}）`;
         metaEl.textContent = special
-          ? `特殊地址｜配送費待確認｜已知商品小計 ${knownSubtotal}｜${toolText}`
-          : `${state.zoneName}｜配送附加費 +${state.zoneFee}｜${toolText}`;
+          ? `特殊地址｜配送費待確認｜商品小計 $${knownSubtotal}｜${toolText}`
+          : `${state.zoneName}｜配送附加費 +$${state.zoneFee}｜${toolText}`;
       }
     }
 
@@ -3199,7 +3222,7 @@
     document.getElementById('finalWa1')?.addEventListener('click',()=>openFinalWhatsapp('54824802'));
     document.getElementById('finalWa2')?.addEventListener('click',()=>openFinalWhatsapp('68068004'));
 
-    [receiverName,receiverPhone,receiverAddress,dateInput,slotSelect,receiverNote].forEach(el=>{
+    [receiverName,receiverPhone,receiverAddress,zoneSelect,dateInput,slotSelect,receiverNote].forEach(el=>{
       if(el) el.addEventListener('input', updateFinalPreview);
       if(el) el.addEventListener('change', updateFinalPreview);
     });
