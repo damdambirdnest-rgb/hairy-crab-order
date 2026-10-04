@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>啖啖燕窩｜秋蟹到家・大閘蟹訂購</title>
-  <meta name="description" content="啖啖燕窩秋季限定大閘蟹訂購，6隻起送，全公、公乸雙拼、全乸三種套餐，指定地區包送。" />
+  <meta name="description" content="啖啖燕窩秋季限定大閘蟹訂購，套餐6隻起、自由配搭4隻起；基本配送區包送，較遠及遠區按固定差額配送。" />
   <style>
     :root{
       --bg:#f6efe6;
@@ -579,7 +579,7 @@
               <div class="single-rule">最低 4 隻起送；1–3 隻不設即日配送。</div>
               <div class="single-rule">4–5 隻：基本配送區配送費 +$80。</div>
               <div class="single-rule">6 隻或以上：基本配送區包送。</div>
-              <div class="single-rule">其他地區再按 +$30 / +$60 / +$80 補配送差額。</div>
+              <div class="single-rule">其他地區按 +$30 / +$70 補配送差額；特殊地址另行確認。</div>
               <div class="single-rule">食蟹四寶單點可加購 +$18；套餐則免費附送。</div>
             </div>
           </div>
@@ -603,9 +603,8 @@
                 <select id="singleZone">
                   <option value="0" data-zone-name="基本配送區">基本配送區｜+$0附加費</option>
                   <option value="30" data-zone-name="較遠地區">大埔／元朗／天水圍／將軍澳｜+$30</option>
-                  <option value="60" data-zone-name="港島 / 偏遠">港島／粉嶺／上水／西貢／村屋｜+$60</option>
-                  <option value="80" data-zone-name="東涌">東涌市區｜+$80</option>
-                  <option value="special" data-zone-name="特殊地址">機場／愉景灣／特殊地址｜待確認</option>
+                  <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區／粉嶺／上水／東涌／西貢市中心｜+$70</option>
+                  <option value="special" data-zone-name="特殊地址">特殊地址｜村屋深入位置／深西貢／山頂／赤柱／石澳／機場／愉景灣／禁區／特殊上落貨位置｜待確認</option>
                 </select>
               </div>
               <div class="single-field">
@@ -656,9 +655,9 @@
           <div class="delivery-zones">
             <div class="delivery-zone top"><strong><span>基本配送區</span><b>+$0</b></strong><p>荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門</p></div>
             <div class="delivery-zone"><strong><span>較遠地區</span><b>+$30</b></strong><p>大埔、元朗、天水圍、將軍澳</p></div>
-            <div class="delivery-zone"><strong><span>港島／偏遠</span><b>+$60</b></strong><p>港島、粉嶺、上水、西貢、村屋及較深入地址</p></div>
-            <div class="toll-note">港島配送涉及過海隧道；實際 Lalamove 訂單仍可能包含隧道／橋費及時段附加費。此網站暫以固定分區附加費計算。</div>
-            <div class="delivery-zone"><strong><span>東涌</span><b>+$80</b></strong><p>東涌市區；機場、愉景灣及其他特殊地址需另行確認</p></div>
+            <div class="delivery-zone"><strong><span>遠區配送</span><b>+$70</b></strong><p>港島一般市區、粉嶺、上水、東涌、西貢市中心</p></div>
+            <div class="delivery-zone"><strong><span>特殊地址</span><b>待確認</b></strong><p>村屋深入位置、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置</p></div>
+            <div class="toll-note">以上固定分區以一般小型速遞配送為基準；如貨量、包裝體積或地址需要轉用其他車種，會於確認訂單時另行報價。</div>
           </div>
         </div>
       </div>
@@ -708,9 +707,8 @@
               <select class="select" id="zone">
                 <option value="0" data-zone-name="基本配送區">基本配送區｜荃灣、葵青、九龍、沙田、大圍、馬鞍山、屯門｜+$0</option>
                 <option value="30" data-zone-name="較遠地區">較遠地區｜大埔、元朗、天水圍、將軍澳｜+$30</option>
-                <option value="60" data-zone-name="港島 / 偏遠">港島／偏遠｜港島、粉嶺、上水、西貢、村屋｜+$60</option>
-                <option value="80" data-zone-name="東涌">東涌市區｜+$80</option>
-                <option value="special" data-zone-name="特殊地址">機場、愉景灣及特殊地址｜費用待確認</option>
+                <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區、粉嶺、上水、東涌、西貢市中心｜+$70</option>
+                <option value="special" data-zone-name="特殊地址">特殊地址｜村屋深入位置、深西貢、山頂、赤柱／石澳、機場、愉景灣、禁區及特殊上落貨位置｜費用待確認</option>
               </select>
               <div class="order-tip">如屬特殊地址，配送費會再個別確認。</div>
             </div>
@@ -772,7 +770,7 @@
           </details>
           <details>
             <summary>點解有啲地區要加附加費？</summary>
-            <p>基本配送區已經包送；較遠地區、港島／偏遠地區及東涌按區域補固定差額。</p>
+            <p>基本配送區已經包送；較遠地區按 +$30、遠區配送按 +$70；特殊地址另行確認。</p>
           </details>
           <details>
             <summary>公乸雙拼點樣分配？</summary>
@@ -991,7 +989,7 @@
           alert.textContent = `你揀咗 ${d.count} 隻，轉做同配搭套餐約可慳 $${matched.saving}，而且免費送食蟹四寶。`;
         } else {
           alert.classList.add('good');
-          alert.textContent = `已滿 6 隻：基本配送區包送；其他地區只補固定附加費。`;
+          alert.textContent = `已滿 6 隻：基本配送區包送；其他地區只補固定附加費；特殊地址另行確認。`;
         }
       }
     }
