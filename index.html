@@ -670,6 +670,174 @@
       .size-choice-counter{grid-column:1/-1;justify-content:end}
     }
 
+  
+    /* 2026-10 visual refinement */
+    :root{
+      --lux-cream:#fbf6ef;
+      --lux-paper:#fffdf9;
+      --lux-wine:#6d261d;
+      --lux-wine-deep:#471813;
+      --lux-gold:#c89b62;
+      --lux-line:#ddc8ad;
+      --lux-muted:#756157;
+    }
+
+    .buy-mode-section{padding-top:38px;padding-bottom:42px}
+    .buy-mode-head{align-items:flex-end}
+    .buy-mode-head h2{margin-top:7px}
+    .buy-mode-switch{
+      padding:7px;border-radius:24px;
+      background:linear-gradient(180deg,#efe4d7,#e8dac9);
+      border:1px solid #d7bea0;
+      box-shadow:0 14px 30px rgba(71,39,22,.06)
+    }
+    .purchase-mode-btn{
+      border-radius:18px;min-height:118px;padding:20px 22px;
+      transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease
+    }
+    .purchase-mode-btn:hover{transform:translateY(-1px)}
+    .purchase-mode-btn.active{
+      background:linear-gradient(145deg,#6d261d 0%,#4a1914 100%);
+      box-shadow:0 16px 32px rgba(74,25,20,.18)
+    }
+    .purchase-mode-btn strong{font-size:22px}
+    .purchase-mode-btn small{line-height:1.55}
+    .mode-badge{letter-spacing:.06em}
+
+    .buy-mode-note{
+      margin-top:12px;padding:13px 16px;border-radius:14px;
+      background:#fffaf4;border:1px solid #dfc9af
+    }
+    .service-notice{
+      display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;
+      margin-top:12px;padding:14px 16px;border-radius:16px;
+      background:linear-gradient(180deg,#fff8eb,#f7ead8);
+      border:1px solid #dcbf96;color:#4f3427;
+      box-shadow:0 8px 20px rgba(71,39,22,.045)
+    }
+    .service-notice-icon{
+      width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+      background:#7d2b21;color:#fff;font-weight:950;font-family:Georgia,serif
+    }
+    .service-notice strong{display:block;font-size:13px;color:#6d261d}
+    .service-notice span{display:block;margin-top:2px;font-size:11px;line-height:1.5;color:#6a5549}
+    .service-notice a{
+      white-space:nowrap;padding:8px 10px;border-radius:999px;
+      background:#fffdf9;border:1px solid #d6b88f;
+      color:#7d2b21;font-size:11px;font-weight:900
+    }
+
+    #packages,#single,#order{padding-top:46px}
+    .section-title{padding-bottom:4px}
+    .section-title h2{max-width:760px}
+    .section-title>p{max-width:520px}
+
+    .package-grid{gap:20px}
+    .package-card-clean{
+      border-radius:26px;padding:26px;
+      background:linear-gradient(180deg,#fffdf9 0%,#fbf4eb 100%);
+      border:1px solid #ddc5a5;
+      box-shadow:0 16px 40px rgba(65,40,24,.075)
+    }
+    .package-card-clean.featured{
+      background:linear-gradient(180deg,#fffaf2 0%,#fffdf9 100%);
+      border:2px solid #8a3327;
+      box-shadow:0 22px 50px rgba(104,43,32,.14)
+    }
+    .package-title-row{padding-bottom:20px}
+    .package-price-option{background:#fffaf4}
+    .package-price-option.recommended{
+      background:linear-gradient(180deg,#f8eadc,#f4dfcf);
+      border-color:#b77d5f
+    }
+    .package-includes{
+      border:1px solid #ead7c1;
+      background:#f6ede2
+    }
+
+    .single-shell{gap:18px}
+    .single-info,.single-builder{
+      border-radius:26px;
+      background:linear-gradient(180deg,#fffdf9 0%,#fbf4ea 100%);
+      border:1px solid #d9c0a0;
+      box-shadow:0 16px 40px rgba(63,38,22,.07)
+    }
+    .single-info{padding:32px}
+    .single-info:before{width:5px;background:linear-gradient(180deg,#d2a566,#7f2a20)}
+    .single-kicker{color:#8a3327}
+    .single-retail-overview{gap:12px}
+    .retail-overview-card{
+      background:#fffaf4;border-color:#e3cfb4;
+      padding:17px;border-radius:16px
+    }
+    .retail-overview-card strong{font-size:20px}
+    .single-rule{font-size:12px;line-height:1.5}
+
+    .single-builder{padding:30px}
+    .size-group{
+      padding:17px;border-radius:18px;
+      background:#fffaf4;border-color:#dec6a8
+    }
+    .size-group-title{padding-bottom:13px}
+    .size-choice-list{gap:8px}
+    .size-choice-row{
+      border-radius:12px;padding:11px 12px;
+      background:#fffdf9;border-color:#eadcc9;
+      transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease
+    }
+    .size-choice-row:hover{
+      border-color:#cda77a;box-shadow:0 6px 14px rgba(70,40,22,.05)
+    }
+    .size-choice-price{font-size:17px}
+    .size-choice-counter button{
+      background:#f4e8d9;border-color:#d4b48b
+    }
+    .size-choice-counter button:hover{background:#ead7c2}
+    .size-choice-counter input{
+      background:#fff;border-color:#d9c09e
+    }
+
+    .single-options{margin-top:16px}
+    .single-field select{min-height:48px}
+    .tool-addon-inline{
+      margin-top:14px;border-radius:15px;
+      background:#fff8ef;border-color:#dfc7a7
+    }
+    .single-summary{
+      border-radius:18px;
+      background:linear-gradient(160deg,#351612 0%,#67271d 100%);
+      box-shadow:0 14px 30px rgba(62,22,17,.13)
+    }
+    .single-alert{border:1px solid #e3c79d}
+    .single-alert.good{border-color:#c4d7c2}
+
+    .builder-card{
+      background:linear-gradient(180deg,#fffdf9 0%,#fbf4eb 100%);
+      border-color:#dac2a3
+    }
+    .summary-card{
+      background:linear-gradient(160deg,#341712 0%,#66271d 100%);
+      border-color:#8f5e3a;
+      box-shadow:0 18px 40px rgba(55,22,16,.13)
+    }
+
+    .receiver-card{
+      background:linear-gradient(180deg,#fffdf9 0%,#fbf5ed 100%);
+      border-color:#dcc4a5;
+      box-shadow:0 16px 38px rgba(63,39,22,.06)
+    }
+    .final-order-preview{
+      background:linear-gradient(160deg,#371712,#64261d)
+    }
+
+    @media(max-width:760px){
+      .service-notice{grid-template-columns:32px 1fr}
+      .service-notice a{grid-column:2;justify-self:start}
+      .purchase-mode-btn{min-height:104px;padding:16px}
+      .purchase-mode-btn strong{font-size:19px}
+      .single-builder,.single-info{padding:20px}
+    }
+
   </style>
 </head>
 <body>
@@ -805,6 +973,14 @@
           </button>
         </div>
         <div class="buy-mode-note" id="buyModeNote"><b>你而家揀緊：套餐優惠</b><span>適合想直接揀份量、價錢清楚、基本區包送嘅客人。</span></div>
+        <div class="service-notice" role="note" aria-label="代蒸服務提示">
+          <div class="service-notice-icon">!</div>
+          <div>
+            <strong>溫馨提示｜暫不提供代蒸服務</strong>
+            <span>因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。收到後可參考網站「蒸煮方法」自行處理。</span>
+          </div>
+          <a href="steaming.html">查看蒸煮方法 →</a>
+        </div>
       </div>
     </section>
 
@@ -929,9 +1105,9 @@
         <div class="section-title">
           <div>
             <div class="eyebrow">訂購產品 · 單隻自選</div>
-            <h2>公乸、重量、數量都可以自己揀。</h2>
+            <h2>公乸、重量、數量，全部自己揀。</h2>
           </div>
-          <p>蟹公由 5–5.5 兩起、蟹乸由 4–4.5 兩起。4 隻起送；4–5 隻基本配送 +$80，6 隻或以上基本配送區包送。</p>
+          <p>由入門到特大規格逐級揀，價錢直接顯示。4 隻起送；4–5 隻基本配送 +$80，6 隻或以上基本配送區包送。</p>
         </div>
 
         <div class="single-shell">
@@ -1184,7 +1360,7 @@
               <small>6806 8004</small>
             </button>
           </div>
-          <div class="final-submit-note">任選一個客服號碼。WhatsApp 會自動帶入完整訂單，確認無誤後按「傳送」即可。</div>
+          <div class="final-submit-note">任選一個客服號碼。WhatsApp 會自動帶入完整訂單，確認無誤後按「傳送」即可。｜目前只提供活蟹配送，暫不設代蒸服務。</div>
         </div>
       </div>
     </section>
@@ -1409,6 +1585,10 @@
           <details open>
             <summary>套餐已包咩？</summary>
             <p>套餐已包括大閘蟹、基本配送成本、香醋、紫蘇葉、食蟹工具 1 份及紅糖薑棗茶 3 包。食蟹工具由第 2 份起每份 +$18。</p>
+          </details>
+          <details>
+            <summary>可以代蒸大閘蟹嗎？</summary>
+            <p>暫時唔可以。因每日人手有限，目前只提供活蟹配送，恕未能提供代蒸服務。網站已提供保存及清蒸指南，收到後可以直接跟住處理。</p>
           </details>
           <details>
             <summary>套餐可以再加單隻蟹嗎？</summary>
@@ -1640,6 +1820,8 @@
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
+        '代蒸服務：暫不提供（目前只提供活蟹配送）',
+        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
@@ -1805,6 +1987,7 @@
         `收貨日期：${r.date || '未填'}`,
         `收貨時段：${r.slot}`,
         '（如早晨時段或指定時間會有額外費用）',
+        '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
