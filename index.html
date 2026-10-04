@@ -1814,8 +1814,9 @@
     }
 
   
-    .final-checkout-area{display:none}
-    .final-checkout-area.ready{display:block;animation:finalReveal .2s ease}
+    .final-checkout-area{display:block}
+    .final-preview-gated{display:none}
+    .final-preview-gated.ready{display:block;animation:finalReveal .2s ease}
     .full-order-preview-btn{
       width:100%;
       min-height:48px;
@@ -1872,6 +1873,13 @@
       .live-crab-notice span{font-size:10px}
     }
 
+  
+    .final-wa:disabled{
+      opacity:.48;
+      cursor:not-allowed;
+      filter:grayscale(.18);
+      box-shadow:none!important;
+    }
   </style>
 </head>
 <body>
@@ -2262,31 +2270,33 @@
           </div>
 
           <div class="final-checkout-area" id="finalCheckoutArea">
-            <div class="final-order-preview">
-              <div class="final-order-head">
-                <div>
-                  <small>完整訂單預覽</small>
-                  <strong id="finalProduct">8隻皇牌裝｜公乸雙拼</strong>
+            <div class="final-preview-gated" id="finalPreviewGated">
+              <div class="final-order-preview">
+                <div class="final-order-head">
+                  <div>
+                    <small>完整訂單預覽</small>
+                    <strong id="finalProduct">8隻皇牌裝｜公乸雙拼</strong>
+                  </div>
+                  <b id="finalTotal">$798</b>
                 </div>
-                <b id="finalTotal">$798</b>
+                <div class="final-order-meta" id="finalOrderMeta">基本配送區｜配送附加費 $0｜食蟹工具1份免費</div>
               </div>
-              <div class="final-order-meta" id="finalOrderMeta">基本配送區｜配送附加費 $0｜食蟹工具1份免費</div>
+
+              <button type="button" class="full-order-preview-btn" id="fullOrderPreviewBtn">預覽完整訂單</button>
             </div>
 
-            <button type="button" class="full-order-preview-btn" id="fullOrderPreviewBtn">預覽完整訂單</button>
-
             <div class="final-submit">
-              <button type="button" class="final-wa primary-wa" id="finalWa1">
+              <button type="button" class="final-wa primary-wa" id="finalWa1" disabled aria-disabled="true">
                 <span>發送 WhatsApp</span>
                 <small>5482 4802</small>
               </button>
-              <button type="button" class="final-wa primary-wa" id="finalWa2">
+              <button type="button" class="final-wa primary-wa" id="finalWa2" disabled aria-disabled="true">
                 <span>發送 WhatsApp</span>
                 <small>6806 8004</small>
               </button>
             </div>
-            <div class="final-submit-note">
-              按下後會開啟 WhatsApp，產品、收貨資料、配送費及總價已自動整理好；確認內容無誤後按「傳送」即可。
+            <div class="final-submit-note" id="finalSubmitNote">
+              填妥收貨資料後即可發送 WhatsApp。
             </div>
           </div>
         </div>
@@ -3213,11 +3223,24 @@
       const productEl = document.getElementById('finalProduct');
       const totalEl = document.getElementById('finalTotal');
       const metaEl = document.getElementById('finalOrderMeta');
-      const checkoutArea = document.getElementById('finalCheckoutArea');
-      if(!productEl || !totalEl || !metaEl || !checkoutArea) return;
+      const previewGated = document.getElementById('finalPreviewGated');
+      const wa1 = document.getElementById('finalWa1');
+      const wa2 = document.getElementById('finalWa2');
+      const submitNote = document.getElementById('finalSubmitNote');
+      if(!productEl || !totalEl || !metaEl || !previewGated) return;
 
       const ready = receiverReady();
-      checkoutArea.classList.toggle('ready', ready);
+      previewGated.classList.toggle('ready', ready);
+      [wa1,wa2].forEach(btn=>{
+        if(!btn) return;
+        btn.disabled = !ready;
+        btn.setAttribute('aria-disabled', ready ? 'false' : 'true');
+      });
+      if(submitNote){
+        submitNote.textContent = ready
+          ? '按下後會開啟 WhatsApp，產品、收貨資料、配送費及總價已自動整理好；確認內容無誤後按「傳送」即可。'
+          : '填妥收貨資料後即可發送 WhatsApp。';
+      }
 
       if(purchaseMode === 'single'){
         const d = singleData();
