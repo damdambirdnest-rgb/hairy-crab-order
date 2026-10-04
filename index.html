@@ -1833,6 +1833,45 @@
       to{opacity:1;transform:translateY(0)}
     }
 
+  
+    .live-crab-notice{
+      display:flex;
+      align-items:flex-start;
+      gap:11px;
+      margin-top:12px;
+      padding:13px 15px;
+      border-radius:15px;
+      background:#fff4e8;
+      border:1px solid #dcae7d;
+      color:#5d3e30;
+    }
+    .live-crab-notice-icon{
+      width:28px;height:28px;flex:0 0 28px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:#7b2a20;
+      color:#fff;
+      font-weight:950;
+    }
+    .live-crab-notice strong{
+      display:block;
+      color:#6f241b;
+      font-size:13px;
+      line-height:1.4;
+    }
+    .live-crab-notice span{
+      display:block;
+      margin-top:3px;
+      font-size:11px;
+      line-height:1.55;
+      color:#6b5144;
+    }
+    @media(max-width:680px){
+      .live-crab-notice{padding:12px;border-radius:14px}
+      .live-crab-notice strong{font-size:12px}
+      .live-crab-notice span{font-size:10px}
+    }
+
   </style>
 </head>
 <body>
@@ -2211,6 +2250,14 @@
             <div class="receiver-choice-row">
               <label class="receiver-choice"><input type="radio" name="receiveArrangement" value="有人收貨"><span>有人收貨</span></label>
               <label class="receiver-choice"><input type="radio" name="receiveArrangement" value="可掛門口"><span>可掛門口</span></label>
+            </div>
+          </div>
+
+          <div class="live-crab-notice" role="note" aria-label="活蟹收貨檢查提示">
+            <div class="live-crab-notice-icon">!</div>
+            <div>
+              <strong>收貨後 1 小時內請檢查活蟹狀況</strong>
+              <span>如發現有死蟹，請於收貨後 1 小時內拍攝清晰完整影片並立即聯絡客服；未能提供影片將無法安排賠償。賠償／補發安排以客服核實結果為準。</span>
             </div>
           </div>
 
@@ -2848,6 +2895,7 @@
         '（如早晨時段或指定時間會有額外費用）',
         '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
+        '活蟹檢查：收貨後1小時內檢查；如有死蟹須於1小時內拍攝清晰完整影片並聯絡客服，未能提供影片將無法安排賠償。',
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
         `訂購產品：${packNames[state.qty]}｜${mixNames[state.mix]}`,
@@ -3136,6 +3184,7 @@
         '（如早晨時段或指定時間會有額外費用）',
         '代蒸服務：暫不提供（目前只提供活蟹配送）',
         `收貨安排：${r.arrangement || '未確認'}`,
+        '活蟹檢查：收貨後1小時內檢查；如有死蟹須於1小時內拍攝清晰完整影片並聯絡客服，未能提供影片將無法安排賠償。',
         ...(r.note ? [`備註：${r.note}`] : []),
         '',
         `訂購產品：單隻自選｜共 ${d.count} 隻（${d.male}公 + ${d.female}乸）`,
