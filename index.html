@@ -369,6 +369,43 @@
       .buy-mode-note b{display:block;margin-bottom:3px}
     }
 
+  
+    /* Shared receiver / delivery details */
+    .receiver-section{padding:20px 0 34px}
+    .receiver-card{background:linear-gradient(180deg,#fffaf4 0%,#f8efe4 100%);border:1px solid #cfb18b;border-radius:30px;padding:28px;box-shadow:0 20px 48px rgba(70,43,24,.10)}
+    .receiver-head{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:22px}
+    .receiver-head h2{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(28px,3.6vw,42px);line-height:1.12;margin:6px 0 0;color:#281a14}
+    .receiver-head p{margin:0;max-width:430px;color:#5f5047;font-size:13px}
+    .receiver-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .receiver-field{display:flex;flex-direction:column;gap:7px}
+    .receiver-field-wide{grid-column:1/-1}
+    .receiver-field label,.receiver-arrangement-copy strong{font-size:13px;font-weight:900;color:#3c2a22}
+    .receiver-field label span,.receiver-arrangement-copy strong span{color:#9a2f24}
+    .receiver-field input,.receiver-field textarea,.receiver-field select{
+      width:100%;border:1px solid #cdb89b;border-radius:15px;background:#fffdf9;color:#251711!important;-webkit-text-fill-color:#251711!important;
+      padding:13px 14px;font:inherit;outline:none;transition:.15s ease
+    }
+    .receiver-field textarea{resize:vertical;min-height:82px;line-height:1.55}
+    .receiver-field input:focus,.receiver-field textarea:focus,.receiver-field select:focus{border-color:#8b392b;box-shadow:0 0 0 3px rgba(139,57,43,.10)}
+    .receiver-hint{display:block;color:#8a4d33;font-size:11px;line-height:1.45;margin-top:1px}
+    .receiver-arrangement{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:16px 18px;border-radius:18px;background:#f4e4d2;border:1px solid #d9bd9d}
+    .receiver-arrangement-copy small{display:block;color:#665248;font-size:12px;margin-top:3px}
+    .receiver-choice-row{display:flex;gap:8px;flex-wrap:wrap}
+    .receiver-choice{display:flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;background:#fffaf2;border:1px solid #cdb28f;cursor:pointer;color:#38261e;font-size:13px;font-weight:800}
+    .receiver-choice input{accent-color:#7a271d}
+    .single-options.one-col{grid-template-columns:1fr}
+    .receiver-linked-note{background:#f8eee3;border:1px solid #e0c9ac;border-radius:18px;padding:16px}
+    @media(max-width:760px){
+      .receiver-card{padding:20px;border-radius:24px}
+      .receiver-head{display:block}
+      .receiver-head p{margin-top:9px}
+      .receiver-grid{grid-template-columns:1fr}
+      .receiver-field-wide{grid-column:auto}
+      .receiver-arrangement{display:block}
+      .receiver-choice-row{margin-top:12px}
+      .receiver-choice{flex:1;justify-content:center}
+    }
+
   </style>
 </head>
 <body>
@@ -500,11 +537,64 @@
       </div>
     </section>
 
+    <section id="receiver" class="receiver-section">
+      <div class="wrap">
+        <div class="receiver-card">
+          <div class="receiver-head">
+            <div>
+              <div class="eyebrow">收貨資料</div>
+              <h2>先填好收貨資料。</h2>
+            </div>
+            <p>資料會自動整理到 WhatsApp 訂單內容，減少來回確認。</p>
+          </div>
+
+          <div class="receiver-grid">
+            <div class="receiver-field">
+              <label for="receiverName">姓名 <span>*</span></label>
+              <input id="receiverName" type="text" autocomplete="name" placeholder="請輸入收貨人姓名">
+            </div>
+            <div class="receiver-field">
+              <label for="receiverPhone">電話 <span>*</span></label>
+              <input id="receiverPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="例如：9123 4567">
+            </div>
+            <div class="receiver-field receiver-field-wide">
+              <label for="receiverAddress">中文地址 <span>*</span></label>
+              <textarea id="receiverAddress" rows="2" autocomplete="street-address" placeholder="請輸入完整中文收貨地址，包括屋苑／大廈、座數、樓層及室號"></textarea>
+            </div>
+            <div class="receiver-field">
+              <label for="receiveDate">收貨日期 <span>*</span></label>
+              <input id="receiveDate" class="date-input" type="date">
+            </div>
+            <div class="receiver-field">
+              <label for="receiveSlot">收貨時段 <span>*</span></label>
+              <select id="receiveSlot" class="select">
+                <option value="12:00–15:00">12–3（12:00–15:00）</option>
+                <option value="15:00–18:00">3–6（15:00–18:00）</option>
+                <option value="16:00–19:00">4–7（16:00–19:00）</option>
+              </select>
+              <small class="receiver-hint">如需早晨時段或指定時間，會有額外配送費。</small>
+            </div>
+          </div>
+
+          <div class="receiver-arrangement">
+            <div class="receiver-arrangement-copy">
+              <strong>請確認收貨安排 <span>*</span></strong>
+              <small>請確保該時段有人收貨；如無人，請確認可以掛門口。</small>
+            </div>
+            <div class="receiver-choice-row">
+              <label class="receiver-choice"><input type="radio" name="receiveArrangement" value="有人收貨"><span>有人收貨</span></label>
+              <label class="receiver-choice"><input type="radio" name="receiveArrangement" value="可掛門口"><span>可掛門口</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="packages">
       <div class="wrap">
         <div class="section-title">
           <div>
-            <div class="eyebrow">套餐優惠 · PACKAGE SET</div>
+            <div class="eyebrow">訂購產品 · 套餐優惠</div>
             <h2>套餐：揀隻數，再揀公乸配搭。</h2>
           </div>
           <p>套餐固定 6、8、10 隻；基本配送區包送，並免費附送食蟹四寶。想自己決定公乸數量，可切換上方「自由配搭」。</p>
@@ -561,7 +651,7 @@
       <div class="wrap">
         <div class="section-title">
           <div>
-            <div class="eyebrow">自由配搭 · À LA CARTE</div>
+            <div class="eyebrow">訂購產品 · 自由配搭</div>
             <h2>自由配搭：公乸數量自己決定。</h2>
           </div>
           <p>4 隻起自由配搭，逐隻計價；4–5 隻基本配送 +$80，6 隻或以上基本配送區包送。想要套餐優惠可隨時切換。</p>
@@ -597,7 +687,7 @@
                 <div class="counter"><button type="button" data-counter="female" data-step="-1">−</button><input id="singleFemale" value="2" inputmode="numeric" aria-label="蟹乸數量"><button type="button" data-counter="female" data-step="1">＋</button></div>
               </div>
             </div>
-            <div class="single-options">
+            <div class="single-options one-col">
               <div class="single-field">
                 <label for="singleZone">配送地區</label>
                 <select id="singleZone">
@@ -605,14 +695,6 @@
                   <option value="30" data-zone-name="較遠地區">大埔／元朗／天水圍／將軍澳｜+$30</option>
                   <option value="70" data-zone-name="遠區配送">遠區配送｜港島一般市區／粉嶺／上水／東涌／西貢市中心｜+$70</option>
                   <option value="special" data-zone-name="特殊地址">特殊地址｜村屋深入位置／深西貢／山頂／赤柱／石澳／機場／愉景灣／禁區／特殊上落貨位置｜待確認</option>
-                </select>
-              </div>
-              <div class="single-field">
-                <label for="singleSlot">送貨時段</label>
-                <select id="singleSlot">
-                  <option>12:00–15:00</option>
-                  <option>15:00–18:00</option>
-                  <option>16:00–19:00</option>
                 </select>
               </div>
             </div>
@@ -667,7 +749,7 @@
       <div class="wrap">
         <div class="section-title">
           <div>
-            <div class="eyebrow">套餐落單設定</div>
+            <div class="eyebrow">訂購產品 · 套餐設定</div>
             <h2>套餐揀好之後，完成配送設定。</h2>
           </div>
           <p>呢一區只屬於「套餐優惠」。揀隻數、公乸配搭同配送區，即時顯示套餐總價。</p>
@@ -713,19 +795,12 @@
               <div class="order-tip">如屬特殊地址，配送費會再個別確認。</div>
             </div>
 
-            <div class="step">
+            <div class="step receiver-linked-note">
               <div class="step-head">
-                <strong>④ 想先睇配送安排</strong>
-                <span>正式落單可再確認</span>
+                <strong>④ 收貨資料</strong>
+                <span>已統一放於上方填寫</span>
               </div>
-              <div class="time-grid">
-                <input id="date" class="date-input" type="date" />
-                <select id="slot" class="select">
-                  <option>12:00–15:00</option>
-                  <option>15:00–18:00</option>
-                  <option>16:00–19:00</option>
-                </select>
-              </div>
+              <div class="order-tip">姓名、電話、中文地址、收貨日期、時段及收貨安排會自動加入 WhatsApp 訂單內容。</div>
             </div>
           </div>
 
@@ -778,7 +853,7 @@
           </details>
           <details>
             <summary>送貨時間有邊幾段？</summary>
-            <p>可選 12:00–15:00、15:00–18:00、16:00–19:00 三個配送時段，實際安排以確認訂單為準。</p>
+            <p>可選 12–3、3–6、4–7 三個配送時段。如需要早晨時段或指定時間，會有額外配送費；請確保該時段有人收貨，或可接受掛門口。</p>
           </details>
         </div>
       </div>
@@ -827,8 +902,11 @@
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
     const zoneSelect = document.getElementById('zone');
-    const dateInput = document.getElementById('date');
-    const slotSelect = document.getElementById('slot');
+    const dateInput = document.getElementById('receiveDate');
+    const slotSelect = document.getElementById('receiveSlot');
+    const receiverName = document.getElementById('receiverName');
+    const receiverPhone = document.getElementById('receiverPhone');
+    const receiverAddress = document.getElementById('receiverAddress');
     const packageButtons = document.querySelectorAll('[data-choose-qty]');
 
     function setMinDate(){
@@ -879,20 +957,54 @@
       render();
     });
 
+    function receiverData(){
+      const arrangement = document.querySelector('input[name="receiveArrangement"]:checked');
+      return {
+        name: receiverName.value.trim(),
+        phone: receiverPhone.value.trim(),
+        address: receiverAddress.value.trim(),
+        date: dateInput.value,
+        slot: slotSelect.value,
+        arrangement: arrangement ? arrangement.value : ''
+      };
+    }
+
+    function validateReceiver(){
+      const r = receiverData();
+      const missing = [];
+      if(!r.name) missing.push('姓名');
+      if(!r.phone) missing.push('電話');
+      if(!r.address) missing.push('中文地址');
+      if(!r.date) missing.push('收貨日期');
+      if(!r.arrangement) missing.push('收貨安排');
+      if(missing.length){
+        alert('請先填妥：' + missing.join('、'));
+        document.getElementById('receiver').scrollIntoView({behavior:'smooth',block:'start'});
+        return false;
+      }
+      return true;
+    }
+
     function buildMessage(){
+      const r = receiverData();
       const base = prices[state.qty][state.mix];
       const total = state.zoneFee === 'special' ? '待確認' : `$${base + Number(state.zoneFee)}`;
       const ship = state.zoneFee === 'special' ? '特殊地址（配送費待確認）' : `${state.zoneName}（+$${state.zoneFee}）`;
       return [
-        '【大閘蟹訂購內容】',
-        `套餐：${packNames[state.qty]}`,
-        `配搭：${mixNames[state.mix]}`,
+        '【大閘蟹訂購】',
+        `姓名：${r.name || '未填'}`,
+        `電話：${r.phone || '未填'}`,
+        `中文地址：${r.address || '未填'}`,
+        `收貨日期：${r.date || '未填'}`,
+        `收貨時段：${r.slot}`,
+        '（如早晨時段或指定時間會有額外費用）',
+        `收貨安排：${r.arrangement || '未確認'}`,
+        '',
+        `訂購產品：${packNames[state.qty]}｜${mixNames[state.mix]}`,
         `規格：${sizeNames[state.mix]}`,
         `套餐價：$${base}`,
         `配送分區：${ship}`,
         '附送：香醋 x1、紫蘇葉、吃蟹工具 x2、紅糖薑棗茶 x3',
-        `配送日期：${dateInput.value || '待定'}`,
-        `配送時段：${slotSelect.value}`,
         `總價：${total}`
       ].join('\n');
     }
@@ -900,6 +1012,7 @@
     const modal = document.getElementById('copyModal');
     const copyText = document.getElementById('copyText');
     document.getElementById('whatsappBtn').addEventListener('click', () => {
+      if(!validateReceiver()) return;
       copyText.value = buildMessage();
       modal.classList.add('show');
     });
@@ -920,15 +1033,14 @@
     function whatsappUrl(number){
       return `https://wa.me/852${number}?text=${encodeURIComponent(buildMessage())}`;
     }
-    document.getElementById('wa1').addEventListener('click', e => { e.preventDefault(); window.open(whatsappUrl('54824802'),'_blank'); });
-    document.getElementById('wa2').addEventListener('click', e => { e.preventDefault(); window.open(whatsappUrl('68068004'),'_blank'); });
+    document.getElementById('wa1').addEventListener('click', e => { e.preventDefault(); if(!validateReceiver()) return; window.open(whatsappUrl('54824802'),'_blank'); });
+    document.getElementById('wa2').addEventListener('click', e => { e.preventDefault(); if(!validateReceiver()) return; window.open(whatsappUrl('68068004'),'_blank'); });
 
 
     // 自由單點計價
     const singleMale = document.getElementById('singleMale');
     const singleFemale = document.getElementById('singleFemale');
     const singleZone = document.getElementById('singleZone');
-    const singleSlot = document.getElementById('singleSlot');
     const singleKit = document.getElementById('singleKit');
 
     function clampSingle(v){
@@ -949,7 +1061,7 @@
       const shipping = special ? null : baseShipping + zoneExtra;
       const kitFee = singleKit.checked ? 18 : 0;
       const total = shipping === null ? null : crabSubtotal + shipping + kitFee;
-      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,total,zoneName:opt.dataset.zoneName,slot:singleSlot.value};
+      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value};
     }
 
     function singleMatchedPackage(d){
@@ -1001,29 +1113,37 @@
     }));
     [singleMale,singleFemale].forEach(el => el.addEventListener('input',renderSingle));
     singleZone.addEventListener('change',renderSingle);
-    singleSlot.addEventListener('change',renderSingle);
     singleKit.addEventListener('change',renderSingle);
 
     function buildSingleMessage(){
+      const r = receiverData();
       const d = singleData();
       const shipText = d.special ? '特殊地址（配送費待確認）' : `${d.zoneName}｜配送費 $${d.shipping}`;
       const totalText = d.total === null ? '待確認' : `$${d.total}`;
       return [
-        '【大閘蟹自由單點】',
+        '【大閘蟹訂購】',
+        `姓名：${r.name || '未填'}`,
+        `電話：${r.phone || '未填'}`,
+        `中文地址：${r.address || '未填'}`,
+        `收貨日期：${r.date || '未填'}`,
+        `收貨時段：${r.slot}`,
+        '（如早晨時段或指定時間會有額外費用）',
+        `收貨安排：${r.arrangement || '未確認'}`,
+        '',
+        `訂購產品：自由配搭｜蟹公 ${d.male} 隻 + 蟹乸 ${d.female} 隻｜共 ${d.count} 隻`,
         `蟹公 5–5.5兩：${d.male}隻 × $110`,
         `蟹乸 4.5–5兩：${d.female}隻 × $130`,
-        `總數：${d.count}隻`,
         `蟹款小計：$${d.crabSubtotal}`,
         `配送：${shipText}`,
         `食蟹四寶：${d.kitFee ? '加購 +$18' : '不加購'}`,
-        `送貨時段：${d.slot}`,
         `總價：${totalText}`
       ].join('\n');
     }
 
     function singleWhatsapp(number){
       const d = singleData();
-      if(d.count < 4){ alert('自由單點最低 4 隻起送。'); return; }
+      if(d.count < 4){ alert('自由配搭最低 4 隻起送。'); return; }
+      if(!validateReceiver()) return;
       window.open(`https://wa.me/852${number}?text=${encodeURIComponent(buildSingleMessage())}`,'_blank');
     }
     document.getElementById('singleWa1').addEventListener('click',e=>{e.preventDefault();singleWhatsapp('54824802');});
