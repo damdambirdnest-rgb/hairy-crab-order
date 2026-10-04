@@ -414,8 +414,7 @@
     .final-wa{border:0;border-radius:16px;padding:14px 16px;min-height:58px;cursor:pointer;font:inherit;font-weight:950;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%}
     .final-wa small{font-size:11px;font-weight:800;opacity:.88}
     .primary-wa{background:#225b38;color:#fff;border:1px solid #17492c}
-    .secondary-wa{background:#7a2a1e;color:#fff;border:1px solid #642117}
-    .final-submit-note{margin-top:9px;color:#6b584d;font-size:11px;line-height:1.5;text-align:center}
+        .final-submit-note{margin-top:9px;color:#6b584d;font-size:11px;line-height:1.5;text-align:center}
     .checkout-next{margin-top:14px}
     .checkout-next button{width:100%;border:0;border-radius:14px;padding:13px 14px;background:#5f2118;color:#fff7ed;font-weight:950;cursor:pointer}
     .checkout-next small{display:block;margin-top:7px;color:#6a574c;font-size:11px;text-align:center}
@@ -438,6 +437,68 @@
     @media(max-width:680px){
       .addon-card{display:block}
       .addon-counter{margin-top:12px;width:max-content}
+    }
+
+  
+    /* 2026-10 checkout polish: cleaner hierarchy, spacing and consistent brand palette */
+    body{background:#f7f2eb}
+    main>section{scroll-margin-top:88px}
+    section{padding-top:56px;padding-bottom:56px}
+    .quick-grid{gap:12px}
+    .quick-card{min-height:156px;padding:20px 20px 18px;border-radius:20px;background:#fffdf9;border:1px solid #ddc9ae;box-shadow:0 10px 28px rgba(62,40,24,.055)}
+    .quick-card strong{font-size:12px;letter-spacing:.08em;color:#72574a;text-transform:uppercase}
+    .quick-card span{font-size:27px;color:#7f2a20;margin-top:4px}
+    .quick-card p{font-size:12px;line-height:1.55;color:#6a584e}
+    .section-title{margin-bottom:24px}
+    .section-title h2{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(30px,3.7vw,44px);line-height:1.1;color:#2b1b15}
+    .section-title p{color:#66564d;line-height:1.65}
+    .eyebrow{color:#8b3025;font-weight:900;letter-spacing:.13em}
+    .package-grid{align-items:stretch}
+    .package-card{display:flex;flex-direction:column;min-height:100%;padding:24px;border-radius:24px}
+    .package-card .package-button{margin-top:auto;min-height:48px;border-radius:14px}
+    .package-card.featured{box-shadow:0 22px 50px rgba(70,28,20,.17)}
+    .buy-mode-switch{background:#e9ddce;border-color:#d9c1a4}
+    .purchase-mode-btn{min-height:126px}
+    .purchase-mode-btn.active{background:linear-gradient(145deg,#67271f,#4c1d18)}
+    .builder-card,.summary-card,.single-info,.single-builder,.receiver-card{border-radius:24px}
+    .builder-card,.receiver-card,.single-info,.single-builder{box-shadow:0 14px 38px rgba(59,38,24,.07)}
+    .option-btn{min-height:88px;border-radius:16px}
+    .step{padding-bottom:20px;margin-bottom:20px}
+    .select,.date-input{min-height:50px;border-radius:14px}
+    .receiver-section{padding-top:18px}
+    .receiver-card{padding:26px;background:#fffdf9;border-color:#d8c1a3}
+    .receiver-grid{gap:12px}
+    .receiver-field input,.receiver-field select{min-height:50px}
+    .receiver-field textarea{min-height:78px}
+    .receiver-arrangement{background:#f4eadf;border-color:#ddc7ad}
+    .receiver-choice{min-height:44px;padding:10px 16px}
+    .purchase-addon-section{padding:8px 0 14px}
+    .addon-card{display:flex;align-items:center;justify-content:space-between;gap:22px;margin-top:0;padding:18px 20px;border-radius:20px;background:#fffdf9;border:1px solid #d8c1a3;box-shadow:0 12px 30px rgba(59,38,24,.055)}
+    .addon-copy strong{font-size:17px}
+    .addon-copy strong em{font-style:normal;color:#8b3025;margin-left:7px;font-size:15px}
+    .addon-copy small{max-width:720px}
+    .addon-right{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+    .addon-counter{grid-template-columns:44px 62px 44px;gap:8px}
+    .addon-counter button,.addon-counter input{height:44px;border-radius:12px}
+    .addon-subtotal{min-width:88px;text-align:right;color:#6a584e;font-size:11px}
+    .addon-subtotal strong{display:block;color:#7f2a20;font-size:21px;line-height:1.15;margin-top:2px}
+    .final-order-preview{margin-top:18px;border-radius:18px;background:#4c1d18;border-color:#9f6f42}
+    .final-submit{grid-template-columns:1fr 1fr;gap:10px}
+    .final-wa{min-height:58px;border-radius:14px;display:grid;place-items:center;align-content:center;gap:1px;padding:12px 16px;background:#225b38!important;border-color:#17492c!important;color:#fff!important}
+    .final-wa span{font-size:14px;line-height:1.2}
+    .final-wa small{font-size:11px;line-height:1.2}
+    .checkout-next button{min-height:48px;background:#68271f;border-radius:14px}
+    .summary-actions .secondary{min-height:44px;border-radius:12px}
+    .gift-card,.delivery-card{border-radius:24px}
+    .delivery-zone,.gift-item{border-radius:15px}
+    @media(max-width:760px){
+      section{padding-top:40px;padding-bottom:40px}
+      .quick-card{min-height:132px}
+      .purchase-mode-btn{min-height:108px}
+      .addon-card{display:block}
+      .addon-right{margin-top:14px;justify-content:space-between}
+      .receiver-card{padding:18px}
+      .final-submit{grid-template-columns:1fr}
     }
 
   </style>
@@ -484,7 +545,7 @@
                 <a class="btn primary" href="#buy-mode">立即揀購買方式</a>
                 <a class="btn secondary" href="#buy-mode">套餐／自由配搭</a>
               </div>
-              <div class="trust-row"><span class="trust-pill">4兩以上先上架</span><span class="trust-pill">基本區包送</span><span class="trust-pill">食蟹四寶免費送</span></div>
+              <div class="trust-row"><span class="trust-pill">4兩以上先上架</span><span class="trust-pill">套餐基本區包送</span><span class="trust-pill">套餐免費送食蟹四寶</span></div>
             </div>
             <div class="hero-art" aria-hidden="true">
               <div class="plate-glow"></div>
@@ -530,10 +591,10 @@
     <section>
       <div class="wrap">
         <div class="quick-grid">
-          <div class="quick-card"><strong>起送門檻</strong><span>6隻</span><p>唔做太碎單，二人晚餐起步都合適。</p></div>
-          <div class="quick-card"><strong>主力推薦</strong><span>8隻</span><p>最適合家庭分享，價位同份量最平衡。</p></div>
-          <div class="quick-card"><strong>配送邏輯</strong><span>包送起</span><p>基本區已包送，遠區補固定附加費即可。</p></div>
-          <div class="quick-card"><strong>附送配套</strong><span>$18</span><p>食蟹四寶免費送，落單唔需要再加購。</p></div>
+          <div class="quick-card"><strong>兩種買法</strong><span>4 / 6隻起</span><p>自由配搭 4 隻起；套餐優惠 6 隻起。</p></div>
+          <div class="quick-card"><strong>皇牌推薦</strong><span>8隻 $798</span><p>公乸雙拼，3–4 人家庭分享最容易揀。</p></div>
+          <div class="quick-card"><strong>基本配送區</strong><span>包送</span><p>較遠地區 +$30；遠區配送 +$70。</p></div>
+          <div class="quick-card"><strong>套餐附送</strong><span>食蟹四寶</span><p>套餐免費附送；額外吃蟹工具可 $18／份加購。</p></div>
         </div>
       </div>
     </section>
@@ -677,6 +738,7 @@
               <div class="single-summary-row"><span>蟹款小計</span><strong id="singleCrabSubtotal">$480</strong></div>
               <div class="single-summary-row"><span>配送費</span><strong id="singleShipping">$80</strong></div>
               <div class="single-summary-row"><span>食蟹四寶</span><strong id="singleKitFee">不加購</strong></div>
+              <div class="single-summary-row"><span>額外吃蟹工具</span><strong id="singleExtraTools">不加購</strong></div>
               <div class="single-total"><div><small>單點預估總價</small></div><strong id="singleTotal">$560</strong></div>
             </div>
             <div class="single-alert" id="singleAlert">4–5隻屬單點小單，基本配送區另收 $80 配送費。</div>
@@ -689,15 +751,35 @@
       </div>
     </section>
 
+    <section id="addons" class="purchase-addon-section">
+      <div class="wrap">
+        <div class="addon-card">
+          <div class="addon-copy">
+            <div class="eyebrow">加購選項</div>
+            <strong>額外吃蟹工具 <em>$18／份</em></strong>
+            <small>套餐本身已包括吃蟹工具 2 份；如需要更多工具，可在此加購。加購金額會即時加入總價及 WhatsApp 訂單。</small>
+          </div>
+          <div class="addon-right">
+            <div class="addon-counter">
+              <button type="button" id="extraToolMinus" aria-label="減少額外吃蟹工具">−</button>
+              <input id="extraToolQty" value="0" inputmode="numeric" aria-label="額外吃蟹工具數量">
+              <button type="button" id="extraToolPlus" aria-label="增加額外吃蟹工具">＋</button>
+            </div>
+            <div class="addon-subtotal">小計 <strong id="extraToolSubtotal">$0</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="receiver" class="receiver-section">
       <div class="wrap">
         <div class="receiver-card">
           <div class="receiver-head">
             <div>
-              <div class="eyebrow">最後一步 · 收貨資料</div>
-              <h2>填資料，連同訂單一齊 WhatsApp。</h2>
+              <div class="eyebrow">STEP 3 · 收貨資料</div>
+              <h2>填好資料，一次過送到 WhatsApp。</h2>
             </div>
-            <p>你填嘅收貨資料、產品、配送費同總價會自動合併成一張完整訂單，直接帶入 WhatsApp。</p>
+            <p>姓名、地址、配送時段、產品及總價會自動整理成完整訂單，客服毋須再逐項追問。</p>
           </div>
 
           <div class="receiver-grid">
@@ -724,7 +806,7 @@
                 <option value="15:00–18:00">3–6（15:00–18:00）</option>
                 <option value="16:00–19:00">4–7（16:00–19:00）</option>
               </select>
-              <small class="receiver-hint">如需早晨時段或指定時間，會有額外配送費。</small>
+              <small class="receiver-hint">早晨時段或指定時間需另加配送費，客服會於確認訂單時通知。</small>
             </div>
           </div>
 
@@ -733,23 +815,10 @@
             <textarea id="receiverNote" rows="2" placeholder="例如：到樓下先電話聯絡、門口交收等"></textarea>
           </div>
 
-          <div class="addon-card">
-            <div class="addon-copy">
-              <div class="eyebrow">加購工具</div>
-              <strong>額外吃蟹工具</strong>
-              <small>套餐原本已包括吃蟹工具 2 份；如需要額外工具，可在此增加數量。單價待確認後再計入訂單。</small>
-            </div>
-            <div class="addon-counter">
-              <button type="button" id="extraToolMinus" aria-label="減少額外吃蟹工具">−</button>
-              <input id="extraToolQty" value="0" inputmode="numeric" aria-label="額外吃蟹工具數量">
-              <button type="button" id="extraToolPlus" aria-label="增加額外吃蟹工具">＋</button>
-            </div>
-          </div>
-
           <div class="receiver-arrangement">
             <div class="receiver-arrangement-copy">
               <strong>請確認收貨安排 <span>*</span></strong>
-              <small>請確保該時段有人收貨；如無人，請確認可以掛門口。</small>
+              <small>請確保所選時段有人收貨；如無人，請選擇「可掛門口」。</small>
             </div>
             <div class="receiver-choice-row">
               <label class="receiver-choice"><input type="radio" name="receiveArrangement" value="有人收貨"><span>有人收貨</span></label>
@@ -770,15 +839,15 @@
 
           <div class="final-submit">
             <button type="button" class="final-wa primary-wa" id="finalWa1">
-              確認資料並發送 WhatsApp
+              <span>發送 WhatsApp</span>
               <small>5482 4802</small>
             </button>
-            <button type="button" class="final-wa secondary-wa" id="finalWa2">
-              發送到另一客服
+            <button type="button" class="final-wa primary-wa" id="finalWa2">
+              <span>發送 WhatsApp</span>
               <small>6806 8004</small>
             </button>
           </div>
-          <div class="final-submit-note">按下後會開啟 WhatsApp，完整訂單內容已自動填好；客人只需要再按「傳送」。</div>
+          <div class="final-submit-note">任選一個客服號碼。WhatsApp 會自動帶入完整訂單，確認無誤後按「傳送」即可。</div>
         </div>
       </div>
     </section>
@@ -881,6 +950,7 @@
               <div class="summary-row"><span>配送附加費</span><strong id="sumShip">+$0</strong></div>
               <div class="summary-row"><span>配送分區</span><strong id="sumZone">基本配送區</strong></div>
               <div class="summary-row"><span>附送</span><strong>食蟹四寶（已包括）</strong></div>
+              <div class="summary-row"><span>額外吃蟹工具</span><strong id="sumExtraTools">不加購</strong></div>
             </div>
             <div class="summary-total">
               <div><small>預估總價</small><small>特殊地址會改為待確認</small></div>
@@ -949,6 +1019,8 @@
   </div>
 
   <script>
+    const EXTRA_TOOL_PRICE = 18;
+
     const prices = {
       6: { male: 628, mixed: 668, female: 728 },
       8: { male: 758, mixed: 798, female: 858 },
@@ -991,9 +1063,11 @@
 
     function render(){
       const base = prices[state.qty][state.mix];
+      const toolQty = clampExtraTool();
+      const toolCost = toolQty * EXTRA_TOOL_PRICE;
       const isSpecial = state.zoneFee === 'special';
-      const total = isSpecial ? '待確認' : `$${base + Number(state.zoneFee)}`;
-      const shipLabel = isSpecial ? '待確認' : `+$${state.zoneFee}`;
+      const total = isSpecial ? '待確認' : `${base + Number(state.zoneFee) + toolCost}`;
+      const shipLabel = isSpecial ? '待確認' : `+${state.zoneFee}`;
 
       document.getElementById('sumPack').textContent = packNames[state.qty];
       document.getElementById('sumMix').textContent = mixNames[state.mix];
@@ -1001,12 +1075,13 @@
       document.getElementById('sumBase').textContent = `$${base}`;
       document.getElementById('sumShip').textContent = shipLabel;
       document.getElementById('sumZone').textContent = state.zoneName;
+      document.getElementById('sumExtraTools').textContent = toolQty ? `${toolQty}份｜+${toolCost}` : '不加購';
       document.getElementById('sumTotal').textContent = total;
       if(purchaseMode === 'package') document.getElementById('mobileTotal').textContent = total;
 
       document.getElementById('summaryText').textContent = isSpecial
-        ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。套餐價現時為 $${base}。`
-        : `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，現時總價為 $${base + Number(state.zoneFee)}。`;
+        ? `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，配送費需要再確認。${toolQty ? `另加工具 ${toolQty} 份（+${toolCost}）。` : ''}`
+        : `你而家揀咗 ${packNames[state.qty]}・${mixNames[state.mix]}，配送至 ${state.zoneName}，現時總價為 ${base + Number(state.zoneFee) + toolCost}。`;
 
       qtyChoices.forEach(btn => btn.classList.toggle('active', Number(btn.dataset.qty) === state.qty));
       mixChoices.forEach(btn => btn.classList.toggle('active', btn.dataset.mix === state.mix));
@@ -1039,7 +1114,8 @@
         slot: slotSelect.value,
         arrangement: arrangement ? arrangement.value : '',
         note: receiverNote ? receiverNote.value.trim() : '',
-        extraTools: extraToolQty ? Math.max(0, Math.min(20, parseInt(extraToolQty.value || '0',10) || 0)) : 0
+        extraTools: extraToolQty ? Math.max(0, Math.min(20, parseInt(extraToolQty.value || '0',10) || 0)) : 0,
+        get extraToolCost(){ return this.extraTools * EXTRA_TOOL_PRICE; }
       };
     }
 
@@ -1067,7 +1143,7 @@
     function buildMessage(){
       const r = receiverData();
       const base = prices[state.qty][state.mix];
-      const total = state.zoneFee === 'special' ? '待確認' : `$${base + Number(state.zoneFee)}`;
+      const total = state.zoneFee === 'special' ? '待確認' : `${base + Number(state.zoneFee) + r.extraToolCost}`;
       const ship = state.zoneFee === 'special' ? '特殊地址（配送費待確認）' : `${state.zoneName}（+$${state.zoneFee}）`;
       return [
         '【大閘蟹訂購】',
@@ -1085,7 +1161,7 @@
         `套餐價：$${base}`,
         `配送分區：${ship}`,
         '附送：香醋 x1、紫蘇葉、吃蟹工具 x2、紅糖薑棗茶 x3',
-        ...(r.extraTools ? [`加購工具：額外吃蟹工具 × ${r.extraTools}（價錢待確認）`] : []),
+        ...(r.extraTools ? [`加購工具：額外吃蟹工具 × ${r.extraTools}｜$18/份｜+${r.extraToolCost}`] : []),
         `總價：${total}`
       ].join('\n');
     }
@@ -1140,8 +1216,10 @@
       const baseShipping = count >= 6 ? 0 : 80;
       const shipping = special ? null : baseShipping + zoneExtra;
       const kitFee = singleKit.checked ? 18 : 0;
-      const total = shipping === null ? null : crabSubtotal + shipping + kitFee;
-      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value};
+      const toolQty = clampExtraTool();
+      const toolCost = toolQty * EXTRA_TOOL_PRICE;
+      const total = shipping === null ? null : crabSubtotal + shipping + kitFee + toolCost;
+      return {male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,kitFee,toolQty,toolCost,total,zoneName:opt.dataset.zoneName,slot:slotSelect.value};
     }
 
     function singleMatchedPackage(d){
@@ -1153,7 +1231,7 @@
       if(!mix) return null;
       const packageBase = prices[d.count][mix];
       const packageShip = d.special ? null : d.zoneExtra;
-      const packageTotal = packageShip === null ? null : packageBase + packageShip;
+      const packageTotal = packageShip === null ? null : packageBase + packageShip + d.toolCost;
       if(packageTotal === null || d.total === null) return null;
       return {mix,packageTotal,saving:d.total-packageTotal};
     }
@@ -1218,7 +1296,7 @@
         `蟹款小計：$${d.crabSubtotal}`,
         `配送：${shipText}`,
         `食蟹四寶：${d.kitFee ? '加購 +$18' : '不加購'}`,
-        ...(r.extraTools ? [`加購工具：額外吃蟹工具 × ${r.extraTools}（價錢待確認）`] : []),
+        ...(r.extraTools ? [`加購工具：額外吃蟹工具 × ${r.extraTools}｜$18/份｜+${r.extraToolCost}`] : []),
         `總價：${totalText}`
       ].join('\n');
     }
@@ -1296,11 +1374,19 @@
       if(Number.isNaN(v)) v = 0;
       v = Math.max(0,Math.min(20,v));
       extraToolQty.value = v;
+      const subtotal = document.getElementById('extraToolSubtotal');
+      if(subtotal) subtotal.textContent = `${v * EXTRA_TOOL_PRICE}`;
       return v;
     }
-    extraToolMinus?.addEventListener('click',()=>{ extraToolQty.value = clampExtraTool()-1; clampExtraTool(); updateFinalPreview(); });
-    extraToolPlus?.addEventListener('click',()=>{ extraToolQty.value = clampExtraTool()+1; clampExtraTool(); updateFinalPreview(); });
-    extraToolQty?.addEventListener('input',()=>{ clampExtraTool(); updateFinalPreview(); });
+    function refreshAfterToolChange(){
+      clampExtraTool();
+      render();
+      renderSingle();
+      updateFinalPreview();
+    }
+    extraToolMinus?.addEventListener('click',()=>{ extraToolQty.value = Math.max(0,clampExtraTool()-1); refreshAfterToolChange(); });
+    extraToolPlus?.addEventListener('click',()=>{ extraToolQty.value = Math.min(20,clampExtraTool()+1); refreshAfterToolChange(); });
+    extraToolQty?.addEventListener('input',refreshAfterToolChange);
 
     // 套餐 / 自由配搭：同一個選購入口，只顯示一種買法
     const packagesSection = document.getElementById('packages');
