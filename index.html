@@ -3281,7 +3281,7 @@
         `訂購產品：${packNames[state.qty]}｜${mixNames[state.mix]}`,
         `規格：${sizeNames[state.mix]}`,
         `套餐價：$${base}`,
-        ...addon.items.map(i => `套餐加購${i.label}：${i.qty}隻 × ${i.price} = +${i.qty*i.price}`),
+        ...addon.items.map(i => '套餐加購' + i.label + '：' + i.qty + '隻 × $' + i.price + ' = +$' + (i.qty*i.price)),
         `配送分區：${ship}`,
         '附送：香醋 x1、紫蘇葉、食蟹工具 x1、紅糖薑棗茶 x3',
         ...(r.extraTools > 1 ? [`食蟹工具加購：+${r.extraTools - 1}份｜+$${r.extraToolCost}`] : []),
@@ -3524,10 +3524,10 @@
       document.getElementById('singleItems').textContent = `${d.male}公 + ${d.female}乸｜${d.count}隻`;
       document.getElementById('singleBreakdown').textContent = breakdown;
       const productSubtotal = d.crabSubtotal + d.toolCost;
-      document.getElementById('singleCrabSubtotal').textContent = `${d.crabSubtotal}`;
+      document.getElementById('singleCrabSubtotal').textContent = '$' + d.crabSubtotal;
       document.getElementById('singleExtraTools').textContent = d.toolQty === 1 ? '1份（免費）' : `${d.toolQty}份｜加購 +${d.toolCost}`;
-      document.getElementById('singleTotal').textContent = `${productSubtotal}`;
-      if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = `${productSubtotal}`;
+      document.getElementById('singleTotal').textContent = '$' + productSubtotal;
+      if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = '$' + productSubtotal;
 
       const alert = document.getElementById('singleAlert');
       alert.classList.remove('good');
