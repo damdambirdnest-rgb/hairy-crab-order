@@ -1961,6 +1961,169 @@
       outline:none!important;
     }
 
+  
+    /* Manual payment checkout */
+    .payment-panel{
+      margin-top:14px;
+      padding:18px;
+      border:1px solid #d5b892;
+      border-radius:20px;
+      background:linear-gradient(180deg,#fffdf9 0%,#f8efe4 100%);
+      box-shadow:0 12px 28px rgba(68,43,25,.06);
+    }
+    .payment-panel-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      padding-bottom:14px;
+      border-bottom:1px solid #e3d1bb;
+    }
+    .payment-panel-head small{
+      display:block;
+      color:#8b3025;
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.08em;
+      margin-bottom:3px;
+    }
+    .payment-panel-head strong{
+      display:block;
+      color:#2b1b15;
+      font-size:17px;
+      line-height:1.4;
+    }
+    .payment-panel-head b{
+      color:#7b2a20;
+      font-size:32px;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .payment-intro{
+      margin:11px 0 0;
+      color:#65534a;
+      font-size:12px;
+      line-height:1.65;
+    }
+    .payment-method-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .payment-method-card{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      padding:15px;
+      border:1px solid #dec7a9;
+      border-radius:16px;
+      background:#fffdf9;
+    }
+    .payment-method-tag{
+      display:inline-flex;
+      align-self:flex-start;
+      padding:4px 8px;
+      border-radius:999px;
+      background:#f1dfc8;
+      color:#6f281e;
+      font-size:10px;
+      font-weight:950;
+      letter-spacing:.05em;
+    }
+    .payment-method-card h4{
+      margin:9px 0 6px;
+      color:#2c1b15;
+      font-size:17px;
+    }
+    .payment-method-card p{
+      margin:0;
+      color:#68564b;
+      font-size:11px;
+      line-height:1.6;
+      word-break:break-word;
+    }
+    .payment-method-card p strong{color:#3a241c}
+    .payment-action{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:42px;
+      margin-top:auto;
+      padding:10px 11px;
+      border:1px solid #8a3327;
+      border-radius:12px;
+      background:#fff8f0;
+      color:#74281f;
+      font:inherit;
+      font-size:12px;
+      font-weight:950;
+      cursor:pointer;
+      text-align:center;
+    }
+    .payment-action.payme{
+      background:#752a64;
+      border-color:#652154;
+      color:#fff;
+      margin-top:12px;
+    }
+    .payment-copy-row{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:7px;
+      margin-top:12px;
+    }
+    .payment-screenshot-note{
+      margin-top:13px;
+      padding:12px 13px;
+      border-radius:14px;
+      background:#fff4e8;
+      border:1px solid #dcae7d;
+      color:#5f4033;
+      font-size:11px;
+      line-height:1.6;
+    }
+    .payment-screenshot-note strong{color:#7a291f}
+    .payment-finish{
+      margin-top:10px;
+      width:100%;
+      min-height:50px;
+      border:0;
+      border-radius:14px;
+      background:#225b38;
+      color:#fff;
+      font:inherit;
+      font-weight:950;
+      cursor:pointer;
+    }
+    .payment-special-message{
+      display:none;
+      margin-top:13px;
+      padding:13px 14px;
+      border:1px solid #d59d8f;
+      border-radius:14px;
+      background:#fff3f0;
+      color:#7a2b22;
+      font-size:12px;
+      line-height:1.6;
+      font-weight:800;
+    }
+    .payment-panel.special .payment-method-grid,
+    .payment-panel.special .payment-screenshot-note,
+    .payment-panel.special .payment-finish{display:none}
+    .payment-panel.special .payment-special-message{display:block}
+    @media(max-width:820px){
+      .payment-method-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:680px){
+      .payment-panel{padding:14px;border-radius:17px}
+      .payment-panel-head{align-items:flex-start}
+      .payment-panel-head strong{font-size:15px}
+      .payment-panel-head b{font-size:27px}
+      .payment-method-card{padding:14px}
+    }
+
   </style>
 </head>
 <body>
@@ -2366,6 +2529,53 @@
               </div>
 
               <button type="button" class="full-order-preview-btn" id="fullOrderPreviewBtn">預覽完整訂單</button>
+
+              <div class="payment-panel" id="paymentPanel">
+                <div class="payment-panel-head">
+                  <div>
+                    <small>付款方式</small>
+                    <strong>核對總額後即可付款</strong>
+                  </div>
+                  <b id="paymentAmount">$798</b>
+                </div>
+                <p class="payment-intro">請按上面完整訂單總額付款。付款完成後必須保留付款成功截圖／入數紙，並經 WhatsApp 傳送俾我哋確認。</p>
+
+                <div class="payment-special-message" id="paymentSpecialMessage">
+                  你選擇咗特殊地址，配送費仍需客服確認，因此暫時唔好付款。請先 WhatsApp 我哋確認最終總額，再按確認後金額付款。
+                </div>
+
+                <div class="payment-method-grid">
+                  <div class="payment-method-card">
+                    <span class="payment-method-tag">推薦</span>
+                    <h4>FPS 轉數快</h4>
+                    <p><strong>電話號碼：</strong>5482 4802<br><strong>銀行：</strong>匯豐銀行 HSBC<br><strong>帳戶名稱：</strong>Dam Dam Birdnest Limited</p>
+                    <div class="payment-copy-row">
+                      <button type="button" class="payment-action" data-copy-payment="54824802">複製 FPS 電話號碼</button>
+                    </div>
+                  </div>
+
+                  <div class="payment-method-card">
+                    <span class="payment-method-tag">手機最快</span>
+                    <h4>PayMe</h4>
+                    <p>按下面按鈕開啟 PayMe 付款。付款完成後，<strong>截圖必須清楚顯示日期及時間</strong>。</p>
+                    <a class="payment-action payme" href="https://qr.payme.hsbc.com.hk/2/PPQAxXD6jux5comuStvFbJ" target="_blank" rel="noopener">開啟 PayMe 付款</a>
+                  </div>
+
+                  <div class="payment-method-card">
+                    <span class="payment-method-tag">銀行轉帳</span>
+                    <h4>匯豐銀行</h4>
+                    <p><strong>帳號：</strong>023-750433-838<br><strong>帳戶名稱：</strong>Dam Dam Birdnest Limited<br>ATM／櫃員機轉帳請保留入數紙；如遺失，需自行向銀行補回紀錄。</p>
+                    <div class="payment-copy-row">
+                      <button type="button" class="payment-action" data-copy-payment="023750433838">複製銀行帳號</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="payment-screenshot-note">
+                  <strong>付款後最後一步：</strong>請將付款成功截圖／入數紙 WhatsApp 俾我哋。截圖需要見到付款金額、日期及時間；訂單以客服確認收款後為準。
+                </div>
+                <button type="button" class="payment-finish" id="paymentWhatsappBtn">付款完成｜WhatsApp 傳送截圖</button>
+              </div>
             </div>
 
             <div class="final-submit">
@@ -3390,6 +3600,43 @@
       return purchaseMode === 'single' ? buildSingleMessage() : buildMessage();
     }
 
+    function currentPaymentTotal(){
+      if(purchaseMode === 'single'){
+        return singleData().total;
+      }
+      const base = prices[state.qty][state.mix];
+      const addon = packageAddonData();
+      const toolQty = clampExtraTool();
+      const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
+      if(state.zoneFee === 'special') return null;
+      return base + addon.cost + toolCost + Number(state.zoneFee);
+    }
+
+    function updatePaymentPanel(){
+      const panel = document.getElementById('paymentPanel');
+      const amount = document.getElementById('paymentAmount');
+      if(!panel || !amount) return;
+      const total = currentPaymentTotal();
+      const special = total === null;
+      panel.classList.toggle('special', special);
+      amount.textContent = special ? '待確認' : `${total}`;
+    }
+
+    function paymentWhatsapp(){
+      if(purchaseMode === 'single' && singleData().count < 4){
+        alert('單隻自選最低 4 隻起送。');
+        return;
+      }
+      if(!validateReceiver()) return;
+      const total = currentPaymentTotal();
+      if(total === null){
+        alert('特殊地址配送費仍待確認，請先 WhatsApp 客服確認最終總額後再付款。');
+        return;
+      }
+      const msg = currentOrderMessage() + `\n\n【付款確認】\n應付總額：${total}\n我已完成付款，稍後會附上付款成功截圖／入數紙，請幫我確認收款。`;
+      window.open(`https://wa.me/85254824802?text=${encodeURIComponent(msg)}`,'_blank');
+    }
+
     function updateFinalPreview(){
       const productEl = document.getElementById('finalProduct');
       const totalEl = document.getElementById('finalTotal');
@@ -3435,9 +3682,10 @@
         totalEl.textContent = special ? '待確認' : `$${knownSubtotal + Number(state.zoneFee)}`;
         const toolText = toolQty === 1 ? '食蟹工具1份免費' : `食蟹工具${toolQty}份（加購+$${toolCost}）`;
         metaEl.textContent = special
-          ? `特殊地址｜配送費待確認｜商品小計 $${knownSubtotal}｜${toolText}`
-          : `${state.zoneName}｜配送附加費 +$${state.zoneFee}｜${toolText}`;
+          ? `特殊地址｜配送費待確認｜商品小計 ${knownSubtotal}｜${toolText}`
+          : `${state.zoneName}｜配送附加費 +${state.zoneFee}｜${toolText}`;
       }
+      updatePaymentPanel();
     }
 
     function openFinalWhatsapp(number){
@@ -3464,6 +3712,26 @@
     });
     document.getElementById('finalWa1')?.addEventListener('click',()=>openFinalWhatsapp('54824802'));
     document.getElementById('finalWa2')?.addEventListener('click',()=>openFinalWhatsapp('68068004'));
+    document.getElementById('paymentWhatsappBtn')?.addEventListener('click',paymentWhatsapp);
+
+    document.querySelectorAll('[data-copy-payment]').forEach(btn=>btn.addEventListener('click',async()=>{
+      const value = btn.dataset.copyPayment || '';
+      const original = btn.textContent;
+      try{
+        await navigator.clipboard.writeText(value);
+      }catch(err){
+        const temp = document.createElement('textarea');
+        temp.value = value;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        temp.remove();
+      }
+      btn.textContent = '已複製';
+      setTimeout(()=>btn.textContent = original,1200);
+    }));
 
     const validateOneReceiverField = (el)=>{
       if(!el || el === receiverNote) return;
