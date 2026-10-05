@@ -3673,6 +3673,42 @@
       return purchaseMode === 'single' ? buildSingleMessage() : buildMessage();
     }
 
+
+    const ORDER_SYNC_URL = 'https://script.google.com/macros/s/AKfycbyc_wpjYeQQFbh1304Jnj5sleamZ7kD0kdAjNGA_8-SNuky0vx_OVe4OpLKHB1B3GHT/exec';
+
+    function whatsappMachine(number){
+      return String(number) === '68068004' ? 'S機' : 'A機';
+    }
+
+    function syncOrderToSheet(number, paymentStatus, orderText){
+      const payload = {
+        machine: whatsappMachine(number),
+        paymentStatus: paymentStatus === '已付' ? '已付' : '未付',
+        orderText: String(orderText || '').trim()
+      };
+      if(!payload.orderText) return;
+
+      const body = JSON.stringify(payload);
+
+      // Google Apps Script Web App：以 no-cors + keepalive 背景寫入，
+      // 唔阻住客人即時開啟 WhatsApp。
+      try{
+        fetch(ORDER_SYNC_URL,{
+          method:'POST',
+          mode:'no-cors',
+          cache:'no-store',
+          keepalive:true,
+          body
+        }).catch(()=>{});
+      }catch(err){
+        try{
+          if(navigator.sendBeacon){
+            navigator.sendBeacon(ORDER_SYNC_URL, new Blob([body],{type:'text/plain;charset=UTF-8'}));
+          }
+        }catch(_){}
+      }
+    }
+
     function currentPaymentTotal(){
       if(purchaseMode === 'single'){
         return singleData().total;
@@ -3706,8 +3742,15 @@
         alert('特殊地址配送費仍待確認，請先 WhatsApp 客服確認最終總額後再付款。');
         return;
       }
-      const msg = currentOrderMessage() + `\n\n【付款確認】\n應付總額：${total}\n我已完成付款，稍後會附上付款成功截圖／入數紙，請幫我確認收款。`;
-      window.open(`https://wa.me/85254824802?text=${encodeURIComponent(msg)}`,'_blank');
+
+      const number = '54824802';
+      const orderText = currentOrderMessage();
+
+      // 付款完成後發去 5482 4802 = A機；付款狀態 = 已付
+      syncOrderToSheet(number,'已付',orderText);
+
+      const msg = orderText + `\n\n【付款確認】\n應付總額：${total}\n我已完成付款，稍後會附上付款成功截圖／入數紙，請幫我確認收款。`;
+      window.open(`https://wa.me/852${number}?text=${encodeURIComponent(msg)}`,'_blank');
     }
 
     function updateFinalPreview(){
@@ -3768,7 +3811,13 @@
         return;
       }
       if(!validateReceiver()) return;
-      window.open(`https://wa.me/852${number}?text=${encodeURIComponent(currentOrderMessage())}`,'_blank');
+
+      const orderText = currentOrderMessage();
+
+      // 6806 8004 = S機；5482 4802 = A機；未完成付款 = 未付
+      syncOrderToSheet(number,'未付',orderText);
+
+      window.open(`https://wa.me/852${number}?text=${encodeURIComponent(orderText)}`,'_blank');
     }
 
     document.getElementById('packageToReceiver')?.addEventListener('click',()=> {
