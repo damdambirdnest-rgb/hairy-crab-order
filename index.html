@@ -2432,6 +2432,7 @@
               <div class="single-rule">最低 4 隻起送；不同重量可以混合計算。</div>
               <div class="single-rule">4–5 隻：基本配送區配送費 +$80。</div>
               <div class="single-rule">6 隻或以上：基本配送區包送。</div>
+              <div class="single-rule">6／8／10 隻如規格及公乸配搭完全符合套餐，系統會自動檢查並套用較優惠套餐價。</div>
               <div class="single-rule">其他地區按 +$30 / +$70 補配送差額；特殊地址另行確認。</div>
               <div class="single-rule">每單免費贈送食蟹工具套裝 1 套；第 2 套起每套 +$18。</div>
             </div>
@@ -3536,7 +3537,7 @@
         ...addon.items.map(i => '套餐加購' + i.label + '：' + i.qty + '隻 × $' + i.price + ' = +$' + (i.qty*i.price)),
         `配送分區：${ship}`,
         '食蟹工具套裝：1套免費（香醋150ml x1、紫蘇葉、紅糖薑棗茶 x3包、鉸剪 x2把）',
-        ...(r.extraTools > 1 ? [`食蟹工具套裝加購：+${r.extraTools - 1}套｜+${r.extraToolCost}`] : []),
+        ...(r.extraTools > 1 ? [`食蟹工具套裝加購：+${r.extraTools - 1}套｜+$${r.extraToolCost}`] : []),
         ...(state.zoneFee === 'special' ? [`已知商品小計：$${knownSubtotal}`] : []),
         `總價：${total}`
       ].join('\n');
@@ -3711,6 +3712,37 @@
       return Math.max(0,Math.min(20,v));
     }
 
+    const singlePackageRules = {
+      standard:{ maleKey:'m55', femaleKey:'f50' },
+      large:{ maleKey:'m65', femaleKey:'f60' },
+      giant:{ maleKey:'m75', femaleKey:'f65' }
+    };
+
+    function detectSinglePackageMatch(items,male,female,count,rawCrabSubtotal){
+      if(![6,8,10].includes(count)) return null;
+
+      for(const [tier,rule] of Object.entries(singlePackageRules)){
+        const allowed = new Set([rule.maleKey,rule.femaleKey]);
+        if(items.some(item=>!allowed.has(item.key))) continue;
+
+        const maleQty = items.find(item=>item.key===rule.maleKey)?.qty || 0;
+        const femaleQty = items.find(item=>item.key===rule.femaleKey)?.qty || 0;
+
+        let mix = null;
+        if(maleQty === count && femaleQty === 0) mix = 'male';
+        else if(femaleQty === count && maleQty === 0) mix = 'female';
+        else if(maleQty === femaleQty && maleQty + femaleQty === count) mix = 'mixed';
+        if(!mix) continue;
+
+        const packagePrice = prices[tier][count][mix];
+        const saving = rawCrabSubtotal - packagePrice;
+        if(saving > 0){
+          return {tier,mix,packagePrice,saving,maleQty,femaleQty};
+        }
+      }
+      return null;
+    }
+
     function singleData(){
       const items = singleSizeInputs.map(input => {
         const qty = clampSingle(input.value);
@@ -3728,7 +3760,9 @@
       const male = items.filter(i => i.gender === 'male').reduce((s,i)=>s+i.qty,0);
       const female = items.filter(i => i.gender === 'female').reduce((s,i)=>s+i.qty,0);
       const count = male + female;
-      const crabSubtotal = items.reduce((s,i)=>s+i.qty*i.price,0);
+      const rawCrabSubtotal = items.reduce((s,i)=>s+i.qty*i.price,0);
+      const packageMatch = detectSinglePackageMatch(items,male,female,count,rawCrabSubtotal);
+      const crabSubtotal = packageMatch ? packageMatch.packagePrice : rawCrabSubtotal;
 
       const opt = singleZone.selectedOptions[0];
       const zoneChosen = Boolean(opt && opt.value);
@@ -3741,30 +3775,16 @@
       const toolCost = Math.max(0, toolQty - 1) * EXTRA_TOOL_PRICE;
       const total = shipping === null ? null : crabSubtotal + shipping + toolCost;
 
-      const standardMale = items.find(i=>i.key==='m55')?.qty || 0;
-      const standardFemale = items.find(i=>i.key==='f50')?.qty || 0;
-      const nonStandardCount = items.filter(i=>!['m55','f50'].includes(i.key)).reduce((s,i)=>s+i.qty,0);
-
       return {
-        items,male,female,count,crabSubtotal,special,zoneExtra,baseShipping,shipping,
-        toolQty,toolCost,total,zoneName:zoneChosen ? opt.dataset.zoneName : '未選擇配送分區',slot:slotSelect.value,
-        standardMale,standardFemale,nonStandardCount
+        items,male,female,count,rawCrabSubtotal,crabSubtotal,packageMatch,
+        special,zoneExtra,baseShipping,shipping,
+        toolQty,toolCost,total,zoneName:zoneChosen ? opt.dataset.zoneName : '未選擇配送分區',slot:slotSelect.value
       };
     }
 
     function singleMatchedPackage(d){
-      if(d.nonStandardCount > 0 || ![6,8,10].includes(d.count)) return null;
-      let mix = null;
-      if(d.standardMale === d.count) mix = 'male';
-      else if(d.standardFemale === d.count) mix = 'female';
-      else if(d.standardMale === d.standardFemale) mix = 'mixed';
-      if(!mix) return null;
-
-      const packageBase = prices.standard[d.count][mix];
-      const packageShip = d.special ? null : d.zoneExtra;
-      const packageTotal = packageShip === null ? null : packageBase + packageShip + d.toolCost;
-      if(packageTotal === null || d.total === null) return null;
-      return {mix,packageTotal,saving:d.total-packageTotal};
+      if(!d.packageMatch) return null;
+      return {...d.packageMatch, packageTotal:d.total, saving:d.packageMatch.saving};
     }
 
     function renderSingle(){
@@ -3776,7 +3796,9 @@
       document.getElementById('singleItems').textContent = `${d.male}公 + ${d.female}乸｜${d.count}隻`;
       document.getElementById('singleBreakdown').textContent = breakdown;
       const productSubtotal = d.crabSubtotal + d.toolCost;
-      document.getElementById('singleCrabSubtotal').textContent = '$' + d.crabSubtotal;
+      document.getElementById('singleCrabSubtotal').textContent = d.packageMatch
+        ? '$' + d.crabSubtotal + '（已套用套餐價）'
+        : '$' + d.crabSubtotal;
       document.getElementById('singleExtraTools').textContent = d.toolQty === 1 ? '1套（免費）' : `${d.toolQty}套｜加購 +${d.toolCost}`;
       document.getElementById('singleTotal').textContent = '$' + productSubtotal;
       if(purchaseMode === 'single') document.getElementById('mobileTotal').textContent = '$' + productSubtotal;
@@ -3792,10 +3814,10 @@
         const matched = singleMatchedPackage(d);
         if(matched && matched.saving > 0){
           alert.classList.add('good');
-          alert.textContent = `你目前選嘅標準規格可轉同配搭套餐，約可慳 $${matched.saving}。`;
+          alert.textContent = `已自動套用「${packNames[d.count]}・${tierNames[matched.tier]}・${mixNames[matched.mix]}」套餐價 $${matched.packagePrice}，為你慳 $${matched.saving}。`;
         } else {
           alert.classList.add('good');
-          alert.textContent = '已滿 6 隻：基本配送區包送；其他地區只補固定附加費；特殊地址另行確認。';
+          alert.textContent = '已滿 6 隻：基本配送區包送；如 6／8／10 隻組合完全符合套餐，系統會自動套用較低套餐價。';
         }
       }
       updateFinalPreview();
@@ -3832,7 +3854,12 @@
         '',
         `訂購產品：單隻自選｜共 ${d.count} 隻（${d.male}公 + ${d.female}乸）`,
         ...d.items.map(i => `${i.label}：${i.qty}隻 × $${i.price} = $${i.qty*i.price}`),
-        `蟹款小計：$${d.crabSubtotal}`,
+        ...(d.packageMatch ? [
+          `自選原價：$${d.rawCrabSubtotal}`,
+          `自動套用套餐：${packNames[d.count]}｜${tierNames[d.packageMatch.tier]}｜${mixNames[d.packageMatch.mix]}`,
+          `套餐優惠：-$${d.packageMatch.saving}`,
+          `優惠後蟹款小計：$${d.crabSubtotal}`
+        ] : [`蟹款小計：$${d.crabSubtotal}`]),
         `配送：${shipText}`,
         '食蟹工具套裝：1套免費（香醋150ml x1、紫蘇葉、紅糖薑棗茶 x3包、鉸剪 x2把）',
         ...(r.extraTools > 1 ? [`食蟹工具套裝加購：+${r.extraTools - 1}套｜+${r.extraToolCost}`] : []),
@@ -3907,7 +3934,7 @@
       const total = currentPaymentTotal();
       const special = total === null;
       panel.classList.toggle('special', special);
-      amount.textContent = special ? '待確認' : `${total}`;
+      amount.textContent = special ? '待確認' : `$${total}`;
     }
 
     function paymentWhatsapp(){
@@ -3957,12 +3984,16 @@
 
       if(purchaseMode === 'single'){
         const d = singleData();
-        productEl.textContent = `單隻自選｜${d.male}公 + ${d.female}乸｜共 ${d.count} 隻`;
+        const autoPackageText = d.packageMatch
+          ? `｜已套用${tierNames[d.packageMatch.tier]}${mixNames[d.packageMatch.mix]}套餐價`
+          : '';
+        productEl.textContent = `單隻自選｜${d.male}公 + ${d.female}乸｜共 ${d.count} 隻${autoPackageText}`;
         totalEl.textContent = d.total === null ? '待確認' : `$${d.total}`;
-        const toolText = d.toolQty === 1 ? '食蟹工具套裝1套免費' : `食蟹工具套裝${d.toolQty}套（加購+${d.toolCost}）`;
+        const toolText = d.toolQty === 1 ? '食蟹工具套裝1套免費' : `食蟹工具套裝${d.toolQty}套（加購+$${d.toolCost}）`;
+        const savingText = d.packageMatch ? `｜已慳 $${d.packageMatch.saving}` : '';
         metaEl.textContent = d.special
-          ? `特殊地址｜配送費待確認｜${toolText}`
-          : `${d.zoneName}｜配送費 $${d.shipping}｜${toolText}`;
+          ? `特殊地址｜配送費待確認${savingText}｜${toolText}`
+          : `${d.zoneName}｜配送費 $${d.shipping}${savingText}｜${toolText}`;
       }else{
         const base = prices[state.tier][state.qty][state.mix];
         const addon = packageAddonData();
