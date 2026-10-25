@@ -2634,7 +2634,7 @@
                 <option value="15:00–18:00">3–6（15:00–18:00）</option>
                 <option value="16:00–19:00">4–7（16:00–19:00）</option>
               </select>
-              <small class="receiver-hint">早晨時段或指定時間需另加配送費，客服會於確認訂單時通知。</small>
+              <small class="receiver-hint">即日已開始嘅時段會自動截止（以香港時間為準）；早晨時段或指定時間需另加配送費。</small>
             </div>
           </div>
 
@@ -3285,13 +3285,93 @@
     let toolQtyState = 1;
     const packageButtons = document.querySelectorAll('[data-choose-qty]');
 
+    function hongKongNowParts(){
+      const parts = new Intl.DateTimeFormat('en-CA',{
+        timeZone:'Asia/Hong_Kong',
+        year:'numeric',
+        month:'2-digit',
+        day:'2-digit',
+        hour:'2-digit',
+        minute:'2-digit',
+        hourCycle:'h23'
+      }).formatToParts(new Date()).reduce((acc,part)=>{
+        if(part.type !== 'literal') acc[part.type] = part.value;
+        return acc;
+      },{});
+      return {
+        date:`${parts.year}-${parts.month}-${parts.day}`,
+        hour:Number(parts.hour),
+        minute:Number(parts.minute)
+      };
+    }
+
+    function addDaysToDateString(dateString,days){
+      const [year,month,day] = dateString.split('-').map(Number);
+      const d = new Date(Date.UTC(year,month-1,day+days));
+      return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+    }
+
+    function slotStartMinutes(value){
+      const start = String(value || '').split('–')[0];
+      const [hour,minute] = start.split(':').map(Number);
+      if(Number.isNaN(hour) || Number.isNaN(minute)) return null;
+      return hour * 60 + minute;
+    }
+
+    function slotAvailableForDate(dateValue,slotValue){
+      if(!dateValue || !slotValue) return false;
+      const hk = hongKongNowParts();
+      if(dateValue < hk.date) return false;
+      if(dateValue > hk.date) return true;
+      const startMinutes = slotStartMinutes(slotValue);
+      if(startMinutes === null) return false;
+      return startMinutes > (hk.hour * 60 + hk.minute);
+    }
+
+    function updateSlotAvailability({autoMoveTomorrow=true} = {}){
+      if(!dateInput || !slotSelect) return;
+
+      const hk = hongKongNowParts();
+      dateInput.min = hk.date;
+      if(!dateInput.value || dateInput.value < hk.date) dateInput.value = hk.date;
+
+      const selectedDate = dateInput.value;
+      const currentMinutes = hk.hour * 60 + hk.minute;
+      const isToday = selectedDate === hk.date;
+      let firstAvailable = null;
+
+      [...slotSelect.options].forEach(option=>{
+        if(!option.dataset.baseLabel) option.dataset.baseLabel = option.textContent.replace(/｜已截止$/,'');
+        const startMinutes = slotStartMinutes(option.value);
+        const expired = isToday && startMinutes !== null && currentMinutes >= startMinutes;
+        option.disabled = expired;
+        option.textContent = expired
+          ? `${option.dataset.baseLabel}｜已截止`
+          : option.dataset.baseLabel;
+        if(!expired && !firstAvailable) firstAvailable = option;
+      });
+
+      if(isToday && !firstAvailable && autoMoveTomorrow){
+        dateInput.value = addDaysToDateString(hk.date,1);
+        [...slotSelect.options].forEach(option=>{
+          option.disabled = false;
+          option.textContent = option.dataset.baseLabel || option.textContent.replace(/｜已截止$/,'');
+        });
+        firstAvailable = slotSelect.options[0] || null;
+      }
+
+      const selected = slotSelect.selectedOptions[0];
+      if(!selected || selected.disabled){
+        const fallback = [...slotSelect.options].find(option=>!option.disabled);
+        if(fallback) slotSelect.value = fallback.value;
+      }
+    }
+
     function setMinDate(){
-      const d = new Date();
-      const yyyy = d.getFullYear();
-      const mm = String(d.getMonth()+1).padStart(2,'0');
-      const dd = String(d.getDate()).padStart(2,'0');
-      dateInput.min = `${yyyy}-${mm}-${dd}`;
-      dateInput.value = `${yyyy}-${mm}-${dd}`;
+      const hk = hongKongNowParts();
+      dateInput.min = hk.date;
+      if(!dateInput.value || dateInput.value < hk.date) dateInput.value = hk.date;
+      updateSlotAvailability();
     }
 
     function clampPackageAddon(v){
@@ -3395,6 +3475,25 @@
       updateFinalPreview();
     });
 
+    dateInput.addEventListener('change',()=>{
+      updateSlotAvailability();
+      clearReceiverFieldError(dateInput);
+      clearReceiverFieldError(slotSelect);
+      updateFinalPreview();
+    });
+
+    // 頁面長時間開啟時，每分鐘重新檢查即日配送時段。
+    setInterval(()=>{
+      const beforeDate = dateInput.value;
+      const beforeSlot = slotSelect.value;
+      updateSlotAvailability();
+      if(beforeDate !== dateInput.value || beforeSlot !== slotSelect.value){
+        clearReceiverFieldError(dateInput);
+        clearReceiverFieldError(slotSelect);
+        updateFinalPreview();
+      }
+    },60000);
+
     function receiverData(){
       const arrangement = document.querySelector('input[name="receiveArrangement"]:checked');
       return {
@@ -3470,7 +3569,9 @@
       if(!zoneSelect.value) errors.push({el:zoneSelect,msg:'請先選擇配送分區。'});
       if(!r.address) errors.push({el:receiverAddress,msg:'請填寫完整中文收貨地址。'});
       if(!r.date) errors.push({el:dateInput,msg:'請選擇收貨日期。'});
+      else if(r.date < hongKongNowParts().date) errors.push({el:dateInput,msg:'收貨日期已過，請重新選擇。'});
       if(!r.slot) errors.push({el:slotSelect,msg:'請選擇收貨時段。'});
+      else if(!slotAvailableForDate(r.date,r.slot)) errors.push({el:slotSelect,msg:'呢個即日配送時段已截止，請選擇下一個可用時段。'});
       if(!r.arrangement) errors.push({arrangement:true,msg:'請選擇「有人收貨」或「可掛門口」。'});
       return errors;
     }
@@ -3478,7 +3579,7 @@
     function receiverReady(){
       const r = receiverData();
       const validPhone = /^\d{8}$/.test(r.phone.replace(/[\s-]/g,''));
-      const baseReady = Boolean(r.name && validPhone && zoneSelect.value && r.address && r.date && r.slot && r.arrangement);
+      const baseReady = Boolean(r.name && validPhone && zoneSelect.value && r.address && r.date && r.slot && r.arrangement && slotAvailableForDate(r.date,r.slot));
       if(purchaseMode === 'single') return baseReady && singleData().count >= 4;
       return baseReady;
     }
@@ -4202,6 +4303,7 @@
     updateBackToTop();
 
     setMinDate();
+    updateSlotAvailability();
     clampExtraTool(1);
     setPurchaseMode('package');
     renderSingle();
