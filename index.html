@@ -142,6 +142,7 @@
     .step-head strong{font-size:17px}
     .step-head span{font-size:12px;color:#5f544b}
     .option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    #tierChoices{grid-template-columns:repeat(2,minmax(0,1fr))}
     .option-btn{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff;text-align:left;cursor:pointer;transition:.18s}
     .option-btn b{display:block;font-size:16px}
     .option-btn small{display:block;margin-top:4px;color:#564b43;line-height:1.45}
@@ -2848,7 +2849,7 @@
             <div class="eyebrow">訂購產品 · 套餐設定</div>
             <h2>揀隻數、規格級別，再揀公乸。</h2>
           </div>
-          <p>先揀 6／8／10 隻，再揀皇牌、大碼或巨無霸規格，最後揀全公／雙拼／全乸；想食多幾隻亦可另外加購。</p>
+          <p>先揀 6／8／10 隻，再揀皇牌、大碼、巨無霸或至尊規格，最後揀全公／雙拼／全乸；想食多幾隻亦可另外加購。</p>
         </div>
 
         <div class="order-grid">
@@ -2873,7 +2874,8 @@
               <div class="option-grid" id="tierChoices">
                 <button class="option-btn active" data-tier="standard"><b>皇牌規格</b><small>公 5–5.5兩｜乸 4.5–5兩<br>最易入口、性價比高</small></button>
                 <button class="option-btn" data-tier="large"><b>大碼升級</b><small>公 6–6.5兩｜乸 5.5–6兩<br>份量更足</small></button>
-                <button class="option-btn" data-tier="giant"><b>巨無霸</b><small>公 7–7.5兩｜乸 6–6.5兩<br>最高規格</small></button>
+                <button class="option-btn" data-tier="giant"><b>巨無霸</b><small>公 7–7.5兩｜乸 6–6.5兩<br>大份量升級</small></button>
+                <button class="option-btn" data-tier="supreme"><b>至尊規格</b><small>公 8–8.5兩｜乸 6.5–7兩<br>頂級大蟹・份量最足</small></button>
               </div>
             </div>
 
@@ -3277,11 +3279,16 @@
         6: { male: 1048, mixed: 1088, female: 1148 },
         8: { male: 1318, mixed: 1358, female: 1428 },
         10:{ male: 1588, mixed: 1638, female: 1718 }
+      },
+      supreme:{
+        6: { male: 1168, mixed: 1208, female: 1258 },
+        8: { male: 1478, mixed: 1518, female: 1588 },
+        10:{ male: 1788, mixed: 1838, female: 1918 }
       }
     };
 
     const packNames = { 6:'6隻嘗鮮裝', 8:'8隻皇牌裝', 10:'10隻分享裝' };
-    const tierNames = { standard:'皇牌規格', large:'大碼升級', giant:'巨無霸' };
+    const tierNames = { standard:'皇牌規格', large:'大碼升級', giant:'巨無霸', supreme:'至尊規格' };
     const mixNames = { male:'全公', mixed:'公乸雙拼', female:'全乸' };
     const tierSizes = {
       standard:{
@@ -3298,6 +3305,11 @@
         male:'公蟹 7–7.5兩',
         mixed:'公 7–7.5兩 / 乸 6–6.5兩',
         female:'蟹乸 6–6.5兩'
+      },
+      supreme:{
+        male:'公蟹 8–8.5兩',
+        mixed:'公 8–8.5兩 / 乸 6.5–7兩',
+        female:'蟹乸 6.5–7兩'
       }
     };
 
@@ -3854,7 +3866,8 @@
     const singlePackageRules = {
       standard:{ maleKey:'m55', femaleKey:'f50' },
       large:{ maleKey:'m65', femaleKey:'f60' },
-      giant:{ maleKey:'m75', femaleKey:'f65' }
+      giant:{ maleKey:'m75', femaleKey:'f65' },
+      supreme:{ maleKey:'m85', femaleKey:'f70' }
     };
 
     function detectSinglePackageMatch(items,male,female,count,rawCrabSubtotal){
