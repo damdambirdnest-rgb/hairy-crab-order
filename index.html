@@ -143,6 +143,7 @@
     .step-head span{font-size:12px;color:#5f544b}
     .option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
     #tierChoices{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #mixChoices .option-btn[hidden]{display:none}
     .option-btn{padding:16px;border-radius:18px;border:1px solid var(--line);background:#fff;text-align:left;cursor:pointer;transition:.18s}
     .option-btn b{display:block;font-size:16px}
     .option-btn small{display:block;margin-top:4px;color:#564b43;line-height:1.45}
@@ -2288,7 +2289,7 @@
               <div class="sale-ribbon">2026 秋季限定 · 套餐6隻起｜單隻自選4隻起</div>
               <div class="eyebrow">DAMDAMBIRDNEST · AUTUMN SELECTION</div>
               <h2>一到秋天，<br>就係食蟹最好時候。</h2>
-              <p class="hero-lead"><strong>精選 4 兩以上大閘蟹</strong><br>蟹公主打 5–5.5 兩｜蟹乸主打 4.5–5 兩<br><span>由二人晚餐到家庭聚會，一次過揀好份量，配送清晰易明。</span></p>
+              <p class="hero-lead"><strong>精選 4 兩以上大閘蟹</strong><br>蟹公主打 5–5.5 兩｜蟹乸主打 4.5–5 兩<br><span>另設 9–9.5 兩帝王級公蟹，想揀超大公蟹亦有得選。</span><br><span>由二人晚餐到家庭聚會，一次過揀好份量，配送清晰易明。</span></p>
 
               <div class="hero-features" aria-label="訂購重點">
                 <div class="hero-feature">
@@ -2419,8 +2420,8 @@
             <div class="single-retail-overview">
               <div class="retail-overview-card">
                 <span>蟹公</span>
-                <strong>5–8.5兩</strong>
-                <b>$110–$210／隻</b>
+                <strong>5–9.5兩</strong>
+                <b>$110–$290／隻</b>
               </div>
               <div class="retail-overview-card">
                 <span>蟹乸</span>
@@ -2505,6 +2506,15 @@
                     <button type="button" data-single-adjust="m85" data-step="-1">−</button>
                     <input class="single-size-input" data-single-key="m85" data-gender="male" data-size="8–8.5兩" data-price="210" value="0" inputmode="numeric" aria-label="蟹公8至8.5兩數量">
                     <button type="button" data-single-adjust="m85" data-step="1">＋</button>
+                  </div>
+                </div>
+                <div class="size-choice-row">
+                  <div class="size-choice-name"><strong>9–9.5兩</strong><small>帝王級公蟹</small></div>
+                  <div class="size-choice-price">$290</div>
+                  <div class="size-choice-counter">
+                    <button type="button" data-single-adjust="m95" data-step="-1">−</button>
+                    <input class="single-size-input" data-single-key="m95" data-gender="male" data-size="9–9.5兩" data-price="290" value="0" inputmode="numeric" aria-label="蟹公9至9.5兩數量">
+                    <button type="button" data-single-adjust="m95" data-step="1">＋</button>
                   </div>
                 </div>
               </div>
@@ -2875,7 +2885,8 @@
                 <button class="option-btn active" data-tier="standard"><b>皇牌規格</b><small>公 5–5.5兩｜乸 4.5–5兩<br>最易入口、性價比高</small></button>
                 <button class="option-btn" data-tier="large"><b>大碼升級</b><small>公 6–6.5兩｜乸 5.5–6兩<br>份量更足</small></button>
                 <button class="option-btn" data-tier="giant"><b>巨無霸</b><small>公 7–7.5兩｜乸 6–6.5兩<br>大份量升級</small></button>
-                <button class="option-btn" data-tier="supreme"><b>至尊規格</b><small>公 8–8.5兩｜乸 6.5–7兩<br>頂級大蟹・份量最足</small></button>
+                <button class="option-btn" data-tier="supreme"><b>至尊規格</b><small>公 8–8.5兩｜乸 6.5–7兩<br>大規格升級・份量更足</small></button>
+                <button class="option-btn" data-tier="king"><b>帝王級</b><small>公 9–9.5兩｜雙拼配 乸 6.5–7兩<br>頂級大公蟹・份量更足</small></button>
               </div>
             </div>
 
@@ -2956,6 +2967,15 @@
                         <button type="button" data-package-addon-adjust="pm85" data-step="-1">−</button>
                         <input class="package-addon-input" data-package-addon-key="pm85" data-gender="male" data-size="8–8.5兩" data-price="200" value="0" inputmode="numeric" aria-label="套餐加購蟹公8至8.5兩數量">
                         <button type="button" data-package-addon-adjust="pm85" data-step="1">＋</button>
+                      </div>
+                    </div>
+                    <div class="package-addon-size-row">
+                      <div><strong>9–9.5兩</strong><small>帝王級公蟹</small></div>
+                      <b>$280</b>
+                      <div class="package-crab-counter">
+                        <button type="button" data-package-addon-adjust="pm95" data-step="-1">−</button>
+                        <input class="package-addon-input" data-package-addon-key="pm95" data-gender="male" data-size="9–9.5兩" data-price="280" value="0" inputmode="numeric" aria-label="套餐加購蟹公9至9.5兩數量">
+                        <button type="button" data-package-addon-adjust="pm95" data-step="1">＋</button>
                       </div>
                     </div>
                   </div>
@@ -3162,6 +3182,7 @@
                     <div><span>6.5–7兩</span><b>$160／隻</b></div>
                     <div><span>7–7.5兩</span><b>$180／隻</b></div>
                     <div><span>8–8.5兩</span><b>$200／隻</b></div>
+                    <div><span>9–9.5兩</span><b>$280／隻</b></div>
                   </div>
                 </div>
 
@@ -3284,11 +3305,16 @@
         6: { male: 1198, mixed: 1198, female: 1198 },
         8: { male: 1548, mixed: 1548, female: 1548 },
         10:{ male: 1888, mixed: 1888, female: 1888 }
+      },
+      king:{
+        6: { male: 1678, mixed: 1438, female: 1198 },
+        8: { male: 2188, mixed: 1868, female: 1548 },
+        10:{ male: 2688, mixed: 2288, female: 1888 }
       }
     };
 
     const packNames = { 6:'6隻嘗鮮裝', 8:'8隻皇牌裝', 10:'10隻分享裝' };
-    const tierNames = { standard:'皇牌規格', large:'大碼升級', giant:'巨無霸', supreme:'至尊規格' };
+    const tierNames = { standard:'皇牌規格', large:'大碼升級', giant:'巨無霸', supreme:'至尊規格', king:'帝王級' };
     const mixNames = { male:'全公', mixed:'公乸雙拼', female:'全乸' };
     const tierSizes = {
       standard:{
@@ -3310,6 +3336,11 @@
         male:'公蟹 8–8.5兩',
         mixed:'公 8–8.5兩 / 乸 6.5–7兩',
         female:'蟹乸 6.5–7兩'
+      },
+      king:{
+        male:'公蟹 9–9.5兩',
+        mixed:'公 9–9.5兩 / 乸 6.5–7兩',
+        female:'蟹乸 6.5–7兩（沿用至尊規格）'
       }
     };
 
@@ -3322,6 +3353,7 @@
     const qtyChoices = document.querySelectorAll('#qtyChoices .option-btn');
     const tierChoices = document.querySelectorAll('#tierChoices .option-btn');
     const mixChoices = document.querySelectorAll('#mixChoices .option-btn');
+    const femaleMixChoice = document.querySelector('#mixChoices [data-mix="female"]');
     const zoneSelect = document.getElementById('receiverZone');
     const packageAddonInputs = [...document.querySelectorAll('.package-addon-input')];
     const dateInput = document.getElementById('receiveDate');
@@ -3452,6 +3484,8 @@
     }
 
     function render(){
+      if(state.tier === 'king' && state.mix === 'female') state.mix = 'mixed';
+      if(femaleMixChoice) femaleMixChoice.hidden = state.tier === 'king';
       const base = prices[state.tier][state.qty][state.mix];
       const addon = packageAddonData();
       const toolQty = clampExtraTool();
@@ -3867,7 +3901,8 @@
       standard:{ maleKey:'m55', femaleKey:'f50' },
       large:{ maleKey:'m65', femaleKey:'f60' },
       giant:{ maleKey:'m75', femaleKey:'f65' },
-      supreme:{ maleKey:'m85', femaleKey:'f70' }
+      supreme:{ maleKey:'m85', femaleKey:'f70' },
+      king:{ maleKey:'m95', femaleKey:'f70' }
     };
 
     function detectSinglePackageMatch(items,male,female,count,rawCrabSubtotal){
