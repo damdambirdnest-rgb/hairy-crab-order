@@ -3636,11 +3636,14 @@
     }
 
     function hasHighSizeOrder(){
-      const isHighSize = size => Number.parseFloat(String(size || '')) >= 8.5;
+      const isHighSize = size => {
+        const label = String(size || '');
+        return Number.parseFloat(label) >= 8.5 || label.startsWith('8–8.5');
+      };
       if(purchaseMode === 'single'){
         return singleData().items.some(item => isHighSize(item.size));
       }
-      const premiumMaleTier = ['king','emperor'].includes(state.tier) && state.mix !== 'female';
+      const premiumMaleTier = ['supreme','king','emperor'].includes(state.tier) && state.mix !== 'female';
       const highSizeAddon = packageAddonData().items.some(item => isHighSize(item.size));
       return premiumMaleTier || highSizeAddon;
     }
